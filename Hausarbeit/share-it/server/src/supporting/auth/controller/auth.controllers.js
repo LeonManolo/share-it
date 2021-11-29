@@ -1,0 +1,64 @@
+const Authentication = require("../services/authentication");
+const usernameValidator = require("../validations/username_validator");
+
+// Endpoint für "/register"
+const register = async (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  // Prüft ob der Username und Passwort valide sind
+  console.log(usernameValidator(username));
+  // TODO: später austauschen
+  if (true) {
+    try {
+      const auth = new Authentication();
+      const sessionId = await auth.register(username, password);
+      const cookieName = "sessionid";
+      res.cookie(cookieName, sessionId);
+      res.status(200);
+      res.json({
+        status: "200 Ok",
+        sessionId: sessionId,
+      });
+    } catch (e) {
+      res.status(401);
+      res.json({
+        status: `401 ${e}`,
+      });
+    }
+  } else {
+    res.status(401);
+    res.json({
+      status: `401 Invalid Username or Password`,
+    });
+  }
+};
+
+// Endpoint für "/login" zum einloggen eines users
+const login = async (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  try {
+    const auth = new Authentication();
+    const sessionId = await auth.login(username, password);
+    const cookieName = "sessionid";
+    res.cookie(cookieName, sessionId);
+    res.status(200);
+    res.json({
+      status: "200 Ok",
+      sessionId: sessionId,
+    });
+  } catch (e) {
+    res.status(401);
+    res.json({
+      status: `401 ${e}`,
+    });
+  }
+
+};
+
+// Funktionen werden exportiert
+module.exports = {
+  register,
+  login,
+};
