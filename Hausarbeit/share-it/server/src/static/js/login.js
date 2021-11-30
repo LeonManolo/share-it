@@ -34,9 +34,17 @@ async function submitForm() {
     .then((json) => {
       console.log(json);
       console.log("logged in");
+      navigateToDashboard();
     })
     .catch((e) => {
       console.log("Error while parsing json");
       console.log(e);
     });
+}
+
+/**
+ * Navigiert zu einer neuen Seite
+ */
+async function navigateToDashboard(){
+  window.location = "/borrow";        
 }

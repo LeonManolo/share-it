@@ -13,6 +13,7 @@ async function submitForm() {
   event.preventDefault();
 
   const credentials = getFormData();
+  console.log(credentials);
 
   const config = {
     method: "POST",

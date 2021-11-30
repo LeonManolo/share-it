@@ -12,7 +12,7 @@ router.post("/register", authControllers.register);
 /**
  * Liefert die Html-Seite zum Registrieren
  */
-router.get("/register", (req, res, next) => {
+router.get("/register", (req, res) => {
   res.sendFile(pathToStaticFolder("/html/register.html"));
 });
 
@@ -20,5 +20,9 @@ router.get("/register", (req, res, next) => {
  * Route zum einloggen eines Users
  */
 router.post("/login", authControllers.login);
+
+router.get("/login", (req, res) => {
+  res.sendFile(pathToStaticFolder("/html/login.html"));
+});
 
 module.exports = router;

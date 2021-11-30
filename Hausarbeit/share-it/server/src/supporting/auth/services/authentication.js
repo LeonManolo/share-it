@@ -32,7 +32,7 @@ class Authentication {
   }
 
   /**
-   * Prüft ob es einen User mit dem "username" bereits existiert
+   * Prüft ob ein User mit dem "username" bereits existiert
    * @param {string} username
    * @returns
    */
