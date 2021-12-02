@@ -1,9 +1,9 @@
 const sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database("./server/src/database/database.db");
+var db = new sqlite3.Database("./server/src/database/database.sqlite");
 
 class UserLibrary {
   constructor() {
-    this.init();
+    UserLibrary.init();
   }
 
   /**
@@ -14,7 +14,7 @@ class UserLibrary {
    * sessionid
    * profileImageUrl
    */
-  init() {
+  static init() {
     db.run(`CREATE TABLE IF NOT EXISTS user(
                 username VARCHAR(50) PRIMARY KEY NOT NULL,
                 password VARCHAR(50) NOT NULL,

@@ -17,12 +17,12 @@ class Authentication {
    * Erstellt einen User in der Datenbank und liefert die dazugehörige sessiondId
    * @param {string} username
    * @param {string} password
-   * @returns
+   * @returns {string} sessionid
    */
   async register(username, password) {
     const sessionId = createSessionId();
     const exists = await this.userExists(username);
-    console.log(exists)
+    console.log(exists);
     if (exists) {
       throw Error("username already exists!");
     } else {
@@ -34,7 +34,7 @@ class Authentication {
   /**
    * Prüft ob ein User mit dem "username" bereits existiert
    * @param {string} username
-   * @returns
+   * @returns {boolean}
    */
   async userExists(username) {
     let result = await userLibrary.userExists(username);
@@ -47,7 +47,7 @@ class Authentication {
    * Liefert einen User anhand der übergebenen sessiondId, sofern
    * dieser existiert
    * @param {string} sessionId
-   * @returns
+   * @returns {object} user
    */
   async getUserBySessionId(sessionId) {
     return await userLibrary.getUserBySessionId(sessionId);
@@ -59,11 +59,12 @@ class Authentication {
    * andernfalls ein Fehler
    * @param {string} username
    * @param {string} password
-   * @returns
+   * @returns {string} sessionid
    */
   async login(username, password) {
     const user = await userLibrary.getUser(username, password);
-    if (user) {
+    console.log(`der user beim login: ${user}`);
+    if (typeof user !== "undefined") {
       const sessionId = createSessionId();
       await userLibrary.updateUserSessionId(username, sessionId);
       return sessionId;

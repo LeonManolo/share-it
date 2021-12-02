@@ -8,6 +8,11 @@ const pathToStaticFolder = require("./global/helpers/pathToStaticFolder");
 // Eigene Routen werden importiert
 const authRouter = require("./supporting/auth/routes/auth.routes");
 const sharingRouter = require("./core/sharing/routes/sharing.routes");
+const communityRouter = require("./core/community/routes/community.routes");
+
+// Datenbanken werden initialisiert
+const initDatabases = require("./database/database");
+initDatabases();
 
 // Express middleware
 app.use(express.static(pathToStaticFolder()));
@@ -19,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 // (WICHTIG! Erst Express middleware einbinden, vor eigener mw!)
 app.use("/", authRouter);
 app.use("/", sharingRouter);
+app.use("/", communityRouter);
 
 // Startseite wird als HTML geliefert
 app.get("/", (req, res) => {

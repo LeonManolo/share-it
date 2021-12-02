@@ -1,5 +1,6 @@
 console.log("login.js");
 
+// Holt sich die Daten aus HTML Form
 const getFormData = () => {
   const form = document.getElementById("form");
   const data = {
@@ -9,11 +10,13 @@ const getFormData = () => {
   return data;
 };
 
+// Funktion wird aufgrufen anstatt dem standard von einer HTML Form
 async function submitForm() {
   event.preventDefault();
 
   const credentials = getFormData();
 
+  // Konfigurationen für die request
   const config = {
     method: "POST",
     headers: {
@@ -22,29 +25,34 @@ async function submitForm() {
     body: JSON.stringify(credentials),
   };
 
+  // Url an die die anfrage gemacht wird
   const url = "http://localhost:8080/login";
 
   // Request an den Server für die Registrierung
-  fetch(url, config)
-    .then((response) => response.json())
-    .catch((e) => {
-      console.log("Network Error");
-      console.log(e);
-    })
-    .then((json) => {
-      console.log(json);
-      console.log("logged in");
-      navigateToDashboard();
-    })
-    .catch((e) => {
-      console.log("Error while parsing json");
-      console.log(e);
-    });
+  let response;
+  try {
+    response = await fetch(url, config);
+  } catch (e) {
+    console.log(`Netzwerk Fehler ${e}`);
+  }
+  const json = await response.json();
+  if (response.ok) {
+    navigateToDashboard();
+  } else {
+    // TODO: Fehler auf dem screen ausgeben
+    buildLoginNotSuccessfulMessage();
+    console.log("User not found or password/username is wrong");
+  }
 }
 
 /**
  * Navigiert zu einer neuen Seite
  */
-async function navigateToDashboard(){
-  window.location = "/borrow";        
+async function navigateToDashboard() {
+  window.location = "/borrow";
+}
+
+function buildLoginNotSuccessfulMessage() {
+  const form = document.getElementById("form");
+  //...
 }
