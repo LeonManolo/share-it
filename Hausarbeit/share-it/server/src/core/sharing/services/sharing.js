@@ -27,7 +27,12 @@ class Sharing {
    */
   async addItem(item) {
     // TODO: Validieren des item objects (auf null/undefined etc)
-    await itemLibrary.addItem(item);
+    if (typeof item.maxBorrowDuration === "undefined") {
+      item.maxBorrowDuration = 10;
+    }
+    const result = await itemLibrary.addItem(item);
+    console.log(`Suppe: ${result}`);
+    return result > 0;
   }
 
   /**
@@ -56,6 +61,15 @@ class Sharing {
     } else {
       throw new Error(`username: ${username} is not a string!`);
     }
+  }
+
+  /**
+   * Liefert alle Gegenstände die der User mit dem username zum Verleih eingestellt hat
+   * @param {string} username
+   * @returns {[object]} item
+   */
+  async getAllItemsLendByUser(username) {
+    return await itemLibrary.getAllItemsLendByUser(username);
   }
 
   /**

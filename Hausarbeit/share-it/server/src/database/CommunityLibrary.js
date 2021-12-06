@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database("./database.sqlite");
+var db = new sqlite3.Database(__dirname+"/database.sqlite");
 
 class CommunityLibrary {
   constructor() {
@@ -60,7 +60,7 @@ class CommunityLibrary {
   /**
    * Liefert alle unbeantwortete Freundes Einträge
    * @param {string} username
-   * @returns {[object]} 
+   * @returns {[object]}
    */
   async getAllOpenFriendRequestsForUser(username) {
     return new Promise((resolve, reject) => {

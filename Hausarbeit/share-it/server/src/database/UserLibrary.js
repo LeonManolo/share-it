@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database("./database.sqlite");
+var db = new sqlite3.Database(__dirname+"/database.sqlite");
 
 class UserLibrary {
   constructor() {

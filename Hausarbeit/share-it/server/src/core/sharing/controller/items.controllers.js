@@ -8,7 +8,7 @@ const fs = require("fs");
  */
 const addItem = async (req, res, next) => {
   const item = req.body;
-
+console.log("ich bin drinn");
   try {
     const sharing = new Sharing();
     await sharing.addItem(item);
@@ -49,6 +49,13 @@ const getItems = async (req, res, next) => {
   }
 };
 
+const getAllItemsLendByUser = async (req, res, next) => {
+  //TODO akutellen user auslesen
+  const username = "Hans Peter";
+  const sharing = new Sharing();
+  
+};
+
 /**
  * Endpoint um ein Gegenstand auszuleihen
  */
@@ -83,7 +90,6 @@ const returnItem = async (req, res) => {
 
 const updateItem = async (req, res, next) => {};
 
-
 /**
  * Endpoint um einen Gegenstand zu löschen
  */
@@ -107,4 +113,5 @@ module.exports = {
   deleteItem,
   borrowItem,
   returnItem,
+  getAllItemsLendByUser,
 };
