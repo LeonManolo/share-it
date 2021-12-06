@@ -27,7 +27,8 @@ class Sharing {
    */
   async addItem(item) {
     // TODO: Validieren des item objects (auf null/undefined etc)
-    await itemLibrary.addItem(item);
+    let suppe = await itemLibrary.addItem(item);
+    console.log(`Suppe: ${suppe}`);
   }
 
   /**

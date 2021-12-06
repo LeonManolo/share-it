@@ -8,7 +8,7 @@ const fs = require("fs");
  */
 const addItem = async (req, res, next) => {
   const item = req.body;
-
+console.log("ich bin drinn");
   try {
     const sharing = new Sharing();
     await sharing.addItem(item);

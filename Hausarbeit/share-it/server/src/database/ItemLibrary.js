@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database("./database.sqlite");
+var db = new sqlite3.Database("./Hausarbeit/share-it/server/src/database/database.sqlite");
 
 
 class ItemLibrary {
@@ -14,7 +14,7 @@ class ItemLibrary {
    * title: Der Name des Gegenstandes der zu Verleih steht
    * description: Die Beschreibung des Gegenstandes
    * owner: Der username des Users der den Gegenstand besitzt
-   * borrowedBy: Der username des Users der den Gegenstand ausgeliehen hat
+   * borrowedBy(optional): Der username des Users der den Gegenstand ausgeliehen hat
    * createdAt(optional): Wann der Gegenstand eingestellt wurde
    * borrowedAt(optional): Wann der Gegenstand vom jemanden ausgeliehen wurde
    * maxBorrowDuration(optional): Die Maximale Anzahl an Tagen, die der Gegenstand ausgeliehen werden darf
