@@ -55,6 +55,7 @@ const login = async (req, res, next) => {
       status: `401 ${e}`,
     });
   }
+  
 };
 
 // Endpoint für "/logout" zum ausloggen des momentanen users
