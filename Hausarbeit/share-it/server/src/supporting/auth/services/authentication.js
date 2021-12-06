@@ -1,4 +1,5 @@
 const createSessionId = require("../helpers/createSessionId");
+const hash = require("../helpers/hash");
 const UserLibrary = require("../../../database/UserLibrary");
 let userLibrary;
 
@@ -15,7 +16,9 @@ class Authentication {
 
   /**
    * Erstellt einen User in der Datenbank und liefert die dazugehörige sessiondId.
-   * Prüft außerdem ob es bereits einen user mit dem Username bereits gibt
+   * Prüft außerdem ob es bereits einen user mit dem Username bereits gibt. Sofern
+   * dieser noch nicht existiert wird ein neuer User erstellt und das Passwort
+   * noch einmal gehashed.
    * @param {string} username
    * @param {string} password
    * @returns {string} sessionid
@@ -27,7 +30,8 @@ class Authentication {
     if (exists) {
       throw Error("username already exists!");
     } else {
-      await userLibrary.createUser(username, password, sessionId);
+      const hashedPass = await hash.stringToHash(password);
+      await userLibrary.createUser(username, hashedPass, sessionId);
       return sessionId;
     }
   }
@@ -63,9 +67,10 @@ class Authentication {
    * @returns {string} sessionid
    */
   async login(username, password) {
-    const user = await userLibrary.getUser(username, password);
+    const user = await userLibrary.getUser(username);
+    const matches = await hash.equalsHash(password, user.password);
     console.log(`der user beim login: ${user}`);
-    if (typeof user !== "undefined") {
+    if (typeof user !== "undefined" && matches) {
       const sessionId = createSessionId();
       await userLibrary.updateUserSessionId(username, sessionId);
       return sessionId;

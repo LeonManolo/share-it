@@ -17,7 +17,7 @@ class UserLibrary {
   static init() {
     db.run(`CREATE TABLE IF NOT EXISTS user(
                 username VARCHAR(50) PRIMARY KEY NOT NULL,
-                password VARCHAR(50) NOT NULL,
+                password TEXT NOT NULL,
                 sessionid TEXT UNIQUE,
                 profileImageUrl TEXT
             );`);
@@ -25,10 +25,10 @@ class UserLibrary {
 
   /**
    * Erstellt einen User auf der Datenbank
-   * @param {string} username 
-   * @param {string} password 
-   * @param {string} sessionId 
-   * @returns 
+   * @param {string} username
+   * @param {string} password
+   * @param {string} sessionId
+   * @returns
    */
   async createUser(username, password, sessionId) {
     return new Promise((resolve, reject) => {
@@ -44,8 +44,8 @@ class UserLibrary {
 
   /**
    * Liefert einen User anhand der übergebenen sessiondId, sofern dieser existiert
-   * @param {string} sessionId 
-   * @returns 
+   * @param {string} sessionId
+   * @returns
    */
   async getUserBySessionId(sessionId) {
     return new Promise((resolve, reject) => {
@@ -65,9 +65,9 @@ class UserLibrary {
   }
 
   /**
-   * 
-   * @param {string} username 
-   * @param {string} sessiondId 
+   * Aktualisiert die sessionId eines Users
+   * @param {string} username
+   * @param {string} sessiondId
    */
   async updateUserSessionId(username, sessionId) {
     return new Promise((resolve, reject) => {
@@ -104,16 +104,15 @@ class UserLibrary {
   }
 
   /**
-   * Liefert einen User anhand des Usernames und Passwort zurück
-   * @param {string} username 
-   * @param {string} password 
-   * @returns 
+   * Liefert einen User anhand des Usernames zurück
+   * @param {string} username
+   * @returns {object} user
    */
   async getUser(username, password) {
     return new Promise((resolve, reject) => {
       db.get(
-        "SELECT * FROM user WHERE username = ? AND password = ?",
-        [username, password],
+        "SELECT * FROM user WHERE username = ?",
+        [username],
         (error, row) => {
           if (error) {
             console.log(error);

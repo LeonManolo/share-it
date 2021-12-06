@@ -42,7 +42,7 @@ router.post("/items", itemsController.addItem);
 router.get("/items/:id", itemsController.getItem);
 
 /**
- * Enpoint um alle Gegenständige zu erhalten
+ * Enpoint um alle Gegenständige zu erhalten für den jeweiligen User
  */
 router.get("/items", itemsController.getItems);
 

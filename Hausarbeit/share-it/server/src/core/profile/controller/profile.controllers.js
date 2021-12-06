@@ -27,7 +27,7 @@ const editProfile = async (req, res, next) => {
 // Endpoint für "/login" zum einloggen eines users
 const getProfile = async (req, res, next) => {};
 
-// Endpoint für um ein Account zu löschen
+// Endpoint um ein Account zu löschen
 const deleteAccount = async (req, res, next) => {};
 
 // Funktionen werden exportiert

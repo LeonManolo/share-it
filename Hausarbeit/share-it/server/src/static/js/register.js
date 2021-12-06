@@ -26,17 +26,21 @@ async function submitForm() {
   const url = "http://localhost:8080/register";
 
   // Request an den Server für die Registrierung
-  fetch(url, config)
-    .then((response) => response.json())
-    .catch((e) => {
-      console.log("Network Error");
-      console.log(e);
-    })
-    .then((json) => {
-      console.log(json);
-    })
-    .catch((e) => {
-      console.log("Error while parsing json");
-      console.log(e);
-    });
+  let response;
+  try {
+    response = await fetch(url, config);
+  } catch (e) {
+    console.log(`Netzwerk Fehler ${e}`);
+  }
+  const json = await response.json();
+  if (response.ok) {
+    navigateToDashboard();
+  } else {
+    // TODO: Fehler auf dem screen ausgeben
+    console.log("register failed");
+  }
+}
+
+async function navigateToDashboard() {
+  window.location = "/borrow";
 }
