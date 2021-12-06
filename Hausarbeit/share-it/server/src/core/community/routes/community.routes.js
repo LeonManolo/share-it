@@ -13,6 +13,10 @@ router.post("/accept-friend/:id");
 
 router.post("/decline-friend/:id");
 
+router.get("/community", (req, res) => {
+  res.sendFile(pathToStaticFolder("/html/community.html"));
+});
+
 /**
  * Route um alle offenen Freundschaftsanfragen zu erhalten
  */
