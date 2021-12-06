@@ -5,7 +5,7 @@ const getFormData = () => {
   const data = {
     title: form.elements["title"].value,
     description: form.elements["description"].value,
-    owner: "Max Mustermann",
+    owner: "Dein Vater",
     maxBorrowDuration: 10,
     
   };
@@ -38,4 +38,39 @@ async function submitForm() {
     console.log(`Netzwerk Fehler ${e}`);
   }
 }
+
+async function loadItems() {
+
+  // Konfigurationen für die request
+  const config = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  // Url an die die anfrage gemacht wird
+  const url = "http://localhost:8080/items";
+
+  // Request an den Server für die Registrierung
+  let response;
+  try {
+    response = await fetch("http://localhost:8080/itemsLend");
+    const items = await response.json();
+    console.log(items);
+
+    items.forEach(element => {
+      Object.entries(element).forEach(([key, value]) => {
+        console.log(`${key} ${value}`);
+      });
+    });
+    
+  } catch (e) {
+    console.log(`Netzwerk Fehler ${e}`);
+  }
+}
+loadItems();
+
+
+
 

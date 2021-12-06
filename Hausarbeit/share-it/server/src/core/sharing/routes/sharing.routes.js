@@ -47,6 +47,11 @@ router.get("/items/:id", itemsController.getItem);
 router.get("/items", itemsController.getItems);
 
 /**
+ * Enpoint um alle Gegenständige zu erhalten die der User reingestellt hat
+ */
+router.get("/itemsLend", itemsController.getAllItemsLendByUser)
+
+/**
  * Enpoint um einen bestimmten Gegenstand zu aktualisieren
  */
 router.put("/items/:id", itemsController.updateItem);

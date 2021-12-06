@@ -36,12 +36,14 @@ const getItem = async (req, res, next) => {
 
 /**
  * Endpoint um alle Gegenstände für einen User zu bekommen
+ * 
  */
+
 const getItems = async (req, res, next) => {
   try {
     const sharing = new Sharing();
     const result = await sharing.getItemsForUsername("Dein Vater");
-    console.log(result);
+    console.log("items.contorllers getItems: " + result);
     // TODO: item vorher prüfen
     res.json(result);
   } catch (e) {
@@ -53,6 +55,9 @@ const getAllItemsLendByUser = async (req, res, next) => {
   //TODO akutellen user auslesen
   const username = "Hans Peter";
   const sharing = new Sharing();
+  const result = await sharing.getAllItemsLendByUser("Dein Vater");
+  console.log("items.contorllers getLendItems: "+result );
+  res.json(result);
   
 };
 

@@ -94,7 +94,7 @@ class ItemLibrary {
    */
   async getAllItemsLendByUser(username) {
     return new Promise((resolve, reject) => {
-      db.get("SELECT * FROM item WHERE owner = ?", [username], (error, row) => {
+      db.all("SELECT * FROM item WHERE owner = ?", [username], (error, row) => {
         if (error) {
           console.log(error);
           reject(error);
