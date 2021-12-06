@@ -60,6 +60,15 @@ class Sharing {
   }
 
   /**
+   * Liefert alle Gegenstände die der User mit dem username zum Verleih eingestellt hat
+   * @param {string} username
+   * @returns {[object]} item
+   */
+  async getAllItemsLendByUser(username) {
+    return await itemLibrary.getAllItemsLendByUser(username);
+  }
+
+  /**
    * Gibt ein Gegenstand wieder zurück zum Verleihen
    * @param {number} id
    * @param {string} borrowedBy TODO: Wenn geprüft werden soll ob
