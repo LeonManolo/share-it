@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database("./Hausarbeit/share-it/server/src/database/database.sqlite");
+var db = new sqlite3.Database("./server/src/database/database.sqlite");
 
 class ItemLibrary {
   constructor() {

@@ -27,8 +27,12 @@ class Sharing {
    */
   async addItem(item) {
     // TODO: Validieren des item objects (auf null/undefined etc)
-    let suppe = await itemLibrary.addItem(item);
-    console.log(`Suppe: ${suppe}`);
+    if (typeof item.maxBorrowDuration === "undefined") {
+      item.maxBorrowDuration = 10;
+    }
+    const result = await itemLibrary.addItem(item);
+    console.log(`Suppe: ${result}`);
+    return result > 0;
   }
 
   /**
