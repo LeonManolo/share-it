@@ -5,6 +5,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const pathToStaticFolder = require("./global/helpers/pathToStaticFolder");
 
+//test
+const variable = {};
+
 // Eigene Routen werden importiert
 const authRouter = require("./supporting/auth/routes/auth.routes");
 const sharingRouter = require("./core/sharing/routes/sharing.routes");
@@ -26,7 +29,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", authRouter);
 app.use("/", sharingRouter);
 app.use("/", communityRouter);
-app.use("/", profileRouter);
 
 // Startseite wird als HTML geliefert
 app.get("/", (req, res) => {
