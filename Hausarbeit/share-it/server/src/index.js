@@ -1,13 +1,9 @@
-// Zeile eins
 const express = require("express");
 const app = express();
 const PORT = 8080;
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const pathToStaticFolder = require("./global/helpers/pathToStaticFolder");
-
-//test
-const variable = {};
 
 // Eigene Routen werden importiert
 const authRouter = require("./supporting/auth/routes/auth.routes");
@@ -30,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", authRouter);
 app.use("/", sharingRouter);
 app.use("/", communityRouter);
+app.use("/", profileRouter);
 
 // Startseite wird als HTML geliefert
 app.get("/", (req, res) => {
@@ -41,4 +38,4 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
-// Neuer Test
+
