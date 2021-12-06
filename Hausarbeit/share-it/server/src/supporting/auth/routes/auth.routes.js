@@ -25,4 +25,9 @@ router.get("/login", (req, res) => {
   res.sendFile(pathToStaticFolder("/html/login.html"));
 });
 
+/**
+ * Route zum ausloggen eines Users
+ */
+router.post("/logout", authControllers.logout)
+
 module.exports = router;

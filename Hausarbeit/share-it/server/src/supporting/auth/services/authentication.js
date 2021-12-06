@@ -14,7 +14,8 @@ class Authentication {
   }
 
   /**
-   * Erstellt einen User in der Datenbank und liefert die dazugehörige sessiondId
+   * Erstellt einen User in der Datenbank und liefert die dazugehörige sessiondId.
+   * Prüft außerdem ob es bereits einen user mit dem Username bereits gibt
    * @param {string} username
    * @param {string} password
    * @returns {string} sessionid
@@ -71,6 +72,10 @@ class Authentication {
     } else {
       throw Error("User not found!");
     }
+  }
+
+  async logout(username) {
+    //TODO: sessionid löschen
   }
 }
 

@@ -5,8 +5,17 @@ const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder")
 const communityControllers = require("../controller/community.controllers");
 
 /**
- * Route die die HTML-Seite liefert in der Gegenständige ausgeliehen werden können
+ * Route um einen Freund hinzu zufügen
  */
 router.post("/add-friend", communityControllers.addFriend);
+
+router.post("/accept-friend/:id");
+
+router.post("/decline-friend/:id");
+
+/**
+ * Route um alle offenen Freundschaftsanfragen zu erhalten
+ */
+router.get("/open-friend-requests", communityControllers.getOpenFriendRequests);
 
 module.exports = router;

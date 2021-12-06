@@ -1,6 +1,9 @@
 const Sharing = require("../services/sharing");
 
 // TODO username aus den cookies lesen
+/**
+ * Endpoint um einen neuen Gegenstand einzustellen
+ */
 const addItem = async (req, res, next) => {
   const item = req.body;
 
@@ -14,6 +17,9 @@ const addItem = async (req, res, next) => {
   }
 };
 
+/**
+ * Endpoint um eine bestimmten Gegenstand geliefert zu bekommen
+ */
 const getItem = async (req, res, next) => {
   const id = parseInt(req.params.id);
   try {
@@ -26,6 +32,9 @@ const getItem = async (req, res, next) => {
   }
 };
 
+/**
+ * Endpoint um alle Gegenstände für einen User zu bekommen
+ */
 const getItems = async (req, res, next) => {
   try {
     const sharing = new Sharing();
@@ -38,9 +47,54 @@ const getItems = async (req, res, next) => {
   }
 };
 
+/**
+ * Endpoint um ein Gegenstand auszuleihen
+ */
+const borrowItem = async (req, res) => {
+  const id = parseInt(req.params.id);
+  const username = "Hans Peter";
+  const sharing = new Sharing();
+  const result = await sharing.borrowItem(id, username);
+  console.log(result);
+  res.sendStatus(200);
+};
+
+/**
+ * Endpoint um einen Gegenstand wieder zurückzugeben
+ */
+const returnItem = async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const sharing = new Sharing();
+    const success = await sharing.returnItem(id);
+    if (success) {
+      res.sendStatus(200);
+    } else {
+      // id nicht gefunden
+      res.sendStatus(404);
+    }
+    console.log(result);
+  } catch (e) {
+    res.sendStatus(500);
+  }
+};
+
 const updateItem = async (req, res, next) => {};
 
-const deleteItem = async (req, res, next) => {};
+
+/**
+ * Endpoint um einen Gegenstand zu löschen
+ */
+const deleteItem = async (req, res, next) => {
+  const id = parseInt(req.params.id);
+  const sharing = new Sharing();
+  const success = await sharing.deleteItem(id);
+  if (success) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(403);
+  }
+};
 
 // Funktionen werden exportiert
 module.exports = {
@@ -49,4 +103,6 @@ module.exports = {
   getItem,
   getItems,
   deleteItem,
+  borrowItem,
+  returnItem,
 };

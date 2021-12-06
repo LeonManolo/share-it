@@ -12,6 +12,11 @@ router.get("/borrow", (req, res, next) => {
 });
 
 /**
+ * Route um einen Gegenstand auszuleihen
+ */
+router.post("/borrow/:id", itemsController.borrowItem);
+
+/**
  * Endpoint für die HTML-Seite in der Gegenstände zum verleihen eingestellt werden können
  */
 router.get("/lend", (req, res, next) => {

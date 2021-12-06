@@ -50,6 +50,23 @@ class CommunityLibrary {
       db.run(
         "UPDATE friendship SET status = ? WHERE friendship_id = ?",
         [status, friendship_id],
+        function () {
+          resolve(this.changes);
+        }
+      );
+    });
+  }
+
+  /**
+   * Liefert alle unbeantwortete Freundes Einträge
+   * @param {string} username
+   * @returns {[object]} 
+   */
+  async getAllOpenFriendRequestsForUser(username) {
+    return new Promise((resolve, reject) => {
+      db.all(
+        "SELECT * FROM friendship WHERE status = 0 AND (friend1 = ? OR friend2 = ?) AND requestedBy != ?",
+        [username, username, username],
         (error, row) => {
           if (error) {
             console.log(error);

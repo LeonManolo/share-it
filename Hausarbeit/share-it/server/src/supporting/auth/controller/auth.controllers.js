@@ -57,8 +57,12 @@ const login = async (req, res, next) => {
   }
 };
 
+// Endpoint für "/logout" zum ausloggen des momentanen users
+const logout = (req, res) => {};
+
 // Funktionen werden exportiert
 module.exports = {
   register,
   login,
+  logout,
 };

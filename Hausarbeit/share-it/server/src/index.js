@@ -9,6 +9,7 @@ const pathToStaticFolder = require("./global/helpers/pathToStaticFolder");
 const authRouter = require("./supporting/auth/routes/auth.routes");
 const sharingRouter = require("./core/sharing/routes/sharing.routes");
 const communityRouter = require("./core/community/routes/community.routes");
+const profileRouter = require("./core/profile/routes/profile.routes");
 
 // Datenbanken werden initialisiert
 const initDatabases = require("./database/database");
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", authRouter);
 app.use("/", sharingRouter);
 app.use("/", communityRouter);
+app.use("/", profileRouter);
 
 // Startseite wird als HTML geliefert
 app.get("/", (req, res) => {

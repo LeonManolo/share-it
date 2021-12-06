@@ -15,7 +15,12 @@ const addFriend = async (req, res, next) => {
   }
 };
 
+const getOpenFriendRequests = async (req, res, next) => {
+
+}
+
 // Funktionen werden exportiert
 module.exports = {
   addFriend,
+  getOpenFriendRequests,
 };
