@@ -1,7 +1,6 @@
 const sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database("./database.sqlite");
 
-
 class ItemLibrary {
   constructor() {
     ItemLibrary.init();
@@ -89,8 +88,26 @@ class ItemLibrary {
   }
 
   /**
+   * Liefert alle Gegenstände die der User mit dem username zum Verleih eingestellt hat
+   * @param {string} username
+   * @returns {[object]} item
+   */
+  async getAllItemsLendByUser(username) {
+    return new Promise((resolve, reject) => {
+      db.get("SELECT * FROM item WHERE owner = ?", [username], (error, row) => {
+        if (error) {
+          console.log(error);
+          reject(error);
+        } else {
+          resolve(row);
+        }
+      });
+    });
+  }
+
+  /**
    * Liefert alle Gegenstände die zum Verleih stehen und auch nur
-   * nur freunde von dem übergebenen User (username) sind
+   * nur freunde von dem übergebenen User (username) sind.
    * Diese query greift auch auf die friendship und user_friendship tabellen!
    * @param {string} username
    * @returns
@@ -98,7 +115,7 @@ class ItemLibrary {
   async getAllItemsForUsername(username) {
     return new Promise((resolve, reject) => {
       db.all(
-        "SELECT * FROM item JOIN friendship ON (friend1 = ? OR friend2 = ?) AND status = 0;",
+        "SELECT * FROM item JOIN friendship ON (friend1 = ? OR friend2 = ?) AND friendship.status = 0;",
         [username, username],
         (error, row) => {
           if (error) {
