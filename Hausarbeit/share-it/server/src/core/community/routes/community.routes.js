@@ -31,5 +31,10 @@ router.get("/community", (req, res) => {
  */
 router.get("/open-friend-requests", communityControllers.getOpenFriendRequests);
 
+/**
+ * Route um die alle Usernames liefert, die eine bestimmte Zeichenketten enthalten
+ */
+router.get("/usernames", communityControllers.getAllUsernamesContainingPhrase)
+
 // Routen werden exportiert
 module.exports = router;

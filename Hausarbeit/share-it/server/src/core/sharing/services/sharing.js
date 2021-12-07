@@ -57,7 +57,7 @@ class Sharing {
    */
   async getItemsForUsername(username) {
     if (typeof username === "string") {
-      console.log("bin in sharing.js")
+      console.log("bin in sharing.js");
       return await itemLibrary.getAllItemsForUsername(username);
     } else {
       throw new Error(`username: ${username} is not a string!`);
@@ -102,6 +102,11 @@ class Sharing {
     } else {
       throw new Error(`id: ${id} is not a number!`);
     }
+  }
+
+  async updateItem(id, item) {
+    const result = await itemLibrary.updateItemById(id, item);
+    return typeof result !== "undefined";
   }
 
   /**

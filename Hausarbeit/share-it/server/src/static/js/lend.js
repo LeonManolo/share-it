@@ -9,6 +9,7 @@ const getFormData = () => {
     description: form.elements["description"].value,
     owner: "Dein Vater",
     maxBorrowDuration: 10,
+    imgUrl: null
     
   };
   return data;
