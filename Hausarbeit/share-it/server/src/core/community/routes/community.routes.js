@@ -9,10 +9,19 @@ const communityControllers = require("../controller/community.controllers");
  */
 router.post("/add-friend", communityControllers.addFriend);
 
-router.post("/accept-friend/:id");
+/**
+ * Route um eine Freundschaftsanfrage anzunehmen
+ */
+router.post("/accept-friend/:id", communityControllers.acceptFriendRequest);
 
-router.post("/decline-friend/:id");
+/**
+ * Route um eine Freundschaftsanfrage abzulehnen
+ */
+router.post("/decline-friend/:id", communityControllers.declineFriendRequest);
 
+/**
+ * Route die die HTML-Seite mit der Community liefert
+ */
 router.get("/community", (req, res) => {
   res.sendFile(pathToStaticFolder("/html/community.html"));
 });
@@ -22,4 +31,5 @@ router.get("/community", (req, res) => {
  */
 router.get("/open-friend-requests", communityControllers.getOpenFriendRequests);
 
+// Routen werden exportiert
 module.exports = router;

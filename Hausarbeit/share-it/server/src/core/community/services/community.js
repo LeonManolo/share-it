@@ -17,17 +17,18 @@ class Community {
    * einen anderen User (username)
    * @param {string} fromUser
    * @param {string} toUser
+   * @returns {boolean}
    */
   async sentFriendRequest(fromUser, toUser) {
     const result = await communityLibrary.createFriendship(fromUser, toUser);
-    console.log(result);
+    return typeof result !== "undefined";
   }
 
   /**
    * Akzeptiert eine Freundschaftsanfrage. Benötigt wird dafür
    * die Id des Freundschafts Eintrages
    * @param {number} friendshipId
-   * @returns
+   * @returns {boolean}
    */
   //TODO: evtl. Prüfen ob die Person die Rechte dafür hat
   async acceptFriendRequest(friendshipId) {
@@ -39,12 +40,21 @@ class Community {
    * Lehnt eine Freundschaftsanfrage ab. Benötigt wird dafür
    * die Id des Freundschafts Eintrages
    * @param {number} friendshipId
-   * @returns
+   * @returns {boolean} 
    */
   //TODO: evtl. Prüfen ob die Person die Rechte dafür hat
   async declineFriendRequest(friendshipId) {
     const result = await communityLibrary.updateFriendshipStatus(2);
     return result > 0;
+  }
+
+  /**
+   * Liefert alle unbeantworteten Freundschaftsanfragen für den User mit dem username
+   * @param {string} username 
+   * @returns {[object]}
+   */
+  async getAllOpenFriendRequestsForUser(username) {
+    return await communityLibrary.getAllOpenFriendRequestsForUser(username);
   }
 }
 
