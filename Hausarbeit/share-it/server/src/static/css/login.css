@@ -1,3 +1,9 @@
+body {
+    background-image: url("../images/content/login-background.jpeg");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 input[type=text],
 input[type=password] {
     display: inline-block;
@@ -15,7 +21,7 @@ input[type=submit] {
     width: 50%;
     align-self: center;
     color: white;
-    background-color: #40D72D;
+    background-color: #f4c2c2;
 }
 
 form {
@@ -33,6 +39,7 @@ label {
 }
 
 h1 {
+    color: white;
     display: flex;
     flex-direction: column;
     margin-top: 0;
@@ -61,7 +68,8 @@ h1 {
     width: 30%;
     height: 350px;
     padding: 25px;
-    background-color: lightblue;
+    background-color: #89CFF0;
+    opacity: 0.8;
     border-radius: 15px;
     border-width: 2px;
     border-style: solid;
