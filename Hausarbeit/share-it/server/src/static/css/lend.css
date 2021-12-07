@@ -1,0 +1,13 @@
+#newItem {
+    display: none;
+}
+
+img{
+    max-width: 20%;
+}
+main{
+    margin-top: 0;
+}
+section{
+    margin: 30px;
+}
