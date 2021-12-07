@@ -113,9 +113,7 @@ async function loadItems() {
 
     const section = document.getElementById("itemsSection");
     items.forEach(element => {
-      Object.entries(element).forEach(([key, value]) => {
-        console.log(`${key} ${value}`);
-      });
+      
       var div = document.createElement('div');
       var img = document.createElement('img');
       img.src = `${element.imageUrl}`;
@@ -123,21 +121,21 @@ async function loadItems() {
       div.appendChild(img);
 
       var h2 = document.createElement('h2');
-      var h2Text = document.createTextNode(`${element.title}`)
+      var h2Text = document.createTextNode(`${element.title}`);
       h2.appendChild(h2Text);
       div.appendChild(h2);
 
       var description = document.createElement('p');
       var descriptionText = document.createTextNode(`${element.description}`);
       description.appendChild(descriptionText);
-      div.appendChild(description)
+      div.appendChild(description);
 
       var editButton = document.createElement('button')
       editButton.innerHTML = "Bearbeiten";
       editButton.onclick = function(){editItem(element.id)};
       div.appendChild(editButton);
 
-      var deleteButton = document.createElement('button')
+      var deleteButton = document.createElement('button');
       deleteButton.innerHTML = "Loeschen";
       deleteButton.onclick = function(){deleteItem(element.id)};
       div.appendChild(deleteButton);
@@ -150,7 +148,5 @@ async function loadItems() {
   }
 }
 loadItems();
-
-
 
 
