@@ -1,7 +1,7 @@
 let selectedItem;
 
 function openDetail(element){
-  console.log(item);
+  console.log(element);
   selectedItem = element;
   hideItems();
   var img = document.getElementById('detailImg');
@@ -17,13 +17,31 @@ function openDetail(element){
   var lenderText = document.createTextNode(`${element.owner}`);
   lender.appendChild(lenderText);
 
-  var description = document.getElementById('detailLender');
-  description.removeChild(Lender.firstChild);
+  var description = document.getElementById('detailDescription');
+  description.removeChild(description.firstChild);
   var descriptionText = document.createTextNode(`${element.owner}`);
-  description.appendChild(LenderText);
+  description.appendChild(descriptionText);
 
+  var borrowButton = document.getElementById('detailButtonAusleihen');
+  borrowButton.onclick = function(){borrowItem(element.id)};
+  var cancelButton = document.getElementById('detailButtonCancel');
+  cancelButton.onclick = function(){cancelFunc()};
 
+  showDetail();
+}
 
+async function borrowItem(id){
+  console.log(id);
+  const url = `http://localhost:8080/borrow/${id}`;
+  const config = {
+    method: "POST"
+  };
+  let response = await fetch(url, config);
+}
+
+function cancelFunc(){
+  hideDetail();
+  showItems();
 }
 
 function hideItems(){
