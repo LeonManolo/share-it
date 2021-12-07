@@ -35,7 +35,7 @@ const getItem = async (req, res, next) => {
 };
 
 /**
- * Endpoint um alle Gegenstände für einen User zu bekommen
+ * Endpoint um alle Gegenstände für einen User zu bekommen die er Ausleihen darf.
  *
  */
 
