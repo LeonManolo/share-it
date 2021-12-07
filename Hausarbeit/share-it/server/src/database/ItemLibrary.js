@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database(__dirname+"/database.sqlite");
+var db = new sqlite3.Database(__dirname + "/database.sqlite");
 
 class ItemLibrary {
   constructor() {
@@ -84,6 +84,31 @@ class ItemLibrary {
       db.run(`DELETE FROM item WHERE id = ?;`, [id], function () {
         resolve(this.changes);
       });
+    });
+  }
+
+  /**
+   * Aktualisiert den Gegenstand mit der "id" und den Daten innerhalb
+   * des "item"
+   * @param {number} id 
+   * @param {object} item 
+   * @returns 
+   */
+  async updateItemById(id, item) {
+    return new Promise((resolve, reject) => {
+      db.run(
+        `UPDATE item SET title = ?, description = ?, maxBorrowDuration = ?, imageUrl = ? WHERE id = ?;`,
+        [
+          item.title,
+          item.description,
+          item.maxBorrowDuration,
+          item.imageUrl,
+          id,
+        ],
+        function () {
+          resolve(this.changes);
+        }
+      );
     });
   }
 

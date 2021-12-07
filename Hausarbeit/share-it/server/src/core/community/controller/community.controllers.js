@@ -76,10 +76,31 @@ const declineFriendRequest = async (req, res, next) => {
   }
 };
 
+/**
+ * Liefert alle usernames die die "phrase" enthalten.
+ * Phrase muss hierbei als query Parameter gesetzt werden
+ * Bsp: https://example.com/usernames?phrase=abcdefg
+ * => Liefert alle usernames die "abcdefg" enthalten
+ * @param {*} req
+ * @param {*} res
+ */
+const getAllUsernamesContainingPhrase = async (req, res) => {
+  const username = "Dein Vater";
+  const phrase = req.query.phrase;
+  if (!phrase) {
+    phrase = "";
+  }
+  const community = new Community();
+  const result = community.getAllUsernamesContainingPhrase(phrase);
+  const filtered = result.filter((value) => value !== username);
+  res.json(filtered);
+};
+
 // Funktionen werden exportiert
 module.exports = {
   addFriend,
   getOpenFriendRequests,
   acceptFriendRequest,
   declineFriendRequest,
+  getAllUsernamesContainingPhrase,
 };

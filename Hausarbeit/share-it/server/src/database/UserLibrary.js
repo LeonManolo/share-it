@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database(__dirname+"/database.sqlite");
+var db = new sqlite3.Database(__dirname + "/database.sqlite");
 
 class UserLibrary {
   constructor() {
@@ -113,6 +113,28 @@ class UserLibrary {
       db.get(
         "SELECT * FROM user WHERE username = ?",
         [username],
+        (error, row) => {
+          if (error) {
+            console.log(error);
+            reject(error);
+          } else {
+            resolve(row);
+          }
+        }
+      );
+    });
+  }
+
+  /**
+   * Liefert alle User die im username die Zeichkette "phrase" enthalten
+   * @param {string} phrase 
+   * @returns {[object]} user
+   */
+  async getAllUsernamesContainingPhrase(phrase) {
+    return new Promise((resolve, reject) => {
+      db.all(
+        "SELECT * FROM user WHERE username LIKE '%?%'",
+        [phrase],
         (error, row) => {
           if (error) {
             console.log(error);

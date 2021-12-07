@@ -8,7 +8,7 @@ const fs = require("fs");
  */
 const addItem = async (req, res, next) => {
   const item = req.body;
-console.log("ich bin drinn");
+  console.log("ich bin drinn");
   try {
     const sharing = new Sharing();
     await sharing.addItem(item);
@@ -36,7 +36,7 @@ const getItem = async (req, res, next) => {
 
 /**
  * Endpoint um alle Gegenstände für einen User zu bekommen
- * 
+ *
  */
 
 const getItems = async (req, res, next) => {
@@ -56,9 +56,8 @@ const getAllItemsLendByUser = async (req, res, next) => {
   const username = "Hans Peter";
   const sharing = new Sharing();
   const result = await sharing.getAllItemsLendByUser("Dein Vater");
-  console.log("items.contorllers getLendItems: "+result );
+  console.log("items.contorllers getLendItems: " + result);
   res.json(result);
-  
 };
 
 /**
@@ -93,7 +92,17 @@ const returnItem = async (req, res) => {
   }
 };
 
-const updateItem = async (req, res, next) => {};
+const updateItem = async (req, res, next) => {
+  const id = parseInt(req.params.id);
+  const item = req.body;
+  const sharing = new Sharing();
+  const success = await sharing.updateItem(id, item);
+  if (success) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+};
 
 /**
  * Endpoint um einen Gegenstand zu löschen
