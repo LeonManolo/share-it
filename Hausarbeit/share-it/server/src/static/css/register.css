@@ -1,0 +1,79 @@
+body {
+    background-image: url("./images/content/index-background.jpeg");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+input[type=text],
+input[type=password] {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+input[type=submit] {
+    width: 50%;
+    align-self: center;
+    color: white;
+    background-color: #f4c2c2;
+}
+
+form {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.register-form {
+    display: flex;
+}
+
+label {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-text {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    flex-flow: column;
+    justify-content: center;
+    position: absolute;
+    justify-self: center;
+    margin-top: 200px;
+    margin-left: -30px;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    margin: auto;
+    margin-top: 10%;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    width: 30%;
+    height: 350px;
+    padding: 25px;
+    background-color: #89CFF0;
+    opacity: 0.8;
+    border-radius: 15px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
