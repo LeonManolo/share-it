@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./js/register.js"></script>
-    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/login.css">
     <title>Register</title>
 </head>
 
 <body>
     <div class="container">
         <h1>Register</h1>
-        <div class="register-form">
+        <div class="login-form">
             <form action="/register" onsubmit="submitForm(); return false;" method="post" id="form">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" />
@@ -21,8 +21,8 @@
                 <input type="text" name="password" id="password" />
                 <input type="submit" name="Anmelden" value="registrieren" />
             </form>
-            <div class="login-text">
-                Hast du schon ein Account? Dann hier
+            <div class="register-text">
+                Hast du schon einen Account? Dann jetzt hier
                 <a href="/login">einloggen</a>
             </div>
         </div>

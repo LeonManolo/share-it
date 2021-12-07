@@ -1,5 +1,5 @@
 body {
-    background-image: url("../images/content/index-background.jpeg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/content/index-background.jpeg");
     background-attachment: fixed;
     background-size: cover;
 }
@@ -12,16 +12,22 @@ input[type=password] {
     padding: 12px 20px;
     margin: 8px 0;
     border: 2px;
-    border-color: black;
+    border-color: white;
     border-style: solid;
     border-width: 1px;
+    border-radius: 5px;
 }
 
 input[type=submit] {
     width: 50%;
     align-self: center;
     color: white;
-    background-color: #f4c2c2;
+    background-color: hotpink;
+    border-radius: 5px;
+}
+
+a {
+    color: hotpink;
 }
 
 form {
@@ -68,10 +74,7 @@ h1 {
     width: 30%;
     height: 350px;
     padding: 25px;
-    background-color: #89CFF0;
     opacity: 0.8;
     border-radius: 15px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
+    color: white;
 }
