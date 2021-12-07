@@ -105,7 +105,7 @@ class Sharing {
   }
 
   async updateItem(id, item) {
-    const result = await itemLibrary.updateItem(id, item);
+    const result = await itemLibrary.updateItemById(id, item);
     return typeof result !== "undefined";
   }
 

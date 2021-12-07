@@ -92,6 +92,7 @@ const returnItem = async (req, res) => {
   }
 };
 
+// TODO: auf undefined prüfen etc
 const updateItem = async (req, res, next) => {
   const id = parseInt(req.params.id);
   const item = req.body;
