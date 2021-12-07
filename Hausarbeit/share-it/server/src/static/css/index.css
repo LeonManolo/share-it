@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("http://localhost:8080/images/content/index-background.jpeg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/content/index-background.jpeg");
     background-blend-mode: darken;
     background-attachment: fixed;
     background-size: cover;
