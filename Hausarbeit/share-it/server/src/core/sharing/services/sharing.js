@@ -98,7 +98,6 @@ class Sharing {
   async deleteItem(id) {
     if (typeof id === "number") {
       const result = await itemLibrary.deleteItemById(id);
-      console.log(result);
       return result > 0;
     } else {
       throw new Error(`id: ${id} is not a number!`);

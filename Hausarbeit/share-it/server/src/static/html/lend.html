@@ -20,19 +20,24 @@
       <h1>Verleihen</h1>
     </header>
       <main>
-        Neueen Gegenstand verleihen und Hier werden alle deine verliehenen Sachen angezeigt 
-        <form
-        action="/login"
-        onsubmit="submitForm(); return false;"
-        method="post"
-        id="form"
-        >
-        <label for="title">Artikelname</label>
-        <input type="text" name="title" id="title" />
-        <label for="description">Artikelbeschreibung</label>
-        <input type="text" name="description" id="description" />
-        <input type="submit" name="Anmelden" value="Submit" />
-      </form>
+        <section id="newItem">
+        Neuen Gegenstand verleihen und Hier werden alle deine verliehenen Sachen angezeigt 
+          <form
+          action="/login"
+          onsubmit="submitForm(); return false;"
+          method="post"
+          id="form"
+          >
+          <label for="title">Artikelname</label>
+          <input type="text" name="title" id="title" />
+          <label for="description">Artikelbeschreibung</label>
+          <input type="text" name="description" id="description" />
+          <input type="submit" name="Anmelden" value="Submit" />
+        </form>
+      </section>
+      <section id="itemsSection">
+
+      </section>
     </main>    
   </body>
 </html>
