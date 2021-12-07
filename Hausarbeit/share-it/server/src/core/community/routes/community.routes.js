@@ -25,7 +25,7 @@ router.post("/decline-friend/:id", communityControllers.declineFriendRequest);
 router.get("/community", (req, res) => {
   res.sendFile(pathToStaticFolder("/html/community.html"));
 });
-
+ 
 /**
  * Route um alle offenen Freundschaftsanfragen zu erhalten
  */

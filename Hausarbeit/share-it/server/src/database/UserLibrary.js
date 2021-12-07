@@ -108,7 +108,7 @@ class UserLibrary {
    * @param {string} username
    * @returns {object} user
    */
-  async getUser(username, password) {
+  async getUser(username) {
     return new Promise((resolve, reject) => {
       db.get(
         "SELECT * FROM user WHERE username = ?",
@@ -127,14 +127,15 @@ class UserLibrary {
 
   /**
    * Liefert alle User die im username die Zeichkette "phrase" enthalten
-   * @param {string} phrase 
+   * und nicht den angegebenen User sind
+   * @param {string} phrase
    * @returns {[object]} user
    */
-  async getAllUsernamesContainingPhrase(phrase) {
+  async getAllUsernamesContainingPhraseExceptUser(phrase = "", username = "") {
     return new Promise((resolve, reject) => {
       db.all(
-        "SELECT * FROM user WHERE username LIKE '%?%'",
-        [phrase],
+        "SELECT * FROM user WHERE username LIKE '%?%' AND username != ?",
+        [phrase, username],
         (error, row) => {
           if (error) {
             console.log(error);

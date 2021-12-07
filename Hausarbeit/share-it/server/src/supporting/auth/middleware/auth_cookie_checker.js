@@ -9,6 +9,7 @@ const authCookieChecker = (request, response, next) => {
     next();
   } else {
     response.redirect("/");
+    response.status(401);
   }
 };
 
