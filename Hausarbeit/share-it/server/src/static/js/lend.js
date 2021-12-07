@@ -38,7 +38,20 @@ async function submitForm() {
     console.log(`Netzwerk Fehler ${e}`);
   }
 }
+//To Do
+//Funktion zum bearbeiten eines Artikels
+async function editItem(id){
+  console.log("Edit, hier muss noch was gemacht werden"+ id);
+}
+// Funktion zum Loeschen eines Artikels
+async function deleteItem(id){
+  console.log("Delete, hier muss noch was gemacht werden"+ id);
+  const config = {method: "DELETE"};
+  let response = await fetch(`http://localhost:8080/items/${id}`, config);
+  
+}
 
+//Funktion zum Laden der vom User reingestellten Items
 async function loadItems() {
 
   // Konfigurationen für die request
@@ -59,12 +72,40 @@ async function loadItems() {
     const items = await response.json();
     console.log(items);
 
+    const section = document.getElementById("itemsSection");
     items.forEach(element => {
       Object.entries(element).forEach(([key, value]) => {
         console.log(`${key} ${value}`);
       });
+      var div = document.createElement('div');
+      var img = document.createElement('img');
+      img.src = `${element.imageUrl}`;
+      img.alt = "OOps";
+      div.appendChild(img);
+
+      var h2 = document.createElement('h2');
+      var h2Text = document.createTextNode(`${element.title}`)
+      h2.appendChild(h2Text);
+      div.appendChild(h2);
+
+      var description = document.createElement('p');
+      var descriptionText = document.createTextNode(`${element.description}`);
+      description.appendChild(descriptionText);
+      div.appendChild(description)
+
+      var editButton = document.createElement('button')
+      editButton.innerHTML = "Bearbeiten";
+      editButton.onclick = function(){editItem(element.id)};
+      div.appendChild(editButton);
+
+      var deleteButton = document.createElement('button')
+      deleteButton.innerHTML = "Loeschen";
+      deleteButton.onclick = function(){deleteItem(element.id)};
+      div.appendChild(deleteButton);
+
+      section.appendChild(div);
     });
-    
+
   } catch (e) {
     console.log(`Netzwerk Fehler ${e}`);
   }
