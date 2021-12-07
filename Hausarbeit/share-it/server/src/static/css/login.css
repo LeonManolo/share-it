@@ -1,5 +1,5 @@
 body {
-    background-image: url("./images/content/index-background.jpeg");
+    background-image: url("../images/content/index-background.jpeg");
     background-attachment: fixed;
     background-size: cover;
 }
@@ -30,7 +30,7 @@ form {
     flex-direction: column;
 }
 
-.register-form {
+.login-form {
     display: flex;
 }
 
@@ -46,7 +46,7 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.login-text {
+.register-text {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     text-align: center;
@@ -54,9 +54,7 @@ h1 {
     flex-flow: column;
     justify-content: center;
     position: absolute;
-    justify-self: center;
     margin-top: 200px;
-    margin-left: -30px;
 }
 
 .container {

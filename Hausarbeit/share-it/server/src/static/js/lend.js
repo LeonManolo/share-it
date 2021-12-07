@@ -1,4 +1,6 @@
 
+let selectedButton ;
+
 // Holt sich die Daten aus HTML Form
 const getFormData = () => {
   const form = document.getElementById("form");
@@ -19,7 +21,7 @@ async function submitForm() {
   const item = getFormData();
 
   // Konfigurationen für die request
-  const config = {
+  let config = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,8 +30,11 @@ async function submitForm() {
   };
 
   // Url an die die anfrage gemacht wird
-  const url = "http://localhost:8080/items";
-
+  let url = "http://localhost:8080/items";
+  if (typeof selectedButton !== "undefined") {
+    url += `/${selectedButton}`
+    config.method = "PUT";
+  }
   // Request an den Server für die Registrierung
   let response;
   try {
@@ -37,18 +42,51 @@ async function submitForm() {
   } catch (e) {
     console.log(`Netzwerk Fehler ${e}`);
   }
+  showItems();
 }
-//To Do
+
+async function showItems(){
+  newItem = document.getElementById('newItem');
+  newItem.style.display = "none";
+
+  showButton = document.getElementById('showForm');
+  showButton.style.display = "block"
+
+  items = document.getElementById('itemsSection');
+  items.style.display = "block";
+}
+
+async function cancelSubmit(){
+  event.preventDefault();
+  showItems();
+}
+
+/**
+ * 
+ */
+async function showForm(){
+  newItem = document.getElementById('newItem');
+  newItem.style.display = "block";
+
+  showButton = document.getElementById('showForm');
+  showButton.style.display = "none"
+
+  items = document.getElementById('itemsSection');
+  items.style.display = "none";
+
+}
 //Funktion zum bearbeiten eines Artikels
 async function editItem(id){
   console.log("Edit, hier muss noch was gemacht werden"+ id);
+  selectedButton = id;
+  showForm();
 }
 // Funktion zum Loeschen eines Artikels
 async function deleteItem(id){
   console.log("Delete, hier muss noch was gemacht werden"+ id);
   const config = {method: "DELETE"};
   let response = await fetch(`http://localhost:8080/items/${id}`, config);
-  
+
 }
 
 //Funktion zum Laden der vom User reingestellten Items
