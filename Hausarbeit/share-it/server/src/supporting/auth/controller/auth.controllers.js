@@ -34,7 +34,7 @@ const register = async (req, res, next) => {
   }
 };
 
-// Endpoint für "/login" zum einloggen eines users
+// Endpoint für "/login" zum Einloggen eines Users
 const login = async (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -58,7 +58,7 @@ const login = async (req, res, next) => {
   
 };
 
-// Endpoint für "/logout" zum ausloggen des momentanen users
+// Endpoint für "/logout" zum Ausloggen des momentanen Users
 const logout = (req, res) => {};
 
 // Funktionen werden exportiert

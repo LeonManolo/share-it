@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 
 /**
- * Wandelt einen text in hash um
+ * Wandelt einen Text in Hash um
  * @param {string} string
  * @returns {string} hashed string
  */
@@ -11,7 +11,7 @@ const stringToHash = async (string) => {
 };
 
 /**
- * Prüft ob ein text dem Hash entspricht
+ * Prüft ob ein Text dem Hash entspricht
  * @param {string} string
  * @returns {string} hashed string
  */

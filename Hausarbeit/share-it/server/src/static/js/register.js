@@ -36,7 +36,7 @@ async function submitForm() {
   if (response.ok) {
     navigateToDashboard();
   } else {
-    // TODO: Fehler auf dem screen ausgeben
+    // TODO: Fehler auf dem Screen ausgeben
     console.log("register failed");
   }
 }

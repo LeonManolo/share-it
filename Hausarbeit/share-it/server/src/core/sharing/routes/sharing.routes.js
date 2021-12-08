@@ -23,7 +23,7 @@ router.post("/borrow/:id", itemsController.borrowItem);
 router.post("/return/:id", itemsController.returnItem);
 
 /**
- * Endpoint für die HTML-Seite in der Gegenstände zum verleihen eingestellt werden können
+ * Endpoint für die HTML-Seite in der Gegenstände zum Verleihen eingestellt werden können
  */
 router.get("/lend", (req, res, next) => {
   res.sendFile(pathToStaticFolder("/html/lend.html"));
@@ -48,12 +48,12 @@ router.post("/items", itemsController.addItem);
 router.get("/items/:id", itemsController.getItem);
 
 /**
- * Enpoint um alle Gegenständige zu erhalten für den jeweiligen User
+ * Enpoint um alle Gegenständige für den jeweiligen User zu erhalten
  */
 router.get("/items", cookieChecker, itemsController.getItems);
 
 /**
- * Enpoint um alle Gegenständige zu erhalten die der User reingestellt hat
+ * Enpoint um alle Gegenständige zu erhalten die der User erstellt hat
  */
 router.get("/itemsLend", itemsController.getAllItemsLendByUser);
 

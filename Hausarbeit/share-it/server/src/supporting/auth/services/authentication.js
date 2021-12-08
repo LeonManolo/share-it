@@ -6,7 +6,7 @@ let userLibrary;
 class Authentication {
   //Initialisiert die User Datenbank/Tabelle
   static init() {
-    //Erstellt die User datenbank sofern sie noch nicht existiert
+    //Erstellt die User Datenbank sofern sie noch nicht existiert
     userLibrary = new UserLibrary();
   }
 
@@ -16,7 +16,7 @@ class Authentication {
 
   /**
    * Erstellt einen User in der Datenbank und liefert die dazugehörige sessiondId.
-   * Prüft außerdem ob es bereits einen user mit dem Username bereits gibt. Sofern
+   * Prüft außerdem, ob es bereits einen User mit dem Username gibt. Sofern
    * dieser noch nicht existiert wird ein neuer User erstellt und das Passwort
    * noch einmal gehashed.
    * @param {string} username
@@ -59,7 +59,7 @@ class Authentication {
   }
 
   /**
-   * Authentifiziert den user anhand dem Passwort und Username.
+   * Authentifiziert den User anhand des Passwortes und Usernames.
    * Bei erfolgreicher Authentifizierung wird die sessiondId zurückgegeben,
    * andernfalls ein Fehler
    * @param {string} username

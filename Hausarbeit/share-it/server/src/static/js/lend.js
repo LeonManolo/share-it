@@ -20,9 +20,8 @@ const getFormData = (event) => {
   return formData;
 };
 
-// Funktion wird aufgrufen anstatt dem standard von einer HTML Form
-async function submitForm(event) {
-  console.log("posted items");
+// Funktion wird aufgerufen anstatt dem Standard von einer HTML Form
+async function submitForm() {
   event.preventDefault();
 
   const item = getFormData(event);
@@ -33,7 +32,7 @@ async function submitForm(event) {
     body: item,
   };
 
-  // Url an die die anfrage gemacht wird
+  // Url an die die Anfrage gemacht wird
   let url = "http://localhost:8080/items";
   if (typeof selectedButton !== "undefined") {
     url += `/${selectedButton}`;
@@ -49,7 +48,7 @@ async function submitForm(event) {
   showItems();
 }
 /**
- * Entfernt Items und fetched diese neu und versteckt das Formular
+ * Entfernt Items, fetched diese neu und versteckt das Formular
  */
 async function showItems() {
   newItem = document.getElementById("newItem");
@@ -66,7 +65,7 @@ async function showItems() {
   await loadItems();
 }
 /**
- * Abbrechen ausm dem Formular und wieder anzeigen der Items
+ * Abbrechen des Formulars und erneutes Anzeigen der Items
  */
 async function cancelSubmit() {
   event.preventDefault();
@@ -88,8 +87,8 @@ async function showForm() {
 }
 
 /**
- * Funktion zum bearbeiten eines Artikels
- * @param {number} id
+ * Funktion zum Bearbeiten eines Artikels
+ * @param {number} id 
  */
 async function editItem(id) {
   console.log("Edit, hier muss noch was gemacht werden" + id);
@@ -98,8 +97,8 @@ async function editItem(id) {
 }
 
 /**
- * Funktion zum Loeschen eines Artikels
- * @param {number} id
+ * Funktion zum Löschen eines Artikels
+ * @param {number} id 
  */
 async function deleteItem(id) {
   console.log("Delete, hier muss noch was gemacht werden" + id);
@@ -108,7 +107,7 @@ async function deleteItem(id) {
 }
 
 /**
- * Funktion zum Laden der vom User reingestellten Items
+ * Funktion zum Laden der vom User erstellten Items
  */
 async function loadItems() {
   // Konfigurationen für die request
@@ -119,10 +118,10 @@ async function loadItems() {
     },
   };
 
-  // Url an die die anfrage gemacht wird
+  // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/items";
 
-  // fetchen der Artikel und erstellen der HTML-Elemente
+  // Fetchen der Artikel und Erstellen der HTML-Elemente
   let response;
   try {
     response = await fetch("http://localhost:8080/itemsLend");
@@ -130,50 +129,16 @@ async function loadItems() {
     console.log(items);
 
     const section = document.getElementById("itemsSection");
-    items.forEach((element) => {
-      var div = document.createElement("div");
-      var img = document.createElement("img");
-      img.src = `${element.imageUrl}`;
-      img.alt = "OOps";
-      div.appendChild(img);
-
-      var h2 = document.createElement("h2");
-      var h2Text = document.createTextNode(`${element.title}`);
-      h2.appendChild(h2Text);
-      div.appendChild(h2);
-
-      var description = document.createElement("p");
-      var descriptionText = document.createTextNode(`${element.description}`);
-      description.appendChild(descriptionText);
-      div.appendChild(description);
-
-      var editButton = document.createElement("button");
-      editButton.innerHTML = "Bearbeiten";
-      editButton.onclick = function () {
-        editItem(element.id);
-      };
-      div.appendChild(editButton);
-
-      var deleteButton = document.createElement("button");
-      deleteButton.innerHTML = "Löschen";
-      deleteButton.onclick = function () {
-        deleteItem(element.id);
-      };
-      div.appendChild(deleteButton);
-
-      var hr = document.createElement("hr");
-      div.appendChild(hr);
-
-      section.appendChild(div);
-      buildItemTile(element);
+    items.forEach(element => {
+        buildItemTile(element);
     });
   } catch (e) {
     console.log(`Netzwerk Fehler ${e}`);
   }
 }
 /**
- * Erstellen der Html-Element fuer einen Artikel
- * @param {*} element
+ * Erstellen der HTML-Elemente für einen Artikel
+ * @param {*} element 
  */
 function buildItemTile(element) {
   const section = document.getElementById("itemsSection");
@@ -201,11 +166,9 @@ function buildItemTile(element) {
   };
   div.appendChild(editButton);
 
-  var deleteButton = document.createElement("button");
-  deleteButton.innerHTML = "Loeschen";
-  deleteButton.onclick = function () {
-    deleteItem(element.id);
-  };
+  var deleteButton = document.createElement('button');
+  deleteButton.innerHTML = "Löschen";
+  deleteButton.onclick = function(){deleteItem(element.id)};
   div.appendChild(deleteButton);
 
   section.appendChild(div);

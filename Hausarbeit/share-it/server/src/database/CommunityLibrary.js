@@ -40,8 +40,8 @@ class CommunityLibrary {
   /**
    * Setzt den Status einer Freudschaft
    * status: 0 = ausstehend, 1 = angenommen, 2 = abgelehnt
-   * TODO: Prüfen ob wenn status = 0, username != requestedBy (So das derjenige
-   * der die Freundschaft anfrage gesendet hat sie nicht für den anderen annehmen kann!)
+   * TODO: Prüfen ob wenn status = 0, username != requestedBy (So dass derjenige
+   * der die Freundschaftsanfrage gesendet hat sie nicht für den anderen annehmen kann!)
    * @param {number} status
    * @param {number} friendship_id
    * @returns
@@ -59,7 +59,7 @@ class CommunityLibrary {
   }
 
   /**
-   * Liefert alle unbeantwortete Freundes Einträge
+   * Liefert alle unbeantworteten Freundes Einträge
    * @param {string} username
    * @returns {[object]}
    */

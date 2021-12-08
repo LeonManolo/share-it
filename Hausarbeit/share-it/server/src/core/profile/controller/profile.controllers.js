@@ -24,10 +24,10 @@ const editProfile = async (req, res, next) => {
   });
 };
 
-// Endpoint für "/login" zum einloggen eines users
+// Endpoint für "/login" zum Einloggen eines Users
 const getProfile = async (req, res, next) => {};
 
-// Endpoint um ein Account zu löschen
+// Endpoint um einen Account zu löschen
 const deleteAccount = async (req, res, next) => {};
 
 // Funktionen werden exportiert

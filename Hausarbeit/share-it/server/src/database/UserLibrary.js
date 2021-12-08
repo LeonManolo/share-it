@@ -24,7 +24,7 @@ class UserLibrary {
   }
 
   /**
-   * Erstellt einen User auf der Datenbank
+   * Erstellt einen User in der Datenbank
    * @param {string} username
    * @param {string} password
    * @param {string} sessionId
@@ -126,8 +126,8 @@ class UserLibrary {
   }
 
   /**
-   * Liefert alle User die im username die Zeichkette "phrase" enthalten
-   * und nicht den angegebenen User sind
+   * Liefert alle User die im username die Zeichenkette "phrase" enthalten
+   * und nicht der angegebene User sind
    * @param {string} phrase
    * @returns {[object]} user
    */
