@@ -19,9 +19,9 @@ class Sharing {
    * {
     "owner": "Dein Vater",
     "title": "Plasma Fernseher",
-    "description": "Ein nagelneuer Plamsa Fernseher zum ausleihen",
+    "description": "Ein nagelneuer Plasma Fernseher zum Ausleihen",
     "maxBorrowDuration": 10,
-    "borrowedBy": "Deiner Mutter",
+    "borrowedBy": "Deine Mutter",
     "imageUrl": "https://www.tvmovie.de/assets/2019/04/26/70516-plasma-fernseher.jpg"
      }
    */
@@ -36,7 +36,7 @@ class Sharing {
   }
 
   /**
-   * Liefert ein Gegenstand anhand der Id des Gegenstandes
+   * Liefert einen Gegenstand anhand der Id des Gegenstandes
    * @param {number} id
    * @returns {object} item oder "undefined" wenn kein Gegenstand mit der id gefunden wurde
    */
@@ -50,7 +50,7 @@ class Sharing {
 
   /**
    * Liefert alle ausleihbaren Gegenstände für den User (username),
-   * also alle Gegenstände die zu verleih stehen und dessen Besitzer
+   * also alle Gegenstände die zum Verleih stehen und dessen Besitzer
    * mit dem User (username) befreundet sind
    * @param {string} username
    * @returns {[object]} items
@@ -74,10 +74,10 @@ class Sharing {
   }
 
   /**
-   * Gibt ein Gegenstand wieder zurück zum Verleihen
+   * Gibt einen Gegenstand wieder zurück zum Verleihen
    * @param {number} id
    * @param {string} borrowedBy TODO: Wenn geprüft werden soll ob
-   * der jenige auch den Gegenstand zurückgeben darf bräuchte
+   * derjenige den Gegenstand auch zurückgeben darf bräuchte
    * es noch einen weiteren Parameter.
    */
   async returnItem(id) {
@@ -90,7 +90,7 @@ class Sharing {
   }
 
   /**
-   * Löscht ein Gegenstand aus der Datenbank
+   * Löscht einen Gegenstand aus der Datenbank
    * TODO: Prüfen ob ein Gegenstand gelöscht wurde. Kann sein das es kein
    * Gegenstand mit der id gibt
    * @param {number} id

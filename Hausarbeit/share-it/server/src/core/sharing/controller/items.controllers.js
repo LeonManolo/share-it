@@ -2,7 +2,7 @@ const Sharing = require("../services/sharing");
 const formidable = require("formidable");
 const fs = require("fs");
 
-// TODO username aus den cookies lesen
+// TODO username aus den Cookies lesen
 /**
  * Endpoint um einen neuen Gegenstand einzustellen
  */
@@ -20,7 +20,7 @@ const addItem = async (req, res, next) => {
 };
 
 /**
- * Endpoint um eine bestimmten Gegenstand geliefert zu bekommen
+ * Endpoint um einen bestimmten Gegenstand geliefert zu bekommen
  */
 const getItem = async (req, res, next) => {
   const id = parseInt(req.params.id);
@@ -35,7 +35,7 @@ const getItem = async (req, res, next) => {
 };
 
 /**
- * Endpoint um alle Gegenstände für einen User zu bekommen die er Ausleihen darf.
+ * Endpoint um alle Gegenstände für einen User zu bekommen die er ausleihen darf.
  *
  */
 

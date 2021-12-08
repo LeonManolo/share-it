@@ -15,7 +15,7 @@ const getFormData = () => {
   return data;
 };
 
-// Funktion wird aufgrufen anstatt dem standard von einer HTML Form
+// Funktion wird aufgerufen anstatt dem Standard von einer HTML Form
 async function submitForm() {
   event.preventDefault();
 
@@ -30,7 +30,7 @@ async function submitForm() {
     body: JSON.stringify(item),
   };
 
-  // Url an die die anfrage gemacht wird
+  // Url an die die Anfrage gemacht wird
   let url = "http://localhost:8080/items";
   if (typeof selectedButton !== "undefined") {
     url += `/${selectedButton}`
@@ -46,7 +46,7 @@ async function submitForm() {
   showItems();
 }
 /**
- * Entfernt Items und fetched diese neu und versteckt das Formular
+ * Entfernt Items, fetched diese neu und versteckt das Formular
  */
 async function showItems(){
   newItem = document.getElementById('newItem');
@@ -63,7 +63,7 @@ async function showItems(){
   await loadItems();
 }
 /**
- * Abbrechen ausm dem Formular und wieder anzeigen der Items
+ * Abbrechen des Formulars und erneutes Anzeigen der Items
  */
 async function cancelSubmit(){
   event.preventDefault();
@@ -86,7 +86,7 @@ async function showForm(){
 }
 
 /**
- * Funktion zum bearbeiten eines Artikels
+ * Funktion zum Bearbeiten eines Artikels
  * @param {number} id 
  */
 async function editItem(id){
@@ -96,7 +96,7 @@ async function editItem(id){
 }
 
 /**
- * Funktion zum Loeschen eines Artikels
+ * Funktion zum Löschen eines Artikels
  * @param {number} id 
  */
 async function deleteItem(id){
@@ -108,7 +108,7 @@ async function deleteItem(id){
 
 
 /**
- * Funktion zum Laden der vom User reingestellten Items
+ * Funktion zum Laden der vom User erstellten Items
  */
 async function loadItems() {
 
@@ -120,10 +120,10 @@ async function loadItems() {
     },
   };
 
-  // Url an die die anfrage gemacht wird
+  // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/items";
 
-  // fetchen der Artikel und erstellen der HTML-Elemente
+  // Fetchen der Artikel und Erstellen der HTML-Elemente
   let response;
   try {
     response = await fetch("http://localhost:8080/itemsLend");
@@ -171,7 +171,7 @@ async function loadItems() {
   }
 }
 /**
- * Erstellen der Html-Element fuer einen Artikel
+ * Erstellen der HTML-Elemente für einen Artikel
  * @param {*} element 
  */
 function buildItemTile(element){

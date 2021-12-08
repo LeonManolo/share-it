@@ -31,7 +31,7 @@ class Community {
 
   /**
    * Akzeptiert eine Freundschaftsanfrage. Benötigt wird dafür
-   * die Id des Freundschafts Eintrages
+   * die Id des Freundschaftseintrages
    * @param {number} friendshipId
    * @returns {boolean}
    */
@@ -47,7 +47,7 @@ class Community {
 
   /**
    * Lehnt eine Freundschaftsanfrage ab. Benötigt wird dafür
-   * die Id des Freundschafts Eintrages
+   * die Id des Freundschaftseintrages
    * @param {number} friendshipId
    * @returns {boolean}
    */
@@ -114,7 +114,7 @@ class Community {
   }
 
   /**
-   * Liefert alle Freund des Users mit dem angegebenen username
+   * Liefert alle Freunde des Users mit dem angegebenen username
    * @param {string} username
    * @returns {[object]}
    */

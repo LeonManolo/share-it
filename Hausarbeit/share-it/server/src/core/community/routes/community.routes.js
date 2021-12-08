@@ -5,7 +5,7 @@ const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder")
 const communityControllers = require("../controller/community.controllers");
 
 /**
- * Route um einen Freund hinzu zufügen
+ * Route um einen Freund hinzuzufügen
  */
 router.post("/add-friend", communityControllers.addFriend);
 
@@ -37,7 +37,7 @@ router.get("/community", (req, res) => {
 router.get("/open-friend-requests", communityControllers.getOpenFriendRequests);
 
 /**
- * Route um die alle Usernames liefert, die eine bestimmte Zeichenketten enthalten
+ * Route die alle Usernames liefert, die eine bestimmte Zeichenketten enthalten
  */
 router.get("/usernames", communityControllers.getAllUsernamesContainingPhrase);
 
