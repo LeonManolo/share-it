@@ -8,8 +8,8 @@ const Community = require("../services/community");
  */
 //TODO: fromUser aus den Cookies lesen!
 const addFriend = async (req, res, next) => {
-  const fromUser = req.body.fromUser;
-  const toUser = req.body.toUser;
+  const fromUser = "Dein Vater";
+  const toUser = req.query.toUser;
 
   try {
     const community = new Community();
