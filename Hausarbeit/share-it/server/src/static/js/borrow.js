@@ -1,7 +1,9 @@
 let selectedItem;
-
+/**
+ * Detail Bereich eines Artikels oeffenen, wo dieses ausgehliehen werden kann.
+ * @param {*} element 
+ */
 function openDetail(element){
-  console.log(element);
   selectedItem = element;
   hideItems();
   var img = document.getElementById('detailImg');
@@ -19,7 +21,7 @@ function openDetail(element){
 
   var description = document.getElementById('detailDescription');
   description.removeChild(description.firstChild);
-  var descriptionText = document.createTextNode(`${element.owner}`);
+  var descriptionText = document.createTextNode(`${element.description}`);
   description.appendChild(descriptionText);
 
   var borrowButton = document.getElementById('detailButtonAusleihen');
@@ -29,7 +31,10 @@ function openDetail(element){
 
   showDetail();
 }
-
+/**
+ * Funktion zum ausleihen eines Artikels
+ * @param {*} id 
+ */
 async function borrowItem(id){
   console.log(id);
   const url = `http://localhost:8080/borrow/${id}`;
@@ -38,7 +43,9 @@ async function borrowItem(id){
   };
   let response = await fetch(url, config);
 }
-
+/**
+ * Um aus der Detailansicht wieder zu der Artikeluebersicht zurueck zukehren.
+ */
 function cancelFunc(){
   hideDetail();
   showItems();
@@ -63,7 +70,9 @@ function showDetail(){
   section.style.display = "block";
 }
 
-
+/**
+ * Funktion zum Laden der Artikel die der Nutzer ausleihen kann
+ */
 async function loadItems(){
 
   // Url an die die anfrage gemacht wird
@@ -81,6 +90,11 @@ async function loadItems(){
     console.log(`Netzwerk Fehler ${e}`);
   }
 };
+
+/**
+ * Erstellen der Tile fuer einen Artikel
+ * @param {*} element 
+ */
 function buildItemTile(element){
 
   const section = document.getElementById("itemsSection");
