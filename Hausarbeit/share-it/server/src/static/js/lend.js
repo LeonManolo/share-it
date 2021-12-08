@@ -1,38 +1,13 @@
 let selectedButton;
 
-// Holt sich die Daten aus HTML Form
-const getFormData = (event) => {
-  const form = document.getElementById("form");
-  const formData = new FormData();
-  formData.append("title", form.elements["title"].value);
-  formData.append("description", form.elements["description"].value);
-  // TODO: server site machen!
-  formData.append("owner", "Dein Vater");
-  formData.append("maxBorrowDuration", 10);
-  formData.append("file", event.target.files[0]);
-  const data = {
-    title: form.elements["title"].value,
-    description: form.elements["description"].value,
-    owner: "Dein Vater",
-    maxBorrowDuration: 10,
-    imgUrl: null,
-  };
-  return formData;
-};
-
 // Funktion wird aufgerufen anstatt dem Standard von einer HTML Form
 async function submitForm() {
   event.preventDefault();
 
-  //Anfang test formdata
   const form = document.getElementById("form");
   let item = new FormData(form);
-  item.append("owner", "Dein Vater");
+  item.append("owner", "Platzhalter");
   item.append("maxBorrowDuration", 10);
-
-  //
-
-  //const item = getFormData(event);
 
   // Konfigurationen für die request
   let config = {

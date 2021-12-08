@@ -15,7 +15,7 @@ router.get("/borrow", (req, res, next) => {
 /**
  * Route um einen Gegenstand auszuleihen
  */
-router.post("/borrow/:id", itemsController.borrowItem);
+router.post("/borrow/:id", cookieChecker, itemsController.borrowItem);
 
 /**
  * Route um einen Gegenstand zurückzugeben

@@ -103,7 +103,7 @@ const getAllItemsBorrowedByUser = async (req, res, next) => {
  */
 const borrowItem = async (req, res) => {
   const id = parseInt(req.params.id);
-  const username = "Hans Peter";
+  const username = req.username;
   const sharing = new Sharing();
   const result = await sharing.borrowItem(id, username);
   console.log(result);
@@ -131,6 +131,7 @@ const returnItem = async (req, res) => {
 };
 
 // TODO: auf undefined prüfen etc
+// TODO: checken ob update vom Owner kommt.
 const updateItem = async (req, res, next) => {
   const id = parseInt(req.params.id);
   const item = req.body;
