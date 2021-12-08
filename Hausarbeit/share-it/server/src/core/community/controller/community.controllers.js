@@ -8,13 +8,13 @@ const Community = require("../services/community");
  */
 //TODO: fromUser aus den Cookies lesen!
 const addFriend = async (req, res, next) => {
-  const fromUser = req.body.fromUser;
-  const toUser = req.body.toUser;
+  const fromUser = "Dein Vater";
+  const toUser = req.query.toUser;
 
   try {
     const community = new Community();
     const success = await community.sentFriendRequest(fromUser, toUser);
-    console.log(`Friend result: ${result} for ${fromUser} and ${toUser}`);
+    console.log(`Friend result: ${success} for ${fromUser} and ${toUser}`);
     if (success) {
       res.sendStatus(200);
     } else {
@@ -33,13 +33,16 @@ const addFriend = async (req, res, next) => {
  * @param {*} next
  */
 const getOpenFriendRequests = async (req, res, next) => {
-  const username = "Dein Vater";
-  const community = new Community();
-  const friendRequests = await community.getAllOpenFriendRequestsForUser(
-    username
-  );
-  res.status(200);
-  res.json(friendRequests);
+  try {
+    const username = "Dein Vater";
+    const community = new Community();
+    const friendRequests = await community.getAllOpenFriendRequestsForUser(
+      username
+    );
+    res.json(friendRequests);
+  } catch (e) {
+    res.sendStatus(500);
+  }
 };
 
 /**
@@ -49,13 +52,17 @@ const getOpenFriendRequests = async (req, res, next) => {
  * @param {*} next
  */
 const acceptFriendRequest = async (req, res, next) => {
-  const friendshipId = parseInt(req.params.id);
-  const community = new Community();
-  const success = community.acceptFriendRequest(friendshipId);
-  if (success) {
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(404);
+  try {
+    const friendshipId = parseInt(req.params.id);
+    const community = new Community();
+    const success = await community.acceptFriendRequest(friendshipId);
+    if (success) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (e) {
+    res.sendStatus(500);
   }
 };
 
@@ -66,13 +73,28 @@ const acceptFriendRequest = async (req, res, next) => {
  * @param {*} next
  */
 const declineFriendRequest = async (req, res, next) => {
-  const friendshipId = parseInt(req.params.id);
-  const community = new Community();
-  const success = community.declineFriendRequest(friendshipId);
-  if (success) {
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(404);
+  try {
+    const friendshipId = parseInt(req.params.id);
+    const community = new Community();
+    const success = await community.declineFriendRequest(friendshipId);
+    if (success) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (e) {
+    res.sendStatus(500);
+  }
+};
+
+const getAllFriendsOfUser = async (req, res) => {
+  try {
+    const username = "Dein Vater";
+    const community = new Community();
+    const result = await community.getAllFriendsOfUser(username);
+    res.json(result);
+  } catch (e) {
+    res.sendStatus(500);
   }
 };
 
@@ -84,16 +106,20 @@ const declineFriendRequest = async (req, res, next) => {
  * @param {*} req
  * @param {*} res
  */
-const getAllUsernamesContainingPhrase = async (req, res) => {
-  const username = "Dein Vater";
-  const phrase = req.query.phrase;
-  if (!phrase) {
-    phrase = "";
+const getAllUsernamesContainingPhraseExceptUser = async (req, res) => {
+  try {
+    const username = "Dein Vater";
+    const phrase = req.query.phrase;
+    if (!phrase) {
+      phrase = "";
+    }
+    const community = new Community();
+    const result = await community.getAllUsernamesContainingPhraseExceptUser(phrase,username);
+    const filtered = result.filter((value) => value !== username);
+    res.json(filtered);
+  } catch (e) {
+    res.sendStatus(500);
   }
-  const community = new Community();
-  const result = community.getAllUsernamesContainingPhrase(phrase);
-  const filtered = result.filter((value) => value !== username);
-  res.json(filtered);
 };
 
 // Funktionen werden exportiert
@@ -102,5 +128,6 @@ module.exports = {
   getOpenFriendRequests,
   acceptFriendRequest,
   declineFriendRequest,
-  getAllUsernamesContainingPhrase,
+  getAllUsernamesContainingPhrase: getAllUsernamesContainingPhraseExceptUser,
+  getAllFriendsOfUser,
 };

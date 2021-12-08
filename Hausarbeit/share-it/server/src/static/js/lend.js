@@ -45,44 +45,60 @@ async function submitForm() {
   }
   showItems();
 }
-
+/**
+ * Entfernt Items und fetched diese neu und versteckt das Formular
+ */
 async function showItems(){
   newItem = document.getElementById('newItem');
   newItem.style.display = "none";
 
-  showButton = document.getElementById('showForm');
+  showButton = document.getElementById('showFormButton');
   showButton.style.display = "block"
 
   items = document.getElementById('itemsSection');
+  while (items.firstChild){
+    items.removeChild(items.lastChild);
+  }
   items.style.display = "block";
+  await loadItems();
 }
-
+/**
+ * Abbrechen ausm dem Formular und wieder anzeigen der Items
+ */
 async function cancelSubmit(){
   event.preventDefault();
-  showItems();
+  await showItems();
 }
 
 /**
- * 
+ * Zeigt das Formular und versteckt die Items
  */
 async function showForm(){
   newItem = document.getElementById('newItem');
   newItem.style.display = "block";
 
-  showButton = document.getElementById('showForm');
+  showButton = document.getElementById('showFormButton');
   showButton.style.display = "none"
 
   items = document.getElementById('itemsSection');
   items.style.display = "none";
 
 }
-//Funktion zum bearbeiten eines Artikels
+
+/**
+ * Funktion zum bearbeiten eines Artikels
+ * @param {number} id 
+ */
 async function editItem(id){
   console.log("Edit, hier muss noch was gemacht werden"+ id);
   selectedButton = id;
   showForm();
 }
-// Funktion zum Loeschen eines Artikels
+
+/**
+ * Funktion zum Loeschen eines Artikels
+ * @param {number} id 
+ */
 async function deleteItem(id){
   console.log("Delete, hier muss noch was gemacht werden"+ id);
   const config = {method: "DELETE"};
@@ -90,7 +106,10 @@ async function deleteItem(id){
 
 }
 
-//Funktion zum Laden der vom User reingestellten Items
+
+/**
+ * Funktion zum Laden der vom User reingestellten Items
+ */
 async function loadItems() {
 
   // Konfigurationen für die request
@@ -104,7 +123,7 @@ async function loadItems() {
   // Url an die die anfrage gemacht wird
   const url = "http://localhost:8080/items";
 
-  // Request an den Server für die Registrierung
+  // fetchen der Artikel und erstellen der HTML-Elemente
   let response;
   try {
     response = await fetch("http://localhost:8080/itemsLend");
@@ -144,12 +163,49 @@ async function loadItems() {
       div.appendChild(hr);
 
       section.appendChild(div);
+        buildItemTile(element);
     });
 
   } catch (e) {
     console.log(`Netzwerk Fehler ${e}`);
   }
 }
+/**
+ * Erstellen der Html-Element fuer einen Artikel
+ * @param {*} element 
+ */
+function buildItemTile(element){
+  const section = document.getElementById("itemsSection");
+
+  var div = document.createElement('div');
+  var img = document.createElement('img');
+  img.src = `${element.imageUrl}`;
+  img.alt = "OOps";
+  div.appendChild(img);
+
+  var h2 = document.createElement('h2');
+  var h2Text = document.createTextNode(`${element.title}`);
+  h2.appendChild(h2Text);
+  div.appendChild(h2);
+
+  var description = document.createElement('p');
+  var descriptionText = document.createTextNode(`${element.description}`);
+  description.appendChild(descriptionText);
+  div.appendChild(description);
+
+  var editButton = document.createElement('button')
+  editButton.innerHTML = "Bearbeiten";
+  editButton.onclick = function(){editItem(element.id)};
+  div.appendChild(editButton);
+
+  var deleteButton = document.createElement('button');
+  deleteButton.innerHTML = "Loeschen";
+  deleteButton.onclick = function(){deleteItem(element.id)};
+  div.appendChild(deleteButton);
+
+  section.appendChild(div);
+}
+//Laden der Items wenn die Seite geladen wird
 loadItems();
 
 

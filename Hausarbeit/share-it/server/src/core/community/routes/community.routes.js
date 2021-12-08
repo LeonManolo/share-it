@@ -20,6 +20,11 @@ router.post("/accept-friend/:id", communityControllers.acceptFriendRequest);
 router.post("/decline-friend/:id", communityControllers.declineFriendRequest);
 
 /**
+ * Route um alle Freunde des eingeloggten Users zu bekommen
+ */
+router.get("/get-friends", communityControllers.getAllFriendsOfUser);
+
+/**
  * Route die die HTML-Seite mit der Community liefert
  */
 router.get("/community", (req, res) => {
@@ -34,7 +39,7 @@ router.get("/open-friend-requests", communityControllers.getOpenFriendRequests);
 /**
  * Route um die alle Usernames liefert, die eine bestimmte Zeichenketten enthalten
  */
-router.get("/usernames", communityControllers.getAllUsernamesContainingPhrase)
+router.get("/usernames", communityControllers.getAllUsernamesContainingPhrase);
 
 // Routen werden exportiert
 module.exports = router;

@@ -1,0 +1,18 @@
+#detailSection {
+    background-color: yellow;
+    width: 15%;
+    min-width: 150px;
+    border-radius: 15px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+}
+
+img {
+    padding: 5px;
+}
+
+p,
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+}

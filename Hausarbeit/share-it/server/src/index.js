@@ -30,12 +30,11 @@ app.use("/", profileRouter);
 
 // Startseite wird als HTML geliefert
 app.get("/", (req, res) => {
-  const pathToFile = path.join(__dirname, "static", "html", "index.html");
-  res.sendFile(pathToFile);
+    const pathToFile = path.join(__dirname, "static", "html", "index.html");
+    res.sendFile(pathToFile);
 });
 
 // Server wird gestartet
 app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
+    console.log(`Server started on http://localhost:${PORT}`);
 });
-

@@ -90,9 +90,9 @@ class ItemLibrary {
   /**
    * Aktualisiert den Gegenstand mit der "id" und den Daten innerhalb
    * des "item"
-   * @param {number} id 
-   * @param {object} item 
-   * @returns 
+   * @param {number} id
+   * @param {object} item
+   * @returns
    */
   async updateItemById(id, item) {
     return new Promise((resolve, reject) => {
@@ -140,8 +140,9 @@ class ItemLibrary {
   async getAllItemsForUsername(username) {
     return new Promise((resolve, reject) => {
       db.all(
-        "SELECT * FROM item JOIN friendship ON (friend1 = ? OR friend2 = ?) AND friendship.status = 0;",
-        [username, username],
+        "SELECT DISTINCT * FROM item JOIN friendship ON (friend1 = owner OR friend2 = owner) AND friendship.status = 1 WHERE (friend1 = ? OR friend2 = ?) AND owner != ?",
+        //"SELECT * FROM item",
+        [username, username, username],
         (error, row) => {
           if (error) {
             console.log(error);

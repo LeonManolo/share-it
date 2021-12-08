@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
+const cookieChecker = require("../../../supporting/auth/middleware/auth_cookie_checker");
 //Controllers
 const itemsController = require("../controller/items.controllers");
 
@@ -15,6 +16,11 @@ router.get("/borrow", (req, res, next) => {
  * Route um einen Gegenstand auszuleihen
  */
 router.post("/borrow/:id", itemsController.borrowItem);
+
+/**
+ * Route um einen Gegenstand zurückzugeben
+ */
+router.post("/return/:id", itemsController.returnItem);
 
 /**
  * Endpoint für die HTML-Seite in der Gegenstände zum verleihen eingestellt werden können
@@ -44,12 +50,12 @@ router.get("/items/:id", itemsController.getItem);
 /**
  * Enpoint um alle Gegenständige zu erhalten für den jeweiligen User
  */
-router.get("/items", itemsController.getItems);
+router.get("/items", cookieChecker, itemsController.getItems);
 
 /**
  * Enpoint um alle Gegenständige zu erhalten die der User reingestellt hat
  */
-router.get("/itemsLend", itemsController.getAllItemsLendByUser)
+router.get("/itemsLend", itemsController.getAllItemsLendByUser);
 
 /**
  * Enpoint um einen bestimmten Gegenstand zu aktualisieren

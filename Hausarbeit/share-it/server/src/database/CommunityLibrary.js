@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database(__dirname+"/database.sqlite");
+var db = new sqlite3.Database(__dirname + "/database.sqlite");
 
 class CommunityLibrary {
   constructor() {
@@ -13,7 +13,8 @@ class CommunityLibrary {
         friend1 VARCHAR(50) NOT NULL,
         friend2 VARCHAR(50) NOT NULL,
         requestedBy VARCHAR(50) NOT NULL,
-        status INTEGER NOT NULL DEFAULT 0
+        status INTEGER NOT NULL DEFAULT 0,
+        UNIQUE(friend1, friend2) ON CONFLICT IGNORE
     );`);
   }
 
@@ -27,7 +28,7 @@ class CommunityLibrary {
   async createFriendship(fromUser, toUser) {
     return new Promise((resolve, reject) => {
       db.run(
-        `INSERT INTO friendship(friend1, friend2, requestedBy, status) VALUES(?, ?, ?, 0);`,
+        `INSERT OR IGNORE INTO friendship(friend1, friend2, requestedBy, status) VALUES(?, ?, ?, 0);`,
         [fromUser, toUser, fromUser],
         function () {
           resolve(this.lastID);
@@ -65,8 +66,26 @@ class CommunityLibrary {
   async getAllOpenFriendRequestsForUser(username) {
     return new Promise((resolve, reject) => {
       db.all(
-        "SELECT * FROM friendship WHERE status = 0 AND (friend1 = ? OR friend2 = ?) AND requestedBy != ?",
+        //"SELECT * FROM friendship WHERE status = 0 AND (friend1 = ? OR friend2 = ?) AND requestedBy != ?",
+        "SELECT friendship_id, friend1, friend2, username, profileImageUrl FROM friendship JOIN user ON friend1 = username OR friend2 = username WHERE status = 0 AND (friend1 = ? OR friend2 = ?) AND requestedBy != ?",
         [username, username, username],
+        (error, row) => {
+          if (error) {
+            console.log(error);
+            reject(error);
+          } else {
+            resolve(row);
+          }
+        }
+      );
+    });
+  }
+
+  async getAllFriendsOfUser(username) {
+    return new Promise((resolve, reject) => {
+      db.all(
+        "SELECT * FROM friendship WHERE (friend1 = ? OR friend2 = ?) AND status = 1",
+        [username, username],
         (error, row) => {
           if (error) {
             console.log(error);
