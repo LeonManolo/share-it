@@ -136,9 +136,12 @@ async function loadItems() {
       div.appendChild(editButton);
 
       var deleteButton = document.createElement('button');
-      deleteButton.innerHTML = "Loeschen";
+      deleteButton.innerHTML = "Löschen";
       deleteButton.onclick = function(){deleteItem(element.id)};
       div.appendChild(deleteButton);
+
+      var hr = document.createElement('hr');
+      div.appendChild(hr);
 
       section.appendChild(div);
     });
