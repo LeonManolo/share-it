@@ -110,10 +110,7 @@ class Community {
       phrase,
       exceptUsername
     );
-    const filtered = result.map((item) => {
-      return item.username;
-    });
-    return filtered;
+    return result;
   }
 
   /**

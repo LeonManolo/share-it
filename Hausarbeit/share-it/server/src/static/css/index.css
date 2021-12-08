@@ -4,7 +4,6 @@ body {
     background-attachment: fixed;
     background-size: cover;
     font-family: 'Lato', sans-serif;
-    display: grid;
     min-height: auto;
     display: grid;
     grid-template-columns: 1fr auto 1fr;

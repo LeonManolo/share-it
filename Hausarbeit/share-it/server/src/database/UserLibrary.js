@@ -134,8 +134,8 @@ class UserLibrary {
   async getAllUsernamesContainingPhraseExceptUser(phrase = "", username = "") {
     return new Promise((resolve, reject) => {
       db.all(
-        "SELECT * FROM user WHERE username LIKE '%?%' AND username != ?",
-        [phrase, username],
+        `SELECT * FROM user WHERE username LIKE '%${phrase}%' AND username != ?`,
+        [username],
         (error, row) => {
           if (error) {
             console.log(error);
