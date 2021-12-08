@@ -45,44 +45,60 @@ async function submitForm() {
   }
   showItems();
 }
-
+/**
+ * Entfernt Items und fetched diese neu und versteckt das Formular
+ */
 async function showItems(){
   newItem = document.getElementById('newItem');
   newItem.style.display = "none";
 
-  showButton = document.getElementById('showForm');
+  showButton = document.getElementById('showFormButton');
   showButton.style.display = "block"
 
   items = document.getElementById('itemsSection');
+  while (items.firstChild){
+    items.removeChild(items.lastChild);
+  }
   items.style.display = "block";
+  await loadItems();
 }
-
+/**
+ * Abbrechen ausm dem Formular und wieder anzeigen der Items
+ */
 async function cancelSubmit(){
   event.preventDefault();
-  showItems();
+  await showItems();
 }
 
 /**
- * 
+ * Zeigt das Formular und versteckt die Items
  */
 async function showForm(){
   newItem = document.getElementById('newItem');
   newItem.style.display = "block";
 
-  showButton = document.getElementById('showForm');
+  showButton = document.getElementById('showFormButton');
   showButton.style.display = "none"
 
   items = document.getElementById('itemsSection');
   items.style.display = "none";
 
 }
-//Funktion zum bearbeiten eines Artikels
+
+/**
+ * Funktion zum bearbeiten eines Artikels
+ * @param {number} id 
+ */
 async function editItem(id){
   console.log("Edit, hier muss noch was gemacht werden"+ id);
   selectedButton = id;
   showForm();
 }
-// Funktion zum Loeschen eines Artikels
+
+/**
+ * Funktion zum Loeschen eines Artikels
+ * @param {number} id 
+ */
 async function deleteItem(id){
   console.log("Delete, hier muss noch was gemacht werden"+ id);
   const config = {method: "DELETE"};
@@ -90,7 +106,10 @@ async function deleteItem(id){
 
 }
 
-//Funktion zum Laden der vom User reingestellten Items
+
+/**
+ * Funktion zum Laden der vom User reingestellten Items
+ */
 async function loadItems() {
 
   // Konfigurationen für die request
@@ -104,7 +123,7 @@ async function loadItems() {
   // Url an die die anfrage gemacht wird
   const url = "http://localhost:8080/items";
 
-  // Request an den Server für die Registrierung
+  // fetchen der Artikel und erstellen der HTML-Elemente
   let response;
   try {
     response = await fetch("http://localhost:8080/itemsLend");
@@ -147,6 +166,8 @@ async function loadItems() {
     console.log(`Netzwerk Fehler ${e}`);
   }
 }
+
+//Laden der Items wenn die Seite geladen wird
 loadItems();
 
 
