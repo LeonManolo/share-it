@@ -24,7 +24,15 @@ const getFormData = (event) => {
 async function submitForm() {
   event.preventDefault();
 
-  const item = getFormData(event);
+  //Anfang test formdata
+  const form = document.getElementById("form");
+  let item = new FormData(form);
+  item.append("owner", "Dein Vater");
+  item.append("maxBorrowDuration", 10);
+
+  //
+
+  //const item = getFormData(event);
 
   // Konfigurationen für die request
   let config = {
@@ -104,6 +112,7 @@ async function deleteItem(id) {
   console.log("Delete, hier muss noch was gemacht werden" + id);
   const config = { method: "DELETE" };
   let response = await fetch(`http://localhost:8080/items/${id}`, config);
+  showItems();
 }
 
 /**
@@ -171,6 +180,8 @@ function buildItemTile(element) {
   deleteButton.onclick = function(){deleteItem(element.id)};
   div.appendChild(deleteButton);
 
+  var tag = document.createElement('hr');
+  div.appendChild(tag);
   section.appendChild(div);
 }
 //Laden der Items wenn die Seite geladen wird

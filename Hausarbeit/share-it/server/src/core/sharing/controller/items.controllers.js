@@ -12,13 +12,12 @@ const addItem = async (req, res, next) => {
   const form = formidable({});
 
   form.parse(req, (err, fields, files) => {
-    console.log("test");
-    console.log({ fields, files });
     if (err) {
       res.sendStatus(500);
       return;
     }
     const item = fields;
+    item.owner = req.username;
     const oldpath = `${files.image.filepath}`;
     // TODO: dynamisch endung der Datei finden!
     const path = `/images/item_images/${files.image.newFilename}.png`;
@@ -77,10 +76,9 @@ const getItems = async (req, res, next) => {
 };
 
 const getAllItemsLendByUser = async (req, res, next) => {
-  //TODO akutellen user auslesen
-  const username = "Hans Peter";
+  const username = req.username;
   const sharing = new Sharing();
-  const result = await sharing.getAllItemsLendByUser("Dein Vater");
+  const result = await sharing.getAllItemsLendByUser(username);
   console.log("items.contorllers getLendItems: " + result);
   res.json(result);
 };

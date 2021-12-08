@@ -40,7 +40,7 @@ router.get("/borrowed", (req, res, next) => {
 /**
  * Enpoint um einen neuen Gegenstand einzustellen
  */
-router.post("/items", itemsController.addItem);
+router.post("/items",cookieChecker, itemsController.addItem);
 
 /**
  * Enpoint um einen bestimmten Gegenstand zu erhalten
@@ -55,7 +55,7 @@ router.get("/items", cookieChecker, itemsController.getItems);
 /**
  * Enpoint um alle Gegenständige zu erhalten die der User erstellt hat
  */
-router.get("/itemsLend", itemsController.getAllItemsLendByUser);
+router.get("/itemsLend",cookieChecker, itemsController.getAllItemsLendByUser);
 
 /**
  * Enpoint um einen bestimmten Gegenstand zu aktualisieren
