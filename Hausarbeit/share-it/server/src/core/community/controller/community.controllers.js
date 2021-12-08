@@ -55,7 +55,7 @@ const acceptFriendRequest = async (req, res, next) => {
   try {
     const friendshipId = parseInt(req.params.id);
     const community = new Community();
-    const success = community.acceptFriendRequest(friendshipId);
+    const success = await community.acceptFriendRequest(friendshipId);
     if (success) {
       res.sendStatus(200);
     } else {
@@ -76,7 +76,7 @@ const declineFriendRequest = async (req, res, next) => {
   try {
     const friendshipId = parseInt(req.params.id);
     const community = new Community();
-    const success = community.declineFriendRequest(friendshipId);
+    const success = await community.declineFriendRequest(friendshipId);
     if (success) {
       res.sendStatus(200);
     } else {
@@ -91,7 +91,7 @@ const getAllFriendsOfUser = async (req, res) => {
   try {
     const username = "Dein Vater";
     const community = new Community();
-    const result = community.getAllFriendsOfUser(username);
+    const result = await community.getAllFriendsOfUser(username);
     res.json(result);
   } catch (e) {
     res.sendStatus(500);
@@ -114,7 +114,7 @@ const getAllUsernamesContainingPhraseExceptUser = async (req, res) => {
       phrase = "";
     }
     const community = new Community();
-    const result = community.getAllUsernamesContainingPhraseExceptUser(phrase);
+    const result = await community.getAllUsernamesContainingPhraseExceptUser(phrase,username);
     const filtered = result.filter((value) => value !== username);
     res.json(filtered);
   } catch (e) {
