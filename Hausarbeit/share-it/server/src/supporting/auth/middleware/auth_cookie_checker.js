@@ -5,7 +5,7 @@ const authCookieChecker = (request, response, next) => {
     console.log(sessionId);
     const user = await userLibrary.getUserBySessionId(sessionId);
     console.log("username: " + user);
-    request.user = user;
+    request.username = user.username;
     next();
   } else {
     response.redirect("/");

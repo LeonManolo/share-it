@@ -42,7 +42,8 @@ const getItem = async (req, res, next) => {
 const getItems = async (req, res, next) => {
   try {
     const sharing = new Sharing();
-    const result = await sharing.getItemsForUsername("Dein Vater");
+    const username = req.username;
+    const result = await sharing.getItemsForUsername(username);
     console.log("items.controllers getItems: " + result);
     // TODO: item vorher prüfen
     res.json(result);
