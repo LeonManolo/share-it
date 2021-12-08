@@ -66,7 +66,7 @@ function showDetail(){
 
 async function loadItems(){
 
-  // Url an die die Anfrage gemacht wird
+  // Url an die die anfrage gemacht wird
   const url = "http://localhost:8080/items";
 
   // Request an den Server für die Registrierung
@@ -74,34 +74,35 @@ async function loadItems(){
   try {
     response = await fetch(url);
     const items = await response.json();
-    console.log(items);
-
-    const section = document.getElementById("itemsSection");
     items.forEach(element => {
-      var div = document.createElement('div');
-      div.onclick = function(){showDetail(element)};
-      
-      var img = document.createElement('img');
-      img.src = `${element.imageUrl}`;
-      img.alt = "OOps";
-      div.appendChild(img);
-
-      var h2 = document.createElement('h2');
-      var h2Text = document.createTextNode(`${element.title}`)
-      h2.appendChild(h2Text);
-      div.appendChild(h2);
-
-      var description = document.createElement('p');
-      var descriptionText = document.createTextNode(`${element.description}`);
-      description.appendChild(descriptionText);
-      div.appendChild(description)
-
-      section.appendChild(div);
+      buildItemTile(element);
     });
-
   } catch (e) {
     console.log(`Netzwerk Fehler ${e}`);
   }
-}
+};
+function buildItemTile(element){
+
+  const section = document.getElementById("itemsSection");
+  var div = document.createElement('div');
+  div.onclick = function(){showDetail(element)};
+
+  var img = document.createElement('img');
+  img.src = `${element.imageUrl}`;
+  img.alt = "OOps";
+  div.appendChild(img);
+
+  var h2 = document.createElement('h2');
+  var h2Text = document.createTextNode(`${element.title}`)
+  h2.appendChild(h2Text);
+  div.appendChild(h2);
+
+  var description = document.createElement('p');
+  var descriptionText = document.createTextNode(`${element.description}`);
+  description.appendChild(descriptionText);
+  div.appendChild(description)
+
+  section.appendChild(div);
+};
 
 loadItems();
