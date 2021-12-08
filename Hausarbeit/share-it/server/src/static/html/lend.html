@@ -8,7 +8,10 @@
     <link rel="stylesheet" type="text/css" href="../css/lend.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
     <script defer src="./js/lend.js"></script>
     <title>Verleihen</title>
   </head>
@@ -23,31 +26,46 @@
     <header>
       <h1>Dinge, die ich verleihe</h1>
     </header>
-      <main>
-        <section id="showFormButton">
-          <button onclick="showForm()">+<br>Neu</button>
-        </section>
-        <section id="newItem">
-          <h2>Neuen Gegenstand einstellen</h2>
-          <form
-          action="/login"
+    <main>
+      <section id="showFormButton">
+        <button onclick="showForm()">+<br />Neu</button>
+      </section>
+      <section id="newItem">
+        <h2>Neuen Gegenstand einstellen</h2>
+        <form
           onsubmit="submitForm(); return false;"
           method="post"
+          enctype="multipart/form-data"
           id="form"
-          >
-          <label for="title">Artikelname:</label><br>
-          <input required type="text" name="title" id="title" pattern=".{1,}" title="mindestens ein Buchstabe"/><br>
-          <label for="description">Artikelbeschreibung:</label><br>
-          <textarea required type="text" name="description" id="description" pattern=".{1,}" title="mindestens ein Buchstabe" cols="40" rows="5"></textarea><br>
-          <label for="image">Bild:</label><br>
-          <input type="file" name="upload" value="Datei auswählen"/><br>
+        >
+          <label for="title">Artikelname:</label><br />
+          <input
+            required
+            type="text"
+            name="title"
+            id="title"
+            pattern=".{1,}"
+            title="mindestens ein Buchstabe"
+          /><br />
+          <label for="description">Artikelbeschreibung:</label><br />
+          <textarea
+            required
+            type="text"
+            name="description"
+            id="description"
+            pattern=".{1,}"
+            title="mindestens ein Buchstabe"
+            cols="40"
+            rows="5"
+          ></textarea
+          ><br />
+          <label for="image">Bild:</label><br />
+          <input type="file" name="image" value="Datei auswählen" /><br />
           <input type="submit" name="Anmelden" value="Speichern" />
           <button onclick="cancelSubmit()">Abbrechen</button>
         </form>
       </section>
-      <section id="itemsSection">
-
-      </section>
-    </main>    
+      <section id="itemsSection"></section>
+    </main>
   </body>
 </html>

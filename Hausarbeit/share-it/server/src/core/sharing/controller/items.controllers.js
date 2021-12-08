@@ -1,4 +1,5 @@
 const Sharing = require("../services/sharing");
+const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
 const formidable = require("formidable");
 const fs = require("fs");
 
@@ -7,16 +8,39 @@ const fs = require("fs");
  * Endpoint um einen neuen Gegenstand einzustellen
  */
 const addItem = async (req, res, next) => {
-  const item = req.body;
   console.log("ich bin drinn");
-  try {
-    const sharing = new Sharing();
-    await sharing.addItem(item);
-    res.sendStatus(200);
-  } catch (e) {
-    res.status(500);
-    res.send(`Adding failed: ${e}`);
-  }
+  const form = formidable({});
+
+  form.parse(req, (err, fields, files) => {
+    console.log("test");
+    console.log({ fields, files });
+    if (err) {
+      res.sendStatus(500);
+      return;
+    }
+    const item = fields;
+    const oldpath = `${files.image.filepath}`;
+    // TODO: dynamisch endung der Datei finden!
+    const path = `/images/item_images/${files.image.newFilename}.png`;
+    var newpath = pathToStaticFolder(path);
+    console.log({ fields, files });
+    fs.rename(oldpath, newpath, async function (err) {
+      if (err) {
+        console.log("renaming failed");
+        res.sendStatus(500);
+        return;
+      }
+      try {
+        const sharing = new Sharing();
+        item.imageUrl = `http://localhost:8080${path}`;
+        await sharing.addItem(item);
+        res.sendStatus(200);
+      } catch (e) {
+        res.status(500);
+        res.send(`Adding failed: ${e}`);
+      }
+    });
+  });
 };
 
 /**
