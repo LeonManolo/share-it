@@ -115,6 +115,24 @@ class Community {
     });
     return filtered;
   }
+
+  /**
+   * Liefert alle Freund des Users mit dem angegebenen username
+   * @param {string} username
+   * @returns {[object]}
+   */
+  async getAllFriendsOfUser(username) {
+    const communityLibrary = new CommunityLibrary();
+    const result = await communityLibrary.getAllFriendsOfUser(username);
+    const filtered = result.map((e) => {
+      if (e.friend1 != username) {
+        return e.friend1;
+      } else {
+        return e.friend2;
+      }
+    });
+    return filtered;
+  }
 }
 
 module.exports = Community;

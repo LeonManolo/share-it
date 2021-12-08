@@ -80,6 +80,23 @@ class CommunityLibrary {
       );
     });
   }
+
+  async getAllFriendsOfUser(username) {
+    return new Promise((resolve, reject) => {
+      db.all(
+        "SELECT * FROM friendship WHERE (friend1 = ? OR friend2 = ?) AND status = 1",
+        [username, username],
+        (error, row) => {
+          if (error) {
+            console.log(error);
+            reject(error);
+          } else {
+            resolve(row);
+          }
+        }
+      );
+    });
+  }
 }
 
 module.exports = CommunityLibrary;
