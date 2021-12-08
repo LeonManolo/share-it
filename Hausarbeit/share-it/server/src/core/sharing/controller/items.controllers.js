@@ -61,7 +61,6 @@ const getItem = async (req, res, next) => {
  * Endpoint um alle Gegenstände für einen User zu bekommen die er ausleihen darf.
  *
  */
-
 const getItems = async (req, res, next) => {
   try {
     const sharing = new Sharing();
@@ -75,13 +74,29 @@ const getItems = async (req, res, next) => {
   }
 };
 
+/**
+ * Endpoint um alle vom Nutzer reigestellten Artikel zu bekommen.
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 const getAllItemsLendByUser = async (req, res, next) => {
   const username = req.username;
   const sharing = new Sharing();
   const result = await sharing.getAllItemsLendByUser(username);
-  console.log("items.contorllers getLendItems: " + result);
+  console.log("items.controllers getLendItems:");
+  console.log(result);
   res.json(result);
 };
+
+const getAllItemsBorrowedByUser = async (req, res, next) => {
+  const username = req.username;
+  const sharing = new Sharing();
+  const result = await sharing.getAllItemsBorrowedByUser(username);
+  console.log("items.controllers getBorrowedItems:");
+  console.log(result);
+  res.json(result);
+}
 
 /**
  * Endpoint um ein Gegenstand auszuleihen
@@ -152,4 +167,5 @@ module.exports = {
   borrowItem,
   returnItem,
   getAllItemsLendByUser,
+  getAllItemsBorrowedByUser,
 };

@@ -6,9 +6,8 @@ const Community = require("../services/community");
  * @param {*} res
  * @param {*} next
  */
-//TODO: fromUser aus den Cookies lesen!
 const addFriend = async (req, res, next) => {
-  const fromUser = "Dein Vater";
+  const fromUser = req.username;
   const toUser = req.query.toUser;
 
   try {
@@ -34,7 +33,7 @@ const addFriend = async (req, res, next) => {
  */
 const getOpenFriendRequests = async (req, res, next) => {
   try {
-    const username = "Dein Vater";
+    const username = req.username;
     const community = new Community();
     const friendRequests = await community.getAllOpenFriendRequestsForUser(
       username
@@ -89,7 +88,7 @@ const declineFriendRequest = async (req, res, next) => {
 
 const getAllFriendsOfUser = async (req, res) => {
   try {
-    const username = "Dein Vater";
+    const username = req.username;
     const community = new Community();
     const result = await community.getAllFriendsOfUser(username);
     res.json(result);
@@ -108,7 +107,7 @@ const getAllFriendsOfUser = async (req, res) => {
  */
 const getAllUsernamesContainingPhraseExceptUser = async (req, res) => {
   try {
-    const username = "Dein Vater";
+    const username = req.username;
     const phrase = req.query.phrase;
     if (!phrase) {
       phrase = "";

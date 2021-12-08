@@ -130,6 +130,10 @@ class ItemLibrary {
     });
   }
 
+  async getAllItemsBorrowedByUser(username){
+    // Alle Items der der user ausgeliehen hat
+  }
+
   /**
    * Liefert alle Gegenstände die zum Verleih stehen. Aber auch nur Gegenstände von
    * Freunden des übergebenen Users (username).

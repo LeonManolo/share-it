@@ -7,6 +7,7 @@ async function buildFriendRequestSection() {
   const friendRequestSection = document.getElementById("friend-requests");
   const h2 = document.createElement("h2");
   h2.textContent = "Freundschaftsanfragen";
+  friendRequestSection.appendChild(h2);
 
   // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/open-friend-requests";
@@ -31,6 +32,7 @@ async function buildFriendSection(){
   const friendSection = document.getElementById("friends");
   const h2 = document.createElement("h2");
   h2.textContent = "Freunde";
+  friendSection.appendChild(h2);
 
   // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/get-friends";
@@ -52,9 +54,11 @@ async function buildFriendSection(){
 }
 
 async function buildUserSection(){
-  const UserSection = document.getElementById("addFriend");
+  const userSection = document.getElementById("otherUsers");
   const h2 = document.createElement("h2");
   h2.textContent = "andere Nutzer";
+  userSection.appendChild(h2);
+  
 
   // Url an die die Anfrage gemacht wird
   // Platzhalter url
@@ -66,7 +70,7 @@ async function buildUserSection(){
     const users = await response.json();
     if (response.ok) {
       users.forEach((user) => {
-        UserSection.appendChild(buildUserTile(user));
+        userSection.appendChild(buildUserTile(user));
       });
     } else {
       console.log("Could not fetch open friend requests!");
@@ -136,24 +140,24 @@ function buildFriendRequestTile(user){
 
   return div;
 }
-async function sendFriendRequest(username){
-  console.log(username);
-  const url = `http://localhost:8080/add-friend?toUser=${username}`;
+async function sendFriendRequest(usernameToAdd){
+  console.log(usernameToAdd);
+  const url = `http://localhost:8080/add-friend?toUser=${usernameToAdd}`;
   const config = {method: "POST"};
   let response = await fetch(url,config);
 }
 
-async function acceptFriendRequest(id){
-  console.log(id);
-  const url = `http://localhost:8080/accept-friend/${id}`;
+async function acceptFriendRequest(friendship_id){
+  console.log(friendship_id);
+  const url = `http://localhost:8080/accept-friend/${friendship_id}`;
   const config = {method: "POST"};
   let response = await fetch(url,config);
   console.log(response.status);
 }
 
-async function declineFriendRequest(id){
-  console.log(id);
-  const url = `http://localhost:8080/decline-friend/${id}`;
+async function declineFriendRequest(friendship_id){
+  console.log(friendship_id);
+  const url = `http://localhost:8080/decline-friend/${friendship_id}`;
   const config = {method: "POST"};
   let response = await fetch(url,config);
   console.log(response.status);

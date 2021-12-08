@@ -55,7 +55,9 @@ router.get("/items", cookieChecker, itemsController.getItems);
 /**
  * Enpoint um alle Gegenständige zu erhalten die der User erstellt hat
  */
-router.get("/itemsLend",cookieChecker, itemsController.getAllItemsLendByUser);
+router.get("/itemsLend", cookieChecker, itemsController.getAllItemsLendByUser);
+
+router.get("/borrowed-items", cookieChecker, itemsController.getAllItemsBorrowedByUser);
 
 /**
  * Enpoint um einen bestimmten Gegenstand zu aktualisieren

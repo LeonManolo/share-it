@@ -73,6 +73,10 @@ class Sharing {
     return await itemLibrary.getAllItemsLendByUser(username);
   }
 
+  async getAllItemsBorrowedByUser(username){
+    return await itemLibrary.getAllItemsBorrowedByUser(username);
+  }
+
   /**
    * Gibt einen Gegenstand wieder zurück zum Verleihen
    * @param {number} id
