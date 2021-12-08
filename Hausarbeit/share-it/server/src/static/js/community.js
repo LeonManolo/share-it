@@ -8,7 +8,6 @@ async function buildFriendRequestSection() {
   // Url an die die anfrage gemacht wird
   const url = "http://localhost:8080/open-friend-requests";
 
-  // Request an den Server für die Registrierung
   let response;
   try {
     response = await fetch(url);
@@ -28,8 +27,18 @@ async function buildFriendRequestSection() {
 function buildFriendTile(friend) {
   console.log(friend);
   const div = document.createElement("div");
+  div.className = "friendTile"
   //TODO: img src setzen und hinzufügen
   const img = document.createElement("img");
+  img.src = `${element.imageUrl}`;
+  img.alt = "Falsche URL";
   div.textContent = friend.username;
   return div;
+}
+
+function buildFriendRequestTile(user){
+  const div = document.createElement("div");
+  div.className = "friendRequest"
+  //TODO: img src setzen und hinzufügen
+  const img = document.createElement("img");
 }

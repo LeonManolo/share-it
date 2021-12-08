@@ -132,41 +132,48 @@ async function loadItems() {
 
     const section = document.getElementById("itemsSection");
     items.forEach(element => {
-      
-      var div = document.createElement('div');
-      var img = document.createElement('img');
-      img.src = `${element.imageUrl}`;
-      img.alt = "OOps";
-      div.appendChild(img);
-
-      var h2 = document.createElement('h2');
-      var h2Text = document.createTextNode(`${element.title}`);
-      h2.appendChild(h2Text);
-      div.appendChild(h2);
-
-      var description = document.createElement('p');
-      var descriptionText = document.createTextNode(`${element.description}`);
-      description.appendChild(descriptionText);
-      div.appendChild(description);
-
-      var editButton = document.createElement('button')
-      editButton.innerHTML = "Bearbeiten";
-      editButton.onclick = function(){editItem(element.id)};
-      div.appendChild(editButton);
-
-      var deleteButton = document.createElement('button');
-      deleteButton.innerHTML = "Loeschen";
-      deleteButton.onclick = function(){deleteItem(element.id)};
-      div.appendChild(deleteButton);
-
-      section.appendChild(div);
+        buildItemTile(element);
     });
 
   } catch (e) {
     console.log(`Netzwerk Fehler ${e}`);
   }
 }
+/**
+ * Erstellen der Html-Element fuer einen Artikel
+ * @param {*} element 
+ */
+function buildItemTile(element){
+  const section = document.getElementById("itemsSection");
 
+  var div = document.createElement('div');
+  var img = document.createElement('img');
+  img.src = `${element.imageUrl}`;
+  img.alt = "OOps";
+  div.appendChild(img);
+
+  var h2 = document.createElement('h2');
+  var h2Text = document.createTextNode(`${element.title}`);
+  h2.appendChild(h2Text);
+  div.appendChild(h2);
+
+  var description = document.createElement('p');
+  var descriptionText = document.createTextNode(`${element.description}`);
+  description.appendChild(descriptionText);
+  div.appendChild(description);
+
+  var editButton = document.createElement('button')
+  editButton.innerHTML = "Bearbeiten";
+  editButton.onclick = function(){editItem(element.id)};
+  div.appendChild(editButton);
+
+  var deleteButton = document.createElement('button');
+  deleteButton.innerHTML = "Loeschen";
+  deleteButton.onclick = function(){deleteItem(element.id)};
+  div.appendChild(deleteButton);
+
+  section.appendChild(div);
+}
 //Laden der Items wenn die Seite geladen wird
 loadItems();
 
