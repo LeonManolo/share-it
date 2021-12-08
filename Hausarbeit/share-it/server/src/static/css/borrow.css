@@ -1,18 +1,49 @@
 #detailSection {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     background-color: yellow;
-    width: 15%;
-    min-width: 150px;
+    width: 100%;
     border-radius: 15px;
     border-color: black;
     border-width: 2px;
     border-style: solid;
+    grid-template-areas: "img text" "img text" ". text" ". text";
+}
+
+.text {
+    grid-area: text;
+    background-color: greenyellow;
 }
 
 img {
+    background-color: red;
+    grid-area: img;
     padding: 5px;
+    max-width: 100%;
 }
 
 p,
 h2 {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#detailH2 {
+    grid-area: detailH2;
+}
+
+#detailLender {
+    grid-area: detailLender;
+}
+
+#detailDescription {
+    grid-area: detailDescription;
+}
+
+#detailButtonAusleihen {
+    grid-area: detailButtonAusleihen;
+}
+
+#detailButtonCancel {
+    grid-area: detailButtonCancel;
 }
