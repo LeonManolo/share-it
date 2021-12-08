@@ -1,7 +1,19 @@
+
+/**
+ * Funktion zum zurueckgeben eines Items
+ * @param {*} id 
+ */
 async function returnItem(id){
-    console.log("Platzhalter");
+    console.log(id);
+    const url = `http://localhost:8080/return/${id}`;
+    const config = {method: "POST"};
+  let response = await fetch(url, config);
 }
 
+
+/**
+ * Funktion zum Laden der ausgeliehenen Items des Nutzers
+ */
 async function loadItems(){
 
     // Url an die die Anfrage gemacht wird
@@ -22,7 +34,11 @@ async function loadItems(){
     }
   }
 
-  function buildItemTile(element){
+/**
+ * Funktion zum erstellen der HTML-Elemente eines Items
+ * @param {*} element 
+ */
+function buildItemTile(element){
     const section = document.getElementById("itemsSection");
     var div = document.createElement('div');
     div.onclick = function(){showDetail(element)};
@@ -45,7 +61,7 @@ async function loadItems(){
     var button = document.createElement('button');
     button.onclick = function(){returnItem(element.id)};
     section.appendChild(div);
-  }
+}
   
-  loadItems();
+loadItems();
   

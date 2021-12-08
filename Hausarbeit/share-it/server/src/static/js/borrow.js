@@ -38,9 +38,7 @@ function openDetail(element){
 async function borrowItem(id){
   console.log(id);
   const url = `http://localhost:8080/borrow/${id}`;
-  const config = {
-    method: "POST"
-  };
+  const config = {method: "POST"};
   let response = await fetch(url, config);
 }
 /**
