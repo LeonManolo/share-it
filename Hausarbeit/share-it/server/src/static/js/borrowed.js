@@ -8,6 +8,15 @@ async function returnItem(id){
     const url = `http://localhost:8080/return/${id}`;
     const config = {method: "POST"};
     let response = await fetch(url, config);
+    await clearItems();
+    await loadItems();
+}
+
+async function clearItems(){
+ items = document.getElementById("itemsSection")
+ while (items.firstChild) {
+    items.removeChild(items.lastChild);
+}
 }
 /**
  * Maxborrowduration berechnungshelfer
