@@ -1,6 +1,6 @@
 let selectedItem;
 /**
- * Detail Bereich eines Artikels oeffenen, wo dieses ausgehliehen werden kann.
+ * Detailbereich eines Artikels öffenen, wo dieses ausgeliehen werden kann.
  * @param {*} element 
  */
 function openDetail(element){
@@ -32,7 +32,7 @@ function openDetail(element){
   showDetail();
 }
 /**
- * Funktion zum ausleihen eines Artikels
+ * Funktion zum Ausleihen eines Artikels
  * @param {*} id 
  */
 async function borrowItem(id){
@@ -42,7 +42,7 @@ async function borrowItem(id){
   let response = await fetch(url, config);
 }
 /**
- * Um aus der Detailansicht wieder zu der Artikeluebersicht zurueck zukehren.
+ * Um aus der Detailansicht wieder zu der Artikelübersicht zurückzukehren.
  */
 function cancelFunc(){
   hideDetail();
@@ -90,7 +90,7 @@ async function loadItems(){
 };
 
 /**
- * Erstellen der Tile fuer einen Artikel
+ * Erstellen der Tile für einen Artikel
  * @param {*} element 
  */
 function buildItemTile(element){
