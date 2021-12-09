@@ -8,3 +8,4 @@ Hausarbeit/share-it/server/src/static/images/item_images
 Hausarbeit/share-it/server/src/database/database.sqlite
 Hausarbeit/share-it/server/src/database/database.sqlite
 .gitignore
+Hausarbeit/share-it/server/src/database/database.sqlite
