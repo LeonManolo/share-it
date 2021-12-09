@@ -46,7 +46,7 @@ async function borrowItem(id){
 
 }
 async function clearItems(){
-  items = document.getElementById("itemsSection")
+  var items = document.getElementById("itemsSection")
   while (items.firstChild) {
      items.removeChild(items.lastChild);
  }
