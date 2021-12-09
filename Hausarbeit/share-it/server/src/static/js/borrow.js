@@ -6,7 +6,7 @@ let selectedItem;
 function openDetail(element){
   selectedItem = element;
   hideItems();
-  var img = document.getElementById('detailImg');
+  var img = document.getElementById('detailIMG');
   img.src = `${element.imageUrl}`;
 
   var h2 = document.getElementById('detailH2');
@@ -65,7 +65,7 @@ function hideDetail(){
 
 function showDetail(){
   const section = document.getElementById("detailSection");
-  section.style.display = "grid";
+  section.style.display = "block";
 }
 
 /**

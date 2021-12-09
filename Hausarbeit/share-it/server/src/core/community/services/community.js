@@ -128,6 +128,8 @@ class Community {
   async getAllFriendsOfUser(username) {
     const communityLibrary = new CommunityLibrary();
     const result = await communityLibrary.getAllFriendsOfUser(username);
+    console.log("community result")
+    console.log(result)
     const filtered = result.map((e) => {
       if (e.friend1 != username) {
         return e.friend1;
@@ -135,6 +137,8 @@ class Community {
         return e.friend2;
       }
     });
+    console.log("community filtered")
+    console.log(filtered)
     return filtered;
   }
 }
