@@ -8,7 +8,6 @@ const fs = require("fs");
  * Endpoint um einen neuen Gegenstand einzustellen
  */
 const addItem = async (req, res, next) => {
-  console.log("ich bin drinn");
   const form = formidable({});
 
   form.parse(req, (err, fields, files) => {
@@ -143,7 +142,7 @@ const returnItem = async (req, res) => {
 
 // TODO: auf undefined prüfen etc
 // TODO: checken ob update vom Owner kommt.
-const updateItem = async (req, res, next) => {
+const updateItemAlt = async (req, res, next) => {
   const id = parseInt(req.params.id);
   const item = req.body;
   const sharing = new Sharing();
@@ -153,6 +152,39 @@ const updateItem = async (req, res, next) => {
   } else {
     res.sendStatus(404);
   }
+};
+const updateItem = async (req, res, next) => {
+  const id = parseInt(req.params.id);
+  const form = formidable({});
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      res.sendStatus(500);
+      return;
+    }
+    const item = fields;
+    item.owner = req.username
+    const oldpath = `${files.image.filepath}`;
+    const path = `/images/item_images/${files.image.newFilename}.png`;
+    var newpath = pathToStaticFolder(path);
+    console.log("update in controllers")
+    console.log({ fields, files });
+    fs.rename(oldpath, newpath, async function (err) {
+      if (err) {
+        console.log("renaming failed");
+        res.sendStatus(500);
+        return;
+      }
+      try {
+        const sharing = new Sharing();
+        item.imageUrl = `http://localhost:8080${path}`;
+        await sharing.updateItem(id, item);
+        res.sendStatus(200);
+      } catch (e) {
+        res.status(500);
+        res.send(`Adding failed: ${e}`);
+      }
+    });
+  })
 };
 
 /**

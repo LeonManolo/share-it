@@ -161,6 +161,7 @@ function buildItemTile(element) {
 
   var tag = document.createElement('hr');
   div.appendChild(tag);
+  
   section.appendChild(div);
 }
 //Laden der Items wenn die Seite geladen wird

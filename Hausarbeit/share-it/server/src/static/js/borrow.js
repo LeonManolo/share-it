@@ -56,7 +56,7 @@ function hideItems(){
 
 function showItems(){
   const section = document.getElementById('itemsSection');
-  section.style.display = "block";
+  section.style.display = "grid";
 }
 function hideDetail(){
   const section = document.getElementById("detailSection");
@@ -65,7 +65,7 @@ function hideDetail(){
 
 function showDetail(){
   const section = document.getElementById("detailSection");
-  section.style.display = "block";
+  section.style.display = "grid";
 }
 
 /**
@@ -97,19 +97,23 @@ function buildItemTile(element){
 
   const section = document.getElementById("itemsSection");
   var div = document.createElement('div');
+  div.className = "itemTile"
   div.onclick = function(){openDetail(element)};
 
   var img = document.createElement('img');
+  img.className = "itemIMG"
   img.src = `${element.imageUrl}`;
   img.alt = "OOps";
   div.appendChild(img);
 
   var h2 = document.createElement('h2');
+  h2.className = "itemH2"
   var h2Text = document.createTextNode(`${element.title}`)
   h2.appendChild(h2Text);
   div.appendChild(h2);
 
   var description = document.createElement('p');
+  description.className = "itemDescription"
   var descriptionText = document.createTextNode(`${element.description}`);
   description.appendChild(descriptionText);
   div.appendChild(description)
@@ -117,4 +121,5 @@ function buildItemTile(element){
   section.appendChild(div);
 };
 
+hideDetail();
 loadItems();

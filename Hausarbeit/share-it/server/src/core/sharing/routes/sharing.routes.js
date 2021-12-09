@@ -65,11 +65,11 @@ router.get("/borrowed-items", cookieChecker, itemsController.getAllItemsBorrowed
 /**
  * Enpoint um einen bestimmten Gegenstand zu aktualisieren
  */
-router.put("/items/:id", itemsController.updateItem);
+router.put("/items/:id",cookieChecker, itemsController.updateItem);
 
 /**
  * Enpoint um einen bestimmten Gegenstand zu löschen
  */
-router.delete("/items/:id", itemsController.deleteItem);
+router.delete("/items/:id",cookieChecker, itemsController.deleteItem);
 
 module.exports = router;
