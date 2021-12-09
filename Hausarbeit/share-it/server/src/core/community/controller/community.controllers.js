@@ -93,6 +93,8 @@ const getAllFriendsOfUser = async (req, res) => {
     const username = req.username;
     const community = new Community();
     const result = await community.getAllFriendsOfUser(username);
+    console.log("community contoller result")
+    console.log(result)
     res.json(result);
   } catch (e) {
     res.sendStatus(500);

@@ -9,7 +9,16 @@ async function returnItem(id){
     const config = {method: "POST"};
     let response = await fetch(url, config);
 }
-
+/**
+ * Maxborrowduration berechnungshelfer
+ * @param {*} days 
+ * @returns 
+ */
+Date.prototype.addDays = function(days) {
+  var date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+}
 
 /**
  * Funktion zum Laden der ausgeliehenen Items des Nutzers
@@ -27,6 +36,15 @@ async function loadItems(){
       console.log(items);
       items.forEach(element => {
         buildItemTile(element);
+        var today = new Date();
+        var date = new Date(element.borrowedAt)
+        var returnBy = date.addDays(element.maxBorrowDuration);
+        console.log(today);
+        console.log(returnBy);
+        if (date < returnBy){
+          console.log("noch alles ok")
+        }
+        console.log("test");
       });
   
     } catch (e) {
