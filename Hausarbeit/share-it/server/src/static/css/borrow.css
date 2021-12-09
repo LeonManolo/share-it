@@ -3,23 +3,21 @@ body {
 }
 
 #itemsSection {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: 
-    "";
+    display:flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .itemTile{
     border: solid rgba(170, 170, 170, 0.596);
     margin: 10px;
-    width: 350px;
+    width: 340px;
     height: 400px;
 }
 
 .itemIMG{
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 310px;
+    max-height: 250px;
     grid-area: Img;
     margin: 10px;
 }
@@ -36,32 +34,34 @@ body {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    background-color: rgb(51, 51, 51);
-    width: 100%;
-    border-radius: 15px;
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
     grid-template-areas: 
-    "";
+    "Img h2"
+    "Img l"
+    ". d"
+    "a c";
+    width: 100%;
+}
+
+#detailIMG{
+    grid-area: Img;
 }
 
 #detailH2 {
-    grid-area: detailH2;
+    grid-area: h2;
 }
 
 #detailLender {
-    grid-area: detailLender;
+    grid-area: l;
 }
 
 #detailDescription {
-    grid-area: detailDescription;
+    grid-area: d;
 }
 
 #detailButtonAusleihen {
-    grid-area: detailButtonAusleihen;
+    grid-area: a;
 }
 
 #detailButtonCancel {
-    grid-area: detailButtonCancel;
+    grid-area: c;
 }
