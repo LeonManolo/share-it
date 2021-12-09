@@ -40,6 +40,16 @@ async function borrowItem(id){
   const url = `http://localhost:8080/borrow/${id}`;
   const config = {method: "POST"};
   let response = await fetch(url, config);
+  clearItems();
+  loadItems();
+  cancelFunc();
+
+}
+async function clearItems(){
+  items = document.getElementById("itemsSection")
+  while (items.firstChild) {
+     items.removeChild(items.lastChild);
+ }
 }
 /**
  * Um aus der Detailansicht wieder zu der Artikeluebersicht zurueck zukehren.
