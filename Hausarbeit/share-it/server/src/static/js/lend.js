@@ -1,4 +1,4 @@
-let selectedButton;
+let selectedButton = null;
 
 // Funktion wird aufgerufen anstatt dem Standard von einer HTML Form
 async function submitForm() {
@@ -17,7 +17,7 @@ async function submitForm() {
 
   // Url an die die Anfrage gemacht wird
   let url = "http://localhost:8080/items";
-  if (typeof selectedButton !== "undefined") {
+  if (selectedButton !== null) {
     url += `/${selectedButton}`;
     config.method = "PUT";
   }
@@ -28,6 +28,7 @@ async function submitForm() {
   } catch (e) {
     console.log(`Netzwerk Fehler ${e}`);
   }
+  selectedButton = null;
   showItems();
 }
 /**
@@ -52,6 +53,7 @@ async function showItems() {
  */
 async function cancelSubmit() {
   event.preventDefault();
+  selectedButton = null;
   await showItems();
 }
 
