@@ -75,7 +75,7 @@ function hideDetail(){
 
 function showDetail(){
   const section = document.getElementById("detailSection");
-  section.style.display = "block";
+  section.style.display = "grid";
 }
 
 /**
