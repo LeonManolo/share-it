@@ -7,6 +7,7 @@ async function buildFriendRequestSection() {
   const friendRequestSection = document.getElementById("friend-requests");
   const h2 = document.createElement("h2");
   h2.textContent = "Freundschaftsanfragen";
+  friendRequestSection.appendChild(h2);
 
   // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/open-friend-requests";
@@ -31,6 +32,7 @@ async function buildFriendSection(){
   const friendSection = document.getElementById("friends");
   const h2 = document.createElement("h2");
   h2.textContent = "Freunde";
+  friendSection.appendChild(h2);
 
   // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/get-friends";
@@ -52,13 +54,22 @@ async function buildFriendSection(){
 }
 
 async function buildUserSection(){
-  const UserSection = document.getElementById("addFriend");
+  const userSection = document.getElementById("otherUsers");
   const h2 = document.createElement("h2");
   h2.textContent = "andere Nutzer";
+  userSection.appendChild(h2);
+  
 
   // Url an die die Anfrage gemacht wird
+<<<<<<< HEAD
   // Platzhalter url
   const url = "http://localhost:8080/usernames?phrase=e";
+=======
+  // mit phrase
+  //const url = "http://localhost:8080/usernames?phrase=e";
+  // ohne phrase
+  const url = "http://localhost:8080/all-users";
+>>>>>>> ce2e2b6dff246245596269d46a861c19c67bbb61
 
   let response;
   try {
@@ -66,7 +77,7 @@ async function buildUserSection(){
     const users = await response.json();
     if (response.ok) {
       users.forEach((user) => {
-        UserSection.appendChild(buildUserTile(user));
+        userSection.appendChild(buildUserTile(user));
       });
     } else {
       console.log("Could not fetch open friend requests!");
@@ -85,7 +96,7 @@ function buildUserTile(user){
   div.appendChild(name);
 
   var requestButton = document.createElement('button');
-  requestButton.innerHtml = "Akzeptieren";
+  requestButton.innerHTML = "Freund hinzufuegen";
   requestButton.onclick = function(){sendFriendRequest(user.username)};
   div.appendChild(requestButton);
 
@@ -125,35 +136,35 @@ function buildFriendRequestTile(user){
   div.appendChild(name);
 
   var acceptButton = document.createElement('button');
-  acceptButton.innerHtml = "Akzeptieren";
+  acceptButton.innerHTML = "Akzeptieren";
   acceptButton.onclick = function(){acceptFriendRequest(user.friendshipId)};
   div.appendChild(acceptButton);
 
   var declineButton = document.createElement('button');
-  declineButton.innerHtml = "Ablehnen";
+  declineButton.innerHTML = "Ablehnen";
   declineButton.onclick = function(){declineFriendRequest(user.friendshipId)};
   div.appendChild(declineButton);
 
   return div;
 }
-async function sendFriendRequest(username){
-  console.log(username);
-  const url = `http://localhost:8080/add-friend?toUser=${username}`;
+async function sendFriendRequest(usernameToAdd){
+  console.log(usernameToAdd);
+  const url = `http://localhost:8080/add-friend?toUser=${usernameToAdd}`;
   const config = {method: "POST"};
   let response = await fetch(url,config);
 }
 
-async function acceptFriendRequest(id){
-  console.log(id);
-  const url = `http://localhost:8080/accept-friend/${id}`;
+async function acceptFriendRequest(friendship_id){
+  console.log(friendship_id);
+  const url = `http://localhost:8080/accept-friend/${friendship_id}`;
   const config = {method: "POST"};
   let response = await fetch(url,config);
   console.log(response.status);
 }
 
-async function declineFriendRequest(id){
-  console.log(id);
-  const url = `http://localhost:8080/decline-friend/${id}`;
+async function declineFriendRequest(friendship_id){
+  console.log(friendship_id);
+  const url = `http://localhost:8080/decline-friend/${friendship_id}`;
   const config = {method: "POST"};
   let response = await fetch(url,config);
   console.log(response.status);

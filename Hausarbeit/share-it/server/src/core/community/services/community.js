@@ -38,7 +38,7 @@ class Community {
   //TODO: evtl. Prüfen ob die Person die Rechte dafür hat
   async acceptFriendRequest(friendshipId) {
     if (typeof friendshipId === "number") {
-      const result = await communityLibrary.updateFriendshipStatus(1);
+      const result = await communityLibrary.updateFriendshipStatus(1, friendshipId);
       return result > 0;
     } else {
       throw new Error("friendshipId is not a number!");
@@ -54,7 +54,7 @@ class Community {
   //TODO: evtl. Prüfen ob die Person die Rechte dafür hat
   async declineFriendRequest(friendshipId) {
     if (typeof friendshipId === "number") {
-      const result = await communityLibrary.updateFriendshipStatus(2);
+      const result = await communityLibrary.updateFriendshipStatus(2, friendshipId);
       return result > 0;
     } else {
       throw new Error("friendshipId is not a number!");
@@ -89,7 +89,8 @@ class Community {
           });
         }
       }
-
+      console.log("controllers")
+      console.log(filtered);
       return filtered;
     } else {
       throw new Error("username is not a string!");
@@ -113,6 +114,12 @@ class Community {
     return result;
   }
 
+  async getAllUsernames() {
+    const userLibrary = new UserLibrary();
+    const result = await userLibrary.getAllUsernames();
+    return result;
+  }
+
   /**
    * Liefert alle Freunde des Users mit dem angegebenen username
    * @param {string} username
@@ -121,6 +128,8 @@ class Community {
   async getAllFriendsOfUser(username) {
     const communityLibrary = new CommunityLibrary();
     const result = await communityLibrary.getAllFriendsOfUser(username);
+    console.log("community result")
+    console.log(result)
     const filtered = result.map((e) => {
       if (e.friend1 != username) {
         return e.friend1;
@@ -128,6 +137,8 @@ class Community {
         return e.friend2;
       }
     });
+    console.log("community filtered")
+    console.log(filtered)
     return filtered;
   }
 }

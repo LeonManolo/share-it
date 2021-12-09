@@ -6,9 +6,8 @@ const Community = require("../services/community");
  * @param {*} res
  * @param {*} next
  */
-//TODO: fromUser aus den Cookies lesen!
 const addFriend = async (req, res, next) => {
-  const fromUser = "Dein Vater";
+  const fromUser = req.username;
   const toUser = req.query.toUser;
 
   try {
@@ -34,11 +33,12 @@ const addFriend = async (req, res, next) => {
  */
 const getOpenFriendRequests = async (req, res, next) => {
   try {
-    const username = "Dein Vater";
+    const username = req.username;
     const community = new Community();
     const friendRequests = await community.getAllOpenFriendRequestsForUser(
       username
     );
+    console.log(friendRequests);
     res.json(friendRequests);
   } catch (e) {
     res.sendStatus(500);
@@ -54,6 +54,7 @@ const getOpenFriendRequests = async (req, res, next) => {
 const acceptFriendRequest = async (req, res, next) => {
   try {
     const friendshipId = parseInt(req.params.id);
+    console.log(friendshipId);
     const community = new Community();
     const success = await community.acceptFriendRequest(friendshipId);
     if (success) {
@@ -89,9 +90,11 @@ const declineFriendRequest = async (req, res, next) => {
 
 const getAllFriendsOfUser = async (req, res) => {
   try {
-    const username = "Dein Vater";
+    const username = req.username;
     const community = new Community();
     const result = await community.getAllFriendsOfUser(username);
+    console.log("community contoller result")
+    console.log(result)
     res.json(result);
   } catch (e) {
     res.sendStatus(500);
@@ -108,7 +111,7 @@ const getAllFriendsOfUser = async (req, res) => {
  */
 const getAllUsernamesContainingPhraseExceptUser = async (req, res) => {
   try {
-    const username = "Dein Vater";
+    const username = req.username;
     const phrase = req.query.phrase;
     if (!phrase) {
       phrase = "";
@@ -122,6 +125,23 @@ const getAllUsernamesContainingPhraseExceptUser = async (req, res) => {
   }
 };
 
+const getAllUsernamesExceptUser = async (req, res) => {
+  try {
+    const username = req.username;
+    console.log(username);
+    const community = new Community();
+    const result = await community.getAllUsernames();
+    const filtered = result.filter((value) => value !== username);
+    console.log(result);
+    console.log(filtered);
+
+    res.json(filtered);
+  } catch (e) {
+    res.sendStatus(500);
+  }
+};
+
+
 // Funktionen werden exportiert
 module.exports = {
   addFriend,
@@ -130,4 +150,5 @@ module.exports = {
   declineFriendRequest,
   getAllUsernamesContainingPhrase: getAllUsernamesContainingPhraseExceptUser,
   getAllFriendsOfUser,
+  getAllUsernamesExceptUser,
 };

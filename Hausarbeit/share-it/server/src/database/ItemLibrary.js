@@ -131,6 +131,27 @@ class ItemLibrary {
   }
 
   /**
+<<<<<<< HEAD
+=======
+   * Liefert alle Gegenstände die der User mit der Nutzer ausgeliehen hat
+   * @param {*} username 
+   * @returns 
+   */
+  async getAllItemsBorrowedByUser(username){
+    return new Promise((resolve, reject) => {
+      db.all("SELECT * FROM item WHERE borrowedBy = ?", [username], (error, row) => {
+        if (error) {
+          console.log(error);
+          reject(error);
+        } else {
+          resolve(row);
+        }
+      });
+    });
+  }
+
+  /**
+>>>>>>> ce2e2b6dff246245596269d46a861c19c67bbb61
    * Liefert alle Gegenstände die zum Verleih stehen. Aber auch nur Gegenstände von
    * Freunden des übergebenen Users (username).
    * Diese query greift auch auf die friendship und user_friendship Tabellen zu!
@@ -140,7 +161,7 @@ class ItemLibrary {
   async getAllItemsForUsername(username) {
     return new Promise((resolve, reject) => {
       db.all(
-        "SELECT DISTINCT * FROM item JOIN friendship ON (friend1 = owner OR friend2 = owner) AND friendship.status = 1 WHERE (friend1 = ? OR friend2 = ?) AND owner != ?",
+        "SELECT * FROM item JOIN friendship ON (friend1 = owner OR friend2 = owner) AND friendship.status = 1 WHERE (friend1 = ? OR friend2 = ?) AND owner != ? AND borrowedBy is NULL",
         //"SELECT * FROM item",
         [username, username, username],
         (error, row) => {
@@ -156,7 +177,7 @@ class ItemLibrary {
   }
 
   /**
-   *
+   * Setzt einen Artikel von ausgeliehen auf ausleihbar
    * @param {number} id
    * @returns
    */

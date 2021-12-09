@@ -1,0 +1,22 @@
+body{
+    font-family: 'Lato', sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr auto 1fr;
+    grid-template-areas: 
+    ". h ." 
+    ". m ." 
+    ". . .";
+}
+
+header{
+    grid-area: h;
+    padding-bottom: 0;
+    padding-top: 5vh;
+}
+
+main{
+    padding: 0;
+    margin-top: 0;
+    grid-area: m;
+}

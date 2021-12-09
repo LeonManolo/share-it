@@ -67,8 +67,8 @@ class CommunityLibrary {
     return new Promise((resolve, reject) => {
       db.all(
         //"SELECT * FROM friendship WHERE status = 0 AND (friend1 = ? OR friend2 = ?) AND requestedBy != ?",
-        "SELECT friendship_id, friend1, friend2, username, profileImageUrl FROM friendship JOIN user ON friend1 = username OR friend2 = username WHERE status = 0 AND (friend1 = ? OR friend2 = ?) AND requestedBy != ?",
-        [username, username, username],
+        "SELECT DISTINCT friendship_id, friend1, friend2, username, profileImageUrl FROM friendship JOIN user ON friend1 = username OR friend2 = username WHERE status = 0 AND (friend1 = ? OR friend2 = ?) AND requestedBy != ? AND username != ?",
+        [username, username, username, username],
         (error, row) => {
           if (error) {
             console.log(error);

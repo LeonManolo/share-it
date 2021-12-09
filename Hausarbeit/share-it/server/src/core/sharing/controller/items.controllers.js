@@ -1,4 +1,5 @@
 const Sharing = require("../services/sharing");
+const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
 const formidable = require("formidable");
 const fs = require("fs");
 
@@ -7,16 +8,37 @@ const fs = require("fs");
  * Endpoint um einen neuen Gegenstand einzustellen
  */
 const addItem = async (req, res, next) => {
-  const item = req.body;
-  console.log("ich bin drinn");
-  try {
-    const sharing = new Sharing();
-    await sharing.addItem(item);
-    res.sendStatus(200);
-  } catch (e) {
-    res.status(500);
-    res.send(`Adding failed: ${e}`);
-  }
+  const form = formidable({});
+
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      res.sendStatus(500);
+      return;
+    }
+    const item = fields;
+    item.owner = req.username;
+    const oldpath = `${files.image.filepath}`;
+    // TODO: dynamisch endung der Datei finden!
+    const path = `/images/item_images/${files.image.newFilename}.png`;
+    var newpath = pathToStaticFolder(path);
+    console.log({ fields, files });
+    fs.rename(oldpath, newpath, async function (err) {
+      if (err) {
+        console.log("renaming failed");
+        res.sendStatus(500);
+        return;
+      }
+      try {
+        const sharing = new Sharing();
+        item.imageUrl = `http://localhost:8080${path}`;
+        await sharing.addItem(item);
+        res.sendStatus(200);
+      } catch (e) {
+        res.status(500);
+        res.send(`Adding failed: ${e}`);
+      }
+    });
+  });
 };
 
 /**
@@ -38,13 +60,13 @@ const getItem = async (req, res, next) => {
  * Endpoint um alle Gegenstände für einen User zu bekommen die er ausleihen darf.
  *
  */
-
 const getItems = async (req, res, next) => {
   try {
     const sharing = new Sharing();
     const username = req.username;
     const result = await sharing.getItemsForUsername(username);
-    console.log("items.controllers getItems: " + result);
+    console.log("items.controllers getItems: ");
+    console.log(result);
     // TODO: item vorher prüfen
     res.json(result);
   } catch (e) {
@@ -52,21 +74,47 @@ const getItems = async (req, res, next) => {
   }
 };
 
+/**
+ * Verleihen
+ * Endpoint um alle vom Nutzer reigestellten Artikel zu bekommen.
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 const getAllItemsLendByUser = async (req, res, next) => {
-  //TODO akutellen user auslesen
-  const username = "Hans Peter";
+  const username = req.username;
   const sharing = new Sharing();
-  const result = await sharing.getAllItemsLendByUser("Dein Vater");
-  console.log("items.contorllers getLendItems: " + result);
+  const result = await sharing.getAllItemsLendByUser(username);
+  console.log("items.controllers getLendItems:");
+  console.log(result);
   res.json(result);
 };
+
+/**
+ * Ausleihen
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+const getAllItemsBorrowedByUser = async (req, res, next) => {
+  const username = req.username;
+  try{
+    const sharing = new Sharing();
+    const result = await sharing.getAllItemsBorrowedByUser(username);
+    console.log("items.controllers getBorrowedItems:");
+    console.log(result);
+    res.json(result);
+  } catch (e){
+    res.sendStatus(500);
+  }
+}
 
 /**
  * Endpoint um ein Gegenstand auszuleihen
  */
 const borrowItem = async (req, res) => {
   const id = parseInt(req.params.id);
-  const username = "Hans Peter";
+  const username = req.username;
   const sharing = new Sharing();
   const result = await sharing.borrowItem(id, username);
   console.log(result);
@@ -87,14 +135,14 @@ const returnItem = async (req, res) => {
       // id nicht gefunden
       res.sendStatus(404);
     }
-    console.log(result);
   } catch (e) {
     res.sendStatus(500);
   }
 };
 
 // TODO: auf undefined prüfen etc
-const updateItem = async (req, res, next) => {
+// TODO: checken ob update vom Owner kommt.
+const updateItemAlt = async (req, res, next) => {
   const id = parseInt(req.params.id);
   const item = req.body;
   const sharing = new Sharing();
@@ -104,6 +152,39 @@ const updateItem = async (req, res, next) => {
   } else {
     res.sendStatus(404);
   }
+};
+const updateItem = async (req, res, next) => {
+  const id = parseInt(req.params.id);
+  const form = formidable({});
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      res.sendStatus(500);
+      return;
+    }
+    const item = fields;
+    item.owner = req.username
+    const oldpath = `${files.image.filepath}`;
+    const path = `/images/item_images/${files.image.newFilename}.png`;
+    var newpath = pathToStaticFolder(path);
+    console.log("update in controllers")
+    console.log({ fields, files });
+    fs.rename(oldpath, newpath, async function (err) {
+      if (err) {
+        console.log("renaming failed");
+        res.sendStatus(500);
+        return;
+      }
+      try {
+        const sharing = new Sharing();
+        item.imageUrl = `http://localhost:8080${path}`;
+        await sharing.updateItem(id, item);
+        res.sendStatus(200);
+      } catch (e) {
+        res.status(500);
+        res.send(`Adding failed: ${e}`);
+      }
+    });
+  })
 };
 
 /**
@@ -130,4 +211,5 @@ module.exports = {
   borrowItem,
   returnItem,
   getAllItemsLendByUser,
+  getAllItemsBorrowedByUser,
 };

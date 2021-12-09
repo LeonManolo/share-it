@@ -57,7 +57,6 @@ class Sharing {
    */
   async getItemsForUsername(username) {
     if (typeof username === "string") {
-      console.log("bin in sharing.js");
       return await itemLibrary.getAllItemsForUsername(username);
     } else {
       throw new Error(`username: ${username} is not a string!`);
@@ -71,6 +70,10 @@ class Sharing {
    */
   async getAllItemsLendByUser(username) {
     return await itemLibrary.getAllItemsLendByUser(username);
+  }
+
+  async getAllItemsBorrowedByUser(username){
+    return await itemLibrary.getAllItemsBorrowedByUser(username);
   }
 
   /**
