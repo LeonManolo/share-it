@@ -146,7 +146,7 @@ function buildItemTile(element) {
   div.appendChild(description);
 
   var editButton = document.createElement("button");
-  editButton.className = "itemButton"
+  editButton.className = "itemEditButton"
   editButton.innerHTML = "Bearbeiten";
   editButton.onclick = function () {
     editItem(element.id);
@@ -154,7 +154,7 @@ function buildItemTile(element) {
   div.appendChild(editButton);
 
   var deleteButton = document.createElement('button');
-  deleteButton.className ="itemButton"
+  deleteButton.className ="itemDeleteButton"
   deleteButton.innerHTML = "Löschen";
   deleteButton.onclick = function(){deleteItem(element.id)};
   div.appendChild(deleteButton);
