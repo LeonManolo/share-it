@@ -16,11 +16,7 @@ body {
     border-color: black;
     border-width: 2px;
     border-style: solid;
-    grid-template-areas: 
-    "img text" 
-    "img text" 
-    ". text" 
-    ". text";
+    grid-template-areas: "img text" "img text" ". text" ". text";
 }
 
 .text {
@@ -32,7 +28,7 @@ img {
     background-color: red;
     grid-area: img;
     padding: 5px;
-    max-width: 100%;
+    width: 50%;
 }
 
 p,
