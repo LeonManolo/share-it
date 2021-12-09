@@ -147,6 +147,25 @@ class UserLibrary {
       );
     });
   }
+
+  async getAllUsernames() {
+    return new Promise((resolve, reject) =>{
+      db.all(
+        `SELECT * FROM user`,
+        (error, row) => {
+          if (error) {
+            console.log(error);
+            reject(error);
+          } else {
+            resolve(row);
+          }
+        }
+      )
+    })
+  }
+
 }
+
+  
 
 module.exports = UserLibrary;

@@ -7,7 +7,7 @@ async function returnItem(id){
     console.log(id);
     const url = `http://localhost:8080/return/${id}`;
     const config = {method: "POST"};
-  let response = await fetch(url, config);
+    let response = await fetch(url, config);
 }
 
 
@@ -17,7 +17,7 @@ async function returnItem(id){
 async function loadItems(){
 
     // Url an die die Anfrage gemacht wird
-    const url = "http://localhost:8080/borrowed";
+    const url = "http://localhost:8080/borrowed-items";
   
     // Request an den Server für die Registrierung
     let response;
@@ -41,7 +41,6 @@ async function loadItems(){
 function buildItemTile(element){
     const section = document.getElementById("itemsSection");
     var div = document.createElement('div');
-    div.onclick = function(){showDetail(element)};
     
     var img = document.createElement('img');
     img.src = `${element.imageUrl}`;
@@ -60,6 +59,8 @@ function buildItemTile(element){
 
     var button = document.createElement('button');
     button.onclick = function(){returnItem(element.id)};
+    button.innerHTML = "Artikel zurueckgeben"
+    div.appendChild(button);
     section.appendChild(div);
 }
   

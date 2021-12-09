@@ -61,8 +61,10 @@ async function buildUserSection(){
   
 
   // Url an die die Anfrage gemacht wird
-  // Platzhalter url
-  const url = "http://localhost:8080/usernames?phrase=e";
+  // mit phrase
+  //const url = "http://localhost:8080/usernames?phrase=e";
+  // ohne phrase
+  const url = "http://localhost:8080/all-users";
 
   let response;
   try {
@@ -89,7 +91,7 @@ function buildUserTile(user){
   div.appendChild(name);
 
   var requestButton = document.createElement('button');
-  requestButton.innerHtml = "Akzeptieren";
+  requestButton.innerHTML = "Freund hinzufuegen";
   requestButton.onclick = function(){sendFriendRequest(user.username)};
   div.appendChild(requestButton);
 
@@ -129,12 +131,12 @@ function buildFriendRequestTile(user){
   div.appendChild(name);
 
   var acceptButton = document.createElement('button');
-  acceptButton.innerHtml = "Akzeptieren";
+  acceptButton.innerHTML = "Akzeptieren";
   acceptButton.onclick = function(){acceptFriendRequest(user.friendshipId)};
   div.appendChild(acceptButton);
 
   var declineButton = document.createElement('button');
-  declineButton.innerHtml = "Ablehnen";
+  declineButton.innerHTML = "Ablehnen";
   declineButton.onclick = function(){declineFriendRequest(user.friendshipId)};
   div.appendChild(declineButton);
 

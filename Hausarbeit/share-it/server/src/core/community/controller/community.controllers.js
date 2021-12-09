@@ -38,6 +38,7 @@ const getOpenFriendRequests = async (req, res, next) => {
     const friendRequests = await community.getAllOpenFriendRequestsForUser(
       username
     );
+    console.log(friendRequests);
     res.json(friendRequests);
   } catch (e) {
     res.sendStatus(500);
@@ -53,6 +54,7 @@ const getOpenFriendRequests = async (req, res, next) => {
 const acceptFriendRequest = async (req, res, next) => {
   try {
     const friendshipId = parseInt(req.params.id);
+    console.log(friendshipId);
     const community = new Community();
     const success = await community.acceptFriendRequest(friendshipId);
     if (success) {
@@ -121,6 +123,23 @@ const getAllUsernamesContainingPhraseExceptUser = async (req, res) => {
   }
 };
 
+const getAllUsernamesExceptUser = async (req, res) => {
+  try {
+    const username = req.username;
+    console.log(username);
+    const community = new Community();
+    const result = await community.getAllUsernames();
+    const filtered = result.filter((value) => value !== username);
+    console.log(result);
+    console.log(filtered);
+
+    res.json(filtered);
+  } catch (e) {
+    res.sendStatus(500);
+  }
+};
+
+
 // Funktionen werden exportiert
 module.exports = {
   addFriend,
@@ -129,4 +148,5 @@ module.exports = {
   declineFriendRequest,
   getAllUsernamesContainingPhrase: getAllUsernamesContainingPhraseExceptUser,
   getAllFriendsOfUser,
+  getAllUsernamesExceptUser,
 };

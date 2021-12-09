@@ -20,7 +20,7 @@ router.post("/borrow/:id", cookieChecker, itemsController.borrowItem);
 /**
  * Route um einen Gegenstand zurückzugeben
  */
-router.post("/return/:id", itemsController.returnItem);
+router.post("/return/:id", cookieChecker, itemsController.returnItem);
 
 /**
  * Endpoint für die HTML-Seite in der Gegenstände zum Verleihen eingestellt werden können

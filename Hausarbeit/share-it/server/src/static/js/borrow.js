@@ -97,7 +97,7 @@ function buildItemTile(element){
 
   const section = document.getElementById("itemsSection");
   var div = document.createElement('div');
-  div.onclick = function(){showDetail(element)};
+  div.onclick = function(){openDetail(element)};
 
   var img = document.createElement('img');
   img.src = `${element.imageUrl}`;

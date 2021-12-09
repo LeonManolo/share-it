@@ -66,7 +66,8 @@ const getItems = async (req, res, next) => {
     const sharing = new Sharing();
     const username = req.username;
     const result = await sharing.getItemsForUsername(username);
-    console.log("items.controllers getItems: " + result);
+    console.log("items.controllers getItems: ");
+    console.log(result);
     // TODO: item vorher prüfen
     res.json(result);
   } catch (e) {
@@ -75,6 +76,7 @@ const getItems = async (req, res, next) => {
 };
 
 /**
+ * Verleihen
  * Endpoint um alle vom Nutzer reigestellten Artikel zu bekommen.
  * @param {*} req 
  * @param {*} res 
@@ -89,13 +91,23 @@ const getAllItemsLendByUser = async (req, res, next) => {
   res.json(result);
 };
 
+/**
+ * Ausleihen
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 const getAllItemsBorrowedByUser = async (req, res, next) => {
   const username = req.username;
-  const sharing = new Sharing();
-  const result = await sharing.getAllItemsBorrowedByUser(username);
-  console.log("items.controllers getBorrowedItems:");
-  console.log(result);
-  res.json(result);
+  try{
+    const sharing = new Sharing();
+    const result = await sharing.getAllItemsBorrowedByUser(username);
+    console.log("items.controllers getBorrowedItems:");
+    console.log(result);
+    res.json(result);
+  } catch (e){
+    res.sendStatus(500);
+  }
 }
 
 /**
@@ -124,7 +136,6 @@ const returnItem = async (req, res) => {
       // id nicht gefunden
       res.sendStatus(404);
     }
-    console.log(result);
   } catch (e) {
     res.sendStatus(500);
   }

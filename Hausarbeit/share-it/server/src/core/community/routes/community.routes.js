@@ -42,5 +42,7 @@ router.get("/open-friend-requests",authCookieChecker, communityControllers.getOp
  */
 router.get("/usernames",authCookieChecker, communityControllers.getAllUsernamesContainingPhrase);
 
+router.get("/all-users", authCookieChecker,communityControllers.getAllUsernamesExceptUser);
+
 // Routen werden exportiert
 module.exports = router;

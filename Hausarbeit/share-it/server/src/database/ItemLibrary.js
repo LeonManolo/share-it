@@ -131,7 +131,16 @@ class ItemLibrary {
   }
 
   async getAllItemsBorrowedByUser(username){
-    // Alle Items der der user ausgeliehen hat
+    return new Promise((resolve, reject) => {
+      db.all("SELECT * FROM item WHERE borrowedBy = ?", [username], (error, row) => {
+        if (error) {
+          console.log(error);
+          reject(error);
+        } else {
+          resolve(row);
+        }
+      });
+    });
   }
 
   /**
@@ -144,7 +153,7 @@ class ItemLibrary {
   async getAllItemsForUsername(username) {
     return new Promise((resolve, reject) => {
       db.all(
-        "SELECT DISTINCT * FROM item JOIN friendship ON (friend1 = owner OR friend2 = owner) AND friendship.status = 1 WHERE (friend1 = ? OR friend2 = ?) AND owner != ?",
+        "SELECT * FROM item JOIN friendship ON (friend1 = owner OR friend2 = owner) AND friendship.status = 1 WHERE (friend1 = ? OR friend2 = ?) AND owner != ? AND borrowedBy is NULL",
         //"SELECT * FROM item",
         [username, username, username],
         (error, row) => {

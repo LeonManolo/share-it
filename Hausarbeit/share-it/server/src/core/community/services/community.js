@@ -38,7 +38,7 @@ class Community {
   //TODO: evtl. Prüfen ob die Person die Rechte dafür hat
   async acceptFriendRequest(friendshipId) {
     if (typeof friendshipId === "number") {
-      const result = await communityLibrary.updateFriendshipStatus(1);
+      const result = await communityLibrary.updateFriendshipStatus(1, friendshipId);
       return result > 0;
     } else {
       throw new Error("friendshipId is not a number!");
@@ -54,7 +54,7 @@ class Community {
   //TODO: evtl. Prüfen ob die Person die Rechte dafür hat
   async declineFriendRequest(friendshipId) {
     if (typeof friendshipId === "number") {
-      const result = await communityLibrary.updateFriendshipStatus(2);
+      const result = await communityLibrary.updateFriendshipStatus(2, friendshipId);
       return result > 0;
     } else {
       throw new Error("friendshipId is not a number!");
@@ -89,7 +89,8 @@ class Community {
           });
         }
       }
-
+      console.log("controllers")
+      console.log(filtered);
       return filtered;
     } else {
       throw new Error("username is not a string!");
@@ -110,6 +111,12 @@ class Community {
       phrase,
       exceptUsername
     );
+    return result;
+  }
+
+  async getAllUsernames() {
+    const userLibrary = new UserLibrary();
+    const result = await userLibrary.getAllUsernames();
     return result;
   }
 
