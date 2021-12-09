@@ -122,11 +122,11 @@ function buildItemTile(element){
   h2.appendChild(h2Text);
   div.appendChild(h2);
 
-  var description = document.createElement('p');
-  description.className = "itemDescription"
-  var descriptionText = document.createTextNode(`${element.description}`);
-  description.appendChild(descriptionText);
-  div.appendChild(description)
+  var owner = document.createElement('p');
+  owner.className = "itemDescription"
+  var ownerText = document.createTextNode(`Verliehen von: ${element.owner}`);
+  owner.appendChild(ownerText);
+  div.appendChild(owner)
 
   section.appendChild(div);
 };

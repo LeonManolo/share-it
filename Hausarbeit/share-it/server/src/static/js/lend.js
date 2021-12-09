@@ -7,7 +7,8 @@ async function submitForm() {
   const form = document.getElementById("form");
   let item = new FormData(form);
   item.append("owner", "Platzhalter");
-  item.append("maxBorrowDuration", 10);
+  console.log(item.maxBorrowDuration);
+  //item.append("maxBorrowDuration", 10);
 
   // Konfigurationen für die request
   let config = {
