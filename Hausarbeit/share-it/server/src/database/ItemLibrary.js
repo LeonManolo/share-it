@@ -130,6 +130,11 @@ class ItemLibrary {
     });
   }
 
+  /**
+   * Liefert alle Gegenstände die der User mit der Nutzer ausgeliehen hat
+   * @param {*} username 
+   * @returns 
+   */
   async getAllItemsBorrowedByUser(username){
     return new Promise((resolve, reject) => {
       db.all("SELECT * FROM item WHERE borrowedBy = ?", [username], (error, row) => {
@@ -169,7 +174,7 @@ class ItemLibrary {
   }
 
   /**
-   *
+   * Setzt einen Artikel von ausgeliehen auf ausleihbar
    * @param {number} id
    * @returns
    */

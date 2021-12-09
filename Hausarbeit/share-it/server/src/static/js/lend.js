@@ -74,7 +74,6 @@ async function showForm() {
  * @param {number} id 
  */
 async function editItem(id) {
-  console.log("Edit, hier muss noch was gemacht werden" + id);
   selectedButton = id;
   showForm();
 }
@@ -84,7 +83,6 @@ async function editItem(id) {
  * @param {number} id 
  */
 async function deleteItem(id) {
-  console.log("Delete, hier muss noch was gemacht werden" + id);
   const config = { method: "DELETE" };
   let response = await fetch(`http://localhost:8080/items/${id}`, config);
   showItems();
@@ -128,22 +126,27 @@ function buildItemTile(element) {
   const section = document.getElementById("itemsSection");
 
   var div = document.createElement("div");
+  div.className = "itemTile"
   var img = document.createElement("img");
+  img.className = "itemImg"
   img.src = `${element.imageUrl}`;
   img.alt = "OOps";
   div.appendChild(img);
 
   var h2 = document.createElement("h2");
+  h2.className = "itemH2"
   var h2Text = document.createTextNode(`${element.title}`);
   h2.appendChild(h2Text);
   div.appendChild(h2);
 
   var description = document.createElement("p");
+  description.className = "itemDescription"
   var descriptionText = document.createTextNode(`${element.description}`);
   description.appendChild(descriptionText);
   div.appendChild(description);
 
   var editButton = document.createElement("button");
+  editButton.className = "itemButton"
   editButton.innerHTML = "Bearbeiten";
   editButton.onclick = function () {
     editItem(element.id);
@@ -151,6 +154,7 @@ function buildItemTile(element) {
   div.appendChild(editButton);
 
   var deleteButton = document.createElement('button');
+  deleteButton.className ="itemButton"
   deleteButton.innerHTML = "Löschen";
   deleteButton.onclick = function(){deleteItem(element.id)};
   div.appendChild(deleteButton);

@@ -30,7 +30,7 @@ router.get("/lend", (req, res, next) => {
 });
 
 /**
- * Endpoint für die HTML-Seite in der alle Gegenständige angezeigt werden,
+ * Endpoint für die HTML-Seite in der alle Gegenstände angezeigt werden,
  * die der jeweilige User gerade ausgeliehen hat
  */
 router.get("/borrowed", (req, res, next) => {
@@ -48,15 +48,18 @@ router.post("/items",cookieChecker, itemsController.addItem);
 router.get("/items/:id", itemsController.getItem);
 
 /**
- * Enpoint um alle Gegenständige für den jeweiligen User zu erhalten
+ * Enpoint um alle Gegenstände für den jeweiligen User zu erhalten
  */
 router.get("/items", cookieChecker, itemsController.getItems);
 
 /**
- * Enpoint um alle Gegenständige zu erhalten die der User erstellt hat
+ * Enpoint um alle Gegenstände zu erhalten die der User erstellt hat
  */
 router.get("/itemsLend", cookieChecker, itemsController.getAllItemsLendByUser);
 
+/**
+ * Endpoint um alle Gegenstände zu erhalten die der User ausgeliehen hat
+ */
 router.get("/borrowed-items", cookieChecker, itemsController.getAllItemsBorrowedByUser);
 
 /**
