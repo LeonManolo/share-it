@@ -159,8 +159,6 @@ function buildItemTile(element) {
   deleteButton.onclick = function(){deleteItem(element.id)};
   div.appendChild(deleteButton);
 
-  var tag = document.createElement('hr');
-  div.appendChild(tag);
   section.appendChild(div);
 }
 //Laden der Items wenn die Seite geladen wird
