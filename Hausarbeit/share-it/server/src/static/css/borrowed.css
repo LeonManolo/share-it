@@ -6,10 +6,6 @@ body {
     grid-template-areas: ". h ." ". m ." ". . .";
 }
 
-img {
-    width: 50%;
-}
-
 header {
     grid-area: h;
     padding-bottom: 0;
@@ -20,4 +16,78 @@ main {
     padding: 0;
     margin-top: 0;
     grid-area: m;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "i f";
+}
+
+#showFormButton {
+    grid-area: f;
+}
+
+#newItem {
+    grid-area: i;
+    display: none;
+}
+
+#itemsSection {
+    grid-area: i;
+}
+
+section {
+    margin: 30px;
+}
+
+.itemButton {
+    background: transparent;
+    padding: 0.5rem 0.5rem;
+    margin: 0 0.5rem;
+    font-size: 1rem;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius: 15px 255px;
+    height: 50px;
+}
+
+input[type="submit"] {
+    background: transparent;
+    padding: 0.5rem 0.5rem;
+    margin: 0 0.5rem;
+    font-size: 1rem;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius: 15px 255px;
+}
+
+button:hover {
+    box-shadow: 2px 8px 4px -6px hsla(0, 0%, 0%, .3);
+}
+
+input[type="submit"]:hover {
+    box-shadow: 2px 8px 4px -6px hsla(0, 0%, 0%, .3);
+}
+
+.itemTile {
+    display: grid;
+    grid-template-columns: 350px 1fr 1fr;
+    grid-template-rows: auto auto 40px;
+    grid-template-areas: "Img h2 h2" "Img p p" "Img b1 b2";
+    border-bottom: solid;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+}
+
+.itemIMG {
+    grid-area: Img;
+    margin-right: 50px;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.itemH2 {
+    grid-area: h2;
+    overflow-wrap: break-word;
 }
