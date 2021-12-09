@@ -1,9 +1,11 @@
-body{
+body {
     font-family: 'Lato', sans-serif;
 }
-#itemSection{
+
+#itemSection {
     display: grid;
 }
+
 #detailSection {
     display: block;
     grid-template-columns: 1fr 2fr;
