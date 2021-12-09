@@ -17,22 +17,6 @@ main {
     margin-top: 0;
     grid-area: m;
     display: grid;
-    grid-template-columns: 5fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: "i f";
-}
-
-#showFormButton {
-    grid-area: f;
-}
-
-#newItem {
-    grid-area: i;
-    display: none;
-}
-
-#itemsSection {
-    grid-area: i;
 }
 
 section {
