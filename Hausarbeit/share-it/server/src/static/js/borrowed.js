@@ -66,9 +66,18 @@ async function loadItems(){
  * @param {*} element 
  */
 function buildItemTile(element){
+    var today = new Date();
+    var dateBorrowed = new Date(element.borrowedAt)
+    var difference = Math.abs(today-dateBorrowed);
+    var returnBy = dateBorrowed.addDays(element.maxBorrowDuration);
+    remainingDays = 10-(difference/(1000*3600*24));
+
     const section = document.getElementById("itemsSection");
     var div = document.createElement('div');
     div.className = "itemTile"
+    if (today > returnBy){
+      div.style.backgroundColor = "red";
+    }
     
     var img = document.createElement('img');
     img.className = "itemIMG"
@@ -84,7 +93,7 @@ function buildItemTile(element){
 
     var owner = document.createElement('p');
     owner.className = "itemOwner"
-    var ownerText = document.createTextNode(`verliehen von: ${element.owner}`);
+    var ownerText = document.createTextNode(`ausgeliehen von: ${element.owner}`);
     owner.appendChild(ownerText);
     div.appendChild(owner)
 
@@ -96,7 +105,7 @@ function buildItemTile(element){
 
     var remainingTime = document.createElement('p');
     remainingTime.className = "time";
-    var remainingTimeText = document.createTextNode(`Uebrige Tage: 10`)
+    var remainingTimeText = document.createTextNode(`Uebrige Tage: ${remainingDays}`)
     remainingTime.appendChild(remainingTimeText);
     div.appendChild(remainingTime);
 
