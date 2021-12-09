@@ -16,7 +16,11 @@ body {
     border-color: black;
     border-width: 2px;
     border-style: solid;
-    grid-template-areas: "img text" "img text" ". text" ". text";
+    grid-template-areas: 
+    "img text" 
+    "img text" 
+    ". text" 
+    ". text";
 }
 
 .text {
