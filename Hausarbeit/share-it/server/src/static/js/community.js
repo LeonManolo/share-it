@@ -164,5 +164,3 @@ async function declineFriendRequest(friendship_id){
   let response = await fetch(url,config);
   console.log(response.status);
 }
-
-

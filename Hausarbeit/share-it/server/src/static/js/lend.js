@@ -1,21 +1,5 @@
 let selectedButton = null;
 
-let selectedButton ;
-
-// Holt sich die Daten aus HTML Form
-const getFormData = () => {
-  const form = document.getElementById("form");
-  const data = {
-    title: form.elements["title"].value,
-    description: form.elements["description"].value,
-    owner: "Dein Vater",
-    maxBorrowDuration: 10,
-    imgUrl: null
-    
-  };
-  return data;
-};
-
 // Funktion wird aufgerufen anstatt dem Standard von einer HTML Form
 async function submitForm() {
   event.preventDefault();
@@ -172,6 +156,7 @@ function buildItemTile(element) {
   div.appendChild(editButton);
 
   var deleteButton = document.createElement('button');
+  deleteButton.className ="itemDeleteButton"
   deleteButton.innerHTML = "Löschen";
   deleteButton.onclick = function(){deleteItem(element.id)};
   div.appendChild(deleteButton);
