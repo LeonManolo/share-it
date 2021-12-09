@@ -48,20 +48,12 @@ router.post("/items",cookieChecker, itemsController.addItem);
 router.get("/items/:id", itemsController.getItem);
 
 /**
-<<<<<<< HEAD
- * Enpoint um alle Gegenständige für den jeweiligen User zu erhalten
-=======
  * Enpoint um alle Gegenstände für den jeweiligen User zu erhalten
->>>>>>> ce2e2b6dff246245596269d46a861c19c67bbb61
  */
 router.get("/items", cookieChecker, itemsController.getItems);
 
 /**
-<<<<<<< HEAD
- * Enpoint um alle Gegenständige zu erhalten die der User erstellt hat
-=======
  * Enpoint um alle Gegenstände zu erhalten die der User erstellt hat
->>>>>>> ce2e2b6dff246245596269d46a861c19c67bbb61
  */
 router.get("/itemsLend", cookieChecker, itemsController.getAllItemsLendByUser);
 

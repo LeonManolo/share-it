@@ -131,8 +131,6 @@ class ItemLibrary {
   }
 
   /**
-<<<<<<< HEAD
-=======
    * Liefert alle Gegenstände die der User mit der Nutzer ausgeliehen hat
    * @param {*} username 
    * @returns 
@@ -151,7 +149,6 @@ class ItemLibrary {
   }
 
   /**
->>>>>>> ce2e2b6dff246245596269d46a861c19c67bbb61
    * Liefert alle Gegenstände die zum Verleih stehen. Aber auch nur Gegenstände von
    * Freunden des übergebenen Users (username).
    * Diese query greift auch auf die friendship und user_friendship Tabellen zu!

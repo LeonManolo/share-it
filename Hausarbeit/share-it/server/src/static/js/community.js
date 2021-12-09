@@ -61,15 +61,10 @@ async function buildUserSection(){
   
 
   // Url an die die Anfrage gemacht wird
-<<<<<<< HEAD
-  // Platzhalter url
-  const url = "http://localhost:8080/usernames?phrase=e";
-=======
   // mit phrase
   //const url = "http://localhost:8080/usernames?phrase=e";
   // ohne phrase
   const url = "http://localhost:8080/all-users";
->>>>>>> ce2e2b6dff246245596269d46a861c19c67bbb61
 
   let response;
   try {
