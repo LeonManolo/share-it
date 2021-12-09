@@ -8,7 +8,7 @@ async function buildFriendRequestSection() {
   const h2 = document.createElement("h2");
   h2.textContent = "Freundschaftsanfragen";
 
-  // Url an die die anfrage gemacht wird
+  // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/open-friend-requests";
 
   let response;
@@ -32,7 +32,7 @@ async function buildFriendSection(){
   const h2 = document.createElement("h2");
   h2.textContent = "Freunde";
 
-  // Url an die die anfrage gemacht wird
+  // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/get-friends";
 
   let response;
@@ -56,7 +56,7 @@ async function buildUserSection(){
   const h2 = document.createElement("h2");
   h2.textContent = "andere Nutzer";
 
-  // Url an die die anfrage gemacht wird
+  // Url an die die Anfrage gemacht wird
   // Platzhalter url
   const url = "http://localhost:8080/usernames?phrase=e";
 

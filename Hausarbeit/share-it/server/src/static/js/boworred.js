@@ -4,7 +4,7 @@ async function returnItem(id){
 
 async function loadItems(){
 
-    // Url an die die anfrage gemacht wird
+    // Url an die die Anfrage gemacht wird
     const url = "http://localhost:8080/borrowed";
   
     // Request an den Server für die Registrierung

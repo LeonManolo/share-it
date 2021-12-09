@@ -10,7 +10,7 @@ const getFormData = () => {
   return data;
 };
 
-// Funktion wird aufgrufen anstatt dem standard von einer HTML Form
+// Funktion wird aufgrufen anstatt dem Standard von einer HTML Form
 async function submitForm() {
   event.preventDefault();
 
@@ -25,7 +25,7 @@ async function submitForm() {
     body: JSON.stringify(credentials),
   };
 
-  // Url an die die anfrage gemacht wird
+  // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/login";
 
   // Request an den Server für die Registrierung
@@ -39,7 +39,7 @@ async function submitForm() {
   if (response.ok) {
     navigateToDashboard();
   } else {
-    // TODO: Fehler auf dem screen ausgeben
+    // TODO: Fehler auf dem Screen ausgeben
     buildLoginNotSuccessfulMessage();
     console.log("User not found or password/username is wrong");
   }

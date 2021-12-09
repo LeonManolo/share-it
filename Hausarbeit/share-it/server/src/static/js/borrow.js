@@ -66,7 +66,7 @@ function showDetail(){
 
 async function loadItems(){
 
-  // Url an die die anfrage gemacht wird
+  // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/items";
 
   // Request an den Server für die Registrierung

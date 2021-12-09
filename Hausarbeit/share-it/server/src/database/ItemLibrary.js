@@ -9,14 +9,14 @@ class ItemLibrary {
   /**
    * Erstellt die Item Tabelle sofern diese noch nicht existiert
    * Ein User besteht aus:
-   * id(nicht änderbar): Einzigarte Nummer des Gegenstandes
-   * title: Der Name des Gegenstandes der zu Verleih steht
+   * id(nicht änderbar): Einzigartige Nummer des Gegenstandes
+   * title: Der Name des Gegenstandes, der zum Verleih steht
    * description: Die Beschreibung des Gegenstandes
    * owner: Der username des Users der den Gegenstand besitzt
    * borrowedBy(optional): Der username des Users der den Gegenstand ausgeliehen hat
    * createdAt(optional): Wann der Gegenstand eingestellt wurde
    * borrowedAt(optional): Wann der Gegenstand vom jemanden ausgeliehen wurde
-   * maxBorrowDuration(optional): Die Maximale Anzahl an Tagen, die der Gegenstand ausgeliehen werden darf
+   * maxBorrowDuration(optional): Die maximale Anzahl an Tagen, die der Gegenstand ausgeliehen werden darf
    * imageUrl(optional): Url zu einem Bild des Gegenstandes
    */
   static init() {
@@ -89,7 +89,7 @@ class ItemLibrary {
 
   /**
    * Aktualisiert den Gegenstand mit der "id" und den Daten innerhalb
-   * des "item"
+   * von "item"
    * @param {number} id
    * @param {object} item
    * @returns
@@ -131,9 +131,9 @@ class ItemLibrary {
   }
 
   /**
-   * Liefert alle Gegenstände die zum Verleih stehen und auch nur
-   * nur freunde von dem übergebenen User (username) sind.
-   * Diese query greift auch auf die friendship und user_friendship tabellen!
+   * Liefert alle Gegenstände die zum Verleih stehen. Aber auch nur Gegenstände von
+   * Freunden des übergebenen Users (username).
+   * Diese query greift auch auf die friendship und user_friendship Tabellen zu!
    * @param {string} username
    * @returns
    */
@@ -173,10 +173,10 @@ class ItemLibrary {
   }
 
   /**
-   * Setzt den Gegenstand auf ausgeliehen für den user (username)
-   * @param {number} id Die Id des Gegenstand der ausgeliehen wird
+   * Setzt den Gegenstand auf "ausgeliehen" für den user (username)
+   * @param {number} id Die Id des Gegenstandes der ausgeliehen wird
    * @param {string} username Name der Person die den Gegenstand ausleiht
-   * @param {date} date Datum an den der Gegenstand ausgeliehen wird
+   * @param {date} date Datum an dem der Gegenstand ausgeliehen wurde
    * @returns
    */
   async updateItemBorrowStateToUnavailable(id, username) {
