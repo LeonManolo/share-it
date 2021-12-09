@@ -1,18 +1,11 @@
-<<<<<<< HEAD
-.details {
-    grid-area: details;
-}
-
-#itemsSection {
-    grid-area: itemsSection;
-    background-color: hotpink;
-=======
-body{
+body {
     font-family: 'Lato', sans-serif;
 }
-#itemSection{
+
+#itemSection {
     display: grid;
 }
+
 #detailSection {
     display: block;
     grid-template-columns: 1fr 2fr;
@@ -23,12 +16,7 @@ body{
     border-color: black;
     border-width: 2px;
     border-style: solid;
-    grid-template-areas: 
-    "img text" 
-    "img text" 
-    ". text" 
-    ". text";
->>>>>>> f1a615e0769dc72fc88ab56aa2fb44156c9dd7f9
+    grid-template-areas: "img text" "img text" ". text" ". text";
 }
 
 .text {
