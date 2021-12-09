@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-.details {
-    grid-area: details;
-}
-
-#itemsSection {
-    grid-area: itemsSection;
-    background-color: hotpink;
-=======
 body{
     font-family: 'Lato', sans-serif;
 }
@@ -28,7 +19,6 @@ body{
     "img text" 
     ". text" 
     ". text";
->>>>>>> f1a615e0769dc72fc88ab56aa2fb44156c9dd7f9
 }
 
 .text {
