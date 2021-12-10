@@ -93,8 +93,8 @@ const getAllFriendsOfUser = async (req, res) => {
     const username = req.username;
     const community = new Community();
     const result = await community.getAllFriendsOfUser(username);
-    console.log("community contoller result")
-    console.log(result)
+    console.log("community contoller result");
+    console.log(result);
     res.json(result);
   } catch (e) {
     res.sendStatus(500);
@@ -117,7 +117,10 @@ const getAllUsernamesContainingPhraseExceptUser = async (req, res) => {
       phrase = "";
     }
     const community = new Community();
-    const result = await community.getAllUsernamesContainingPhraseExceptUser(phrase,username);
+    const result = await community.getAllUsernamesContainingPhraseExceptUser(
+      phrase,
+      username
+    );
     const filtered = result.filter((value) => value !== username);
     res.json(filtered);
   } catch (e) {
@@ -130,7 +133,7 @@ const getAllUsernamesExceptUser = async (req, res) => {
     const username = req.username;
     console.log(username);
     const community = new Community();
-    const result = await community.getAllUsernames();
+    const result = await community.getAllUsernames(username);
     const filtered = result.filter((value) => value !== username);
     console.log(result);
     console.log(filtered);
@@ -140,7 +143,6 @@ const getAllUsernamesExceptUser = async (req, res) => {
     res.sendStatus(500);
   }
 };
-
 
 // Funktionen werden exportiert
 module.exports = {

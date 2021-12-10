@@ -148,10 +148,11 @@ class UserLibrary {
     });
   }
 
-  async getAllUsernames() {
+  async getAllUsernames(username) {
     return new Promise((resolve, reject) =>{
       db.all(
-        `SELECT * FROM user`,
+        `SELECT * FROM user JOIN friendship ON (friend1 = username) OR (friend2 = username) WHERE (friend != ?) AND (friend2 != ?)`,
+        [username, username],
         (error, row) => {
           if (error) {
             console.log(error);
