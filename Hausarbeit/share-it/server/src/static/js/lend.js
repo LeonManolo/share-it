@@ -95,21 +95,14 @@ async function deleteItem(id) {
  * Funktion zum Laden der vom User erstellten Items
  */
 async function loadItems() {
-  // Konfigurationen für die request
-  const config = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
+  
   // Url an die die Anfrage gemacht wird
-  const url = "http://localhost:8080/items";
+  const url = "http://localhost:8080/itemsLend";
 
   // Fetchen der Artikel und Erstellen der HTML-Elemente
   let response;
   try {
-    response = await fetch("http://localhost:8080/itemsLend");
+    response = await fetch(url);
     const items = await response.json();
     console.log(items);
 

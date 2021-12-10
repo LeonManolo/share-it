@@ -16,10 +16,9 @@ const editProfile = async (req, res, next) => {
     const oldpath = `${files.image.filepath}`;
     const path = `/images/profile_images/${files.image.newFilename}.png`;
     var newpath = pathToStaticFolder(path);
-    //TODO: filename auf den username ändern!
-    var newpath = pathToStaticFolder(
-      `/images/profile_images/${files.profile_image.originalFilename}`
-    );
+
+    console.log("update in controllers")
+    console.log({ fields, files });
     fs.rename(oldpath, newpath, async function (err) {
       if (err) {
         console.log("Img renaming failed");
@@ -44,7 +43,16 @@ const editProfile = async (req, res, next) => {
 };
 
 // Endpoint für "/login" zum Einloggen eines Users
-const getProfile = async (req, res, next) => {};
+const getProfile = async (req, res, next) => {
+  const username = req.username;
+  try {
+    const profile = new Profile();
+    const user = await profile.getProfile(username);
+    res.json(user);
+  } catch (e){
+    res.sendStatus(500);
+  }
+};
 
 // Endpoint um einen Account zu löschen
 const deleteAccount = async (req, res, next) => {};

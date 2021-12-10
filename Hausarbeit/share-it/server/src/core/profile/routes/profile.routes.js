@@ -7,8 +7,9 @@ const cookieChecker = require("../../../supporting/auth/middleware/auth_cookie_c
 /**
  * Route zum Ändern von Profildaten
  */
-router.post("/profile/edit",cookieChecker, profileControllers.editProfile);
+router.post("/profile-edit",cookieChecker, profileControllers.editProfile);
 
+router.get("/my-profile", cookieChecker, profileControllers.getProfile);
 /**
  * Endpoint der die HTML-Seite liefert um Änderungen am Profil vorzunehmen
  */

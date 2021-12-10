@@ -124,6 +124,22 @@ class UserLibrary {
       );
     });
   }
+  async getProfile(username) {
+    return new Promise((resolve, reject) => {
+      db.get(
+        "SELECT username, profileImageUrl FROM user WHERE username = ?",
+        [username],
+        (error, row) => {
+          if (error) {
+            console.log(error);
+            reject(error);
+          } else {
+            resolve(row);
+          }
+        }
+      );
+    });
+  }
 
   /**
    * Liefert alle User die im username die Zeichenkette "phrase" enthalten
