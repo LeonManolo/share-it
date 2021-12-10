@@ -38,7 +38,10 @@ class Community {
   //TODO: evtl. Prüfen ob die Person die Rechte dafür hat
   async acceptFriendRequest(friendshipId) {
     if (typeof friendshipId === "number") {
-      const result = await communityLibrary.updateFriendshipStatus(1, friendshipId);
+      const result = await communityLibrary.updateFriendshipStatus(
+        1,
+        friendshipId
+      );
       return result > 0;
     } else {
       throw new Error("friendshipId is not a number!");
@@ -54,7 +57,10 @@ class Community {
   //TODO: evtl. Prüfen ob die Person die Rechte dafür hat
   async declineFriendRequest(friendshipId) {
     if (typeof friendshipId === "number") {
-      const result = await communityLibrary.updateFriendshipStatus(2, friendshipId);
+      const result = await communityLibrary.updateFriendshipStatus(
+        2,
+        friendshipId
+      );
       return result > 0;
     } else {
       throw new Error("friendshipId is not a number!");
@@ -89,7 +95,7 @@ class Community {
           });
         }
       }
-      console.log("controllers")
+      console.log("controllers");
       console.log(filtered);
       return filtered;
     } else {
@@ -116,8 +122,14 @@ class Community {
 
   async getAllUsernames() {
     const userLibrary = new UserLibrary();
-    const result = await userLibrary.getAllUsernames();
-    return result;
+    const result = await userLibrary.getAllUsernames("hans");
+    const friendsOfUser = await communityLibrary.getAllFriendsOfUser("hans");
+
+    const filtered = result.filter((name) => {
+      return !friendsOfUser.includes(name);
+    });
+    console.log(`getAllUsernames: ${filtered}`);
+    return filtered;
   }
 
   /**
@@ -128,8 +140,8 @@ class Community {
   async getAllFriendsOfUser(username) {
     const communityLibrary = new CommunityLibrary();
     const result = await communityLibrary.getAllFriendsOfUser(username);
-    console.log("community result")
-    console.log(result)
+    console.log("community result");
+    console.log(result);
     const filtered = result.map((e) => {
       if (e.friend1 != username) {
         return e.friend1;
@@ -137,8 +149,8 @@ class Community {
         return e.friend2;
       }
     });
-    console.log("community filtered")
-    console.log(filtered)
+    console.log("community filtered");
+    console.log(filtered);
     return filtered;
   }
 }
