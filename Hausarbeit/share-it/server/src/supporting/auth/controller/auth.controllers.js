@@ -1,6 +1,8 @@
 const Authentication = require("../services/authentication");
 const usernameValidator = require("../validations/username_validator");
 
+const cookieName = "sessionid";
+
 // Endpoint für "/register"
 const register = async (req, res, next) => {
   console.log(req.body);
@@ -13,7 +15,6 @@ const register = async (req, res, next) => {
     try {
       const auth = new Authentication();
       const sessionId = await auth.register(username, password);
-      const cookieName = "sessionid";
       res.cookie(cookieName, sessionId);
       res.status(200);
       res.json({
@@ -42,7 +43,6 @@ const login = async (req, res, next) => {
   try {
     const auth = new Authentication();
     const sessionId = await auth.login(username, password);
-    const cookieName = "sessionid";
     res.cookie(cookieName, sessionId);
     res.status(200);
     res.json({
@@ -55,11 +55,14 @@ const login = async (req, res, next) => {
       status: `401 ${e}`,
     });
   }
-  
 };
 
 // Endpoint für "/logout" zum Ausloggen des momentanen Users
-const logout = (req, res) => {};
+const logout = (req, res) => {
+  res.clearCookie(cookieName);
+  res.redirect("/");
+  res.sendStatus(200);
+};
 
 // Funktionen werden exportiert
 module.exports = {
