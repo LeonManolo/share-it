@@ -167,8 +167,8 @@ class UserLibrary {
   async getAllUsernames(username) {
     return new Promise((resolve, reject) => {
       db.all(
-        `SELECT * FROM user JOIN friendship ON (friend1 = username) OR (friend2 = username) WHERE (friend1 != ?) AND (friend2 != ?)`,
-        [username, username],
+        `SELECT username FROM user WHERE username != ?`,
+        [username],
         (error, row) => {
           if (error) {
             console.log(error);
@@ -177,12 +177,12 @@ class UserLibrary {
             resolve(row);
           }
         }
-      )
-    })
+      );
+    });
   }
 
   async updateUserImg(imageUrl, username) {
-    console.log("in der Datenbank")
+    console.log("in der Datenbank");
     return new Promise((resolve, reject) => {
       db.run(
         "UPDATE user SET profileImageUrl = ? WHERE username = ?",
@@ -191,11 +191,8 @@ class UserLibrary {
           resolve(this.changes);
         }
       );
-    })
+    });
   }
-
 }
-
-
 
 module.exports = UserLibrary;
