@@ -32,7 +32,7 @@ router.get(
 /**
  * Route die die HTML-Seite mit der Community liefert
  */
-router.get("/community", (req, res) => {
+router.get("/community",authCookieChecker , (req, res) => {
   res.sendFile(pathToStaticFolder("/html/community.html"));
 });
 
