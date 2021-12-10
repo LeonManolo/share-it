@@ -21,6 +21,8 @@ async function submitForm() {
     } catch (e) {
       console.log(`Netzwerk Fehler ${e}`);
     }
+    clearProfile();
+    loadProfile();
 }
 
 async function loadProfile() {
@@ -60,5 +62,10 @@ async function buildProfile(profile){
 
   section.appendChild(div);
 }
-
+async function clearProfile(){
+  const section = document.getElementById("profileSection");
+  while (section.firstChild) {
+    section.removeChild(section.lastChild);
+  }
+}
 loadProfile();

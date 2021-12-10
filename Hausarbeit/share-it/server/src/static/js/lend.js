@@ -42,7 +42,7 @@ async function showItems() {
   showButton = document.getElementById("showFormButton");
   showButton.style.display = "block";
 
-  items = document.getElementById("itemsSection");
+  const items = document.getElementById("itemsSection");
   while (items.firstChild) {
     items.removeChild(items.lastChild);
   }
