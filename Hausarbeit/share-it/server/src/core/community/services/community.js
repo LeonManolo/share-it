@@ -120,10 +120,10 @@ class Community {
     return result;
   }
 
-  async getAllUsernames() {
+  async getAllUsernames(username) {
     const userLibrary = new UserLibrary();
-    const result = await userLibrary.getAllUsernames("hans");
-    const friendsOfUser = await communityLibrary.getAllFriendsOfUser("hans");
+    const result = await userLibrary.getAllUsernames(username);
+    const friendsOfUser = await communityLibrary.getAllFriendsOfUser(username);
 
     const filtered = result.filter((name) => {
       return !friendsOfUser.includes(name);
