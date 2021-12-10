@@ -45,15 +45,6 @@ async function loadItems(){
       console.log(items);
       items.forEach(element => {
         buildItemTile(element);
-        var today = new Date();
-        var date = new Date(element.borrowedAt)
-        var returnBy = date.addDays(element.maxBorrowDuration);
-        console.log(today);
-        console.log(returnBy);
-        if (date < returnBy){
-          console.log("noch alles ok")
-        }
-        console.log("test");
       });
   
     } catch (e) {
@@ -70,7 +61,7 @@ function buildItemTile(element){
     var dateBorrowed = new Date(element.borrowedAt)
     var difference = Math.abs(today-dateBorrowed);
     var returnBy = dateBorrowed.addDays(element.maxBorrowDuration);
-    remainingDays = 10-(difference/(1000*3600*24));
+    remainingDays =element.maxBorrowDuration -(difference/(1000*3600*24));
 
     const section = document.getElementById("itemsSection");
     var div = document.createElement('div');
