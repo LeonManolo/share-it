@@ -164,7 +164,7 @@ class UserLibrary {
     });
   }
 
-  async getAllUsernames(username) {
+  async getAllUsernamesExceptUsername(username) {
     return new Promise((resolve, reject) => {
       db.all(
         `SELECT username FROM user WHERE username != ?`,

@@ -77,7 +77,6 @@ class Community {
       const result = await communityLibrary.getAllOpenFriendRequestsForUser(
         username
       );
-      console.log(result);
       const filtered = [];
       //Filtert die Ausgabe so, dass nur die relevanten Daten weitergegeben werden.
       for (let i = 0; i < result.length; i++) {
@@ -95,8 +94,6 @@ class Community {
           });
         }
       }
-      console.log("controllers");
-      console.log(filtered);
       return filtered;
     } else {
       throw new Error("username is not a string!");
@@ -120,16 +117,31 @@ class Community {
     return result;
   }
 
-  async getAllUsernames(username) {
-    const userLibrary = new UserLibrary();
-    const result = await userLibrary.getAllUsernames(username);
-    const friendsOfUser = await communityLibrary.getAllFriendsOfUser(username);
+  /**
+   * Liefert alle Usernamen außer die Freunde eines Users der über
+   * den username angegeben wurde
+   * @param {string} username
+   * @returns
+   */
+  async getAllUsernamesExceptFriends(username) {
+    if (typeof username === "string") {
+      const userLibrary = new UserLibrary();
+      const result = await userLibrary.getAllUsernamesExceptUsername(username);
+      const friendsOfUser = await communityLibrary.getAllFriendsOfUser(
+        username
+      );
 
-    const filtered = result.filter((name) => {
-      return !friendsOfUser.includes(name);
-    });
-    console.log(`getAllUsernames: ${filtered}`);
-    return filtered;
+      // Löscht alle Freunde aus der Liste
+      const filtered = result.filter((name) => {
+        return !friendsOfUser.some(
+          (friend) => friend.username === name.username
+        );
+      });
+
+      return filtered;
+    } else {
+      throw new Error(`username: ${username} is not a string!`);
+    }
   }
 
   /**
@@ -140,18 +152,16 @@ class Community {
   async getAllFriendsOfUser(username) {
     const communityLibrary = new CommunityLibrary();
     const result = await communityLibrary.getAllFriendsOfUser(username);
-    console.log("community result");
-    console.log(result);
+    /*
     const filtered = result.map((e) => {
       if (e.friend1 != username) {
-        return e.friend1;
+        return { username: e.friend1, imageUrl: e.profileImageUrl };
       } else {
-        return e.friend2;
+        return { username: e.friend2, imageUrl: e.profileImageUrl };;
       }
     });
-    console.log("community filtered");
-    console.log(filtered);
-    return filtered;
+    */
+    return result;
   }
 }
 

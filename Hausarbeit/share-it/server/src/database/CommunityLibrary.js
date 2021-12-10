@@ -84,8 +84,8 @@ class CommunityLibrary {
   async getAllFriendsOfUser(username) {
     return new Promise((resolve, reject) => {
       db.all(
-        "SELECT * FROM friendship JOIN user ON (friend1 = username) OR (friend2 = username) WHERE (friend1 = ? OR friend2 = ?) AND status = 1",
-        [username, username],
+        "SELECT DISTINCT profileImageUrl, username FROM friendship JOIN user ON (friend1 = username) OR (friend2 = username) WHERE (friend1 = ? OR friend2 = ?) AND status = 1 AND username != ?",
+        [username, username, username],
         (error, row) => {
           if (error) {
             console.log(error);

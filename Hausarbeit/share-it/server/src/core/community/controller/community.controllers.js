@@ -1,7 +1,11 @@
 const Community = require("../services/community");
 
 /**
- * Fügt einen Freund hinzu
+ * Fügt einen Freund hinzu. Dafür muss als query Parameter der Freund der
+ * eine Freundschaftsanfrage erhalten soll angegeben werden.
+ * Bsp:
+ * http://example.com/add-friend?toUser=abc
+ * => sendet eine Freundschaftsanfrage an den User mit dem username "abc"
  * @param {*} req
  * @param {*} res
  * @param {*} next
@@ -13,7 +17,6 @@ const addFriend = async (req, res, next) => {
   try {
     const community = new Community();
     const success = await community.sentFriendRequest(fromUser, toUser);
-    console.log(`Friend result: ${success} for ${fromUser} and ${toUser}`);
     if (success) {
       res.sendStatus(200);
     } else {
@@ -38,7 +41,6 @@ const getOpenFriendRequests = async (req, res, next) => {
     const friendRequests = await community.getAllOpenFriendRequestsForUser(
       username
     );
-    console.log(friendRequests);
     res.json(friendRequests);
   } catch (e) {
     res.sendStatus(500);
@@ -54,7 +56,6 @@ const getOpenFriendRequests = async (req, res, next) => {
 const acceptFriendRequest = async (req, res, next) => {
   try {
     const friendshipId = parseInt(req.params.id);
-    console.log(friendshipId);
     const community = new Community();
     const success = await community.acceptFriendRequest(friendshipId);
     if (success) {
@@ -88,13 +89,16 @@ const declineFriendRequest = async (req, res, next) => {
   }
 };
 
+/**
+ * Endpoint der alle Freunde des eingeloggten Users liefert
+ * @param {*} req 
+ * @param {*} res 
+ */
 const getAllFriendsOfUser = async (req, res) => {
   try {
     const username = req.username;
     const community = new Community();
     const result = await community.getAllFriendsOfUser(username);
-    console.log("community contoller result");
-    console.log(result);
     res.json(result);
   } catch (e) {
     res.sendStatus(500);
@@ -128,15 +132,17 @@ const getAllUsernamesContainingPhraseExceptUser = async (req, res) => {
   }
 };
 
+/**
+ * Endpoint der alle Usernamen liefert die nicht mit dem eingeloggten User befreundet sind.
+ * @param {*} req
+ * @param {*} res
+ */
 const getAllUsernamesExceptUser = async (req, res) => {
   try {
     const username = req.username;
-    console.log(username);
     const community = new Community();
-    const result = await community.getAllUsernames(username);
+    const result = await community.getAllUsernamesExceptFriends(username);
     const filtered = result.filter((value) => value !== username);
-    console.log(result);
-    console.log(filtered);
 
     res.json(filtered);
   } catch (e) {
