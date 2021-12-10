@@ -147,6 +147,8 @@ async function sendFriendRequest(usernameToAdd){
   const url = `http://localhost:8080/add-friend?toUser=${usernameToAdd}`;
   const config = {method: "POST"};
   let response = await fetch(url,config);
+  clearUsers();
+  buildUserSection();
 }
 
 async function acceptFriendRequest(friendship_id){
@@ -155,6 +157,10 @@ async function acceptFriendRequest(friendship_id){
   const config = {method: "POST"};
   let response = await fetch(url,config);
   console.log(response.status);
+  clearFriends()
+  buildFriendSection()
+  clearRequests()
+  buildFriendRequestSection()
 }
 
 async function declineFriendRequest(friendship_id){
@@ -163,4 +169,28 @@ async function declineFriendRequest(friendship_id){
   const config = {method: "POST"};
   let response = await fetch(url,config);
   console.log(response.status);
+  clearFriends()
+  buildFriendSection()
+  clearRequests()
+  buildFriendRequestSection()
+}
+
+async function clearRequests(){
+  var friendRequestSection = document.getElementById("friend-requests");
+  while (friendRequestSection.firstChild){
+    friendRequestSection.removeChild(friendRequestSection.lastChild);
+  }
+} 
+async function clearFriends(){
+  var friendSection = document.getElementById("friends");
+  while (friendSection.firstChild){
+    friendSection.removeChild(friendSection.lastChild);
+  }
+
+}
+async function clearUsers(){
+  var userSection = document.getElementById("otherUsers");
+  while (userSection.firstChild){
+    userSection.removeChild(userSection.lastChild);
+  }
 }
