@@ -103,7 +103,7 @@ function buildFriendTile(friend) {
   div.className = "friendTile"
 
   const img = document.createElement("img");
-  img.src = `${friend.imageUrl}`;
+  img.src = `${friend.profileImageUrl}`;
   img.alt = "Image Error";
   div.appendChild(img)
 
@@ -157,10 +157,12 @@ async function acceptFriendRequest(friendship_id){
   const config = {method: "POST"};
   let response = await fetch(url,config);
   console.log(response.status);
-  clearFriends()
-  buildFriendSection()
-  clearRequests()
-  buildFriendRequestSection()
+  clearFriends();
+  buildFriendSection();
+  clearRequests();
+  buildFriendRequestSection();
+  clearUsers();
+  buildUserSection();
 }
 
 async function declineFriendRequest(friendship_id){
