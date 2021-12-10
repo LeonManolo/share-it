@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
 const profileControllers = require("../controller/profile.controllers");
+const cookieChecker = require("../../../supporting/auth/middleware/auth_cookie_checker");
 
 /**
  * Route zum Ändern von Profildaten
  */
-router.post("/profile/edit", profileControllers.editProfile);
+router.post("/profile/edit",cookieChecker, profileControllers.editProfile);
 
 /**
  * Endpoint der die HTML-Seite liefert um Änderungen am Profil vorzunehmen

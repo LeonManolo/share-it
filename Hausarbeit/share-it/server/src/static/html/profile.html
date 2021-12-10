@@ -23,12 +23,22 @@
         <h1>Dein Profil</h1>
     </header>
     <main>
-        Profilbild ändern
-        <form action="/profile/edit" method="post" enctype="multipart/form-data">
-        <label for="profile_image">Profilbild:</label></br>
-        <input type="file" name="profile_image" id="profile_image"></br>
-        <input type="submit" value="Submit">
-        </form>
+        <section id="profileSection">
+
+        </section>
+        <section id="formSection">
+            <h2>Profilbild ändern</h2>
+            <form
+                onsubmit="submitForm(); return false;"
+                method="post"
+                enctype="multipart/form-data"
+                id="form"
+            >
+                <label for="image">Bild:</label><br>
+                <input required type="file" name="image" value="Datei auswählen" /><br>
+                <input type="submit" value="Speichern" />
+            </form>
+        </section>
     </main>
     
 </body>
