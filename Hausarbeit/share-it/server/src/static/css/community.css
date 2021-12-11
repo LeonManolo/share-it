@@ -15,12 +15,18 @@ body {
     padding: 20px;
 }
 
+h2 {
+    width: 100%;
+}
+
 #friends {
     display: flex;
+    flex-wrap: wrap;
 }
 
 #friends div {
     width: 25%;
+    padding: 10px;
 }
 
 .friendTile {
@@ -65,13 +71,16 @@ body {
 }
 
 img {
-    width: 25%;
-    height: 25%;
-    min-width: 100px;
-    min-height: 100px;
+    display: block;
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
     border-style: solid;
     border-color: black;
-    border-width: 2px;
+    border-width: 1px;
+    padding: 0;
+    margin: 0;
 }
 
 header {
