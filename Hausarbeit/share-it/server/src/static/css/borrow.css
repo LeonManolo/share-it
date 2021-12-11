@@ -3,28 +3,6 @@ body {
 }
 
 #itemsSection {
-<<<<<<< HEAD
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    grid-template-rows: auto;
-    grid-template-areas: "";
-}
-
-.itemTile {
-    border: solid;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    margin: 10px;
-    padding: 30px;
-    width: 350px;
-    height: 400px;
-}
-
-.itemIMG {
-    max-width: 300px;
-    max-height: 300px;
-=======
     display:flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -40,41 +18,22 @@ body {
 .itemIMG{
     max-width: 310px;
     max-height: 250px;
->>>>>>> f2648a0c08aedccc482c99f074741840a4cc9833
     grid-area: Img;
     margin: 10px;
 }
 
-<<<<<<< HEAD
-.itemH2 {
-    grid-area: h2;
-}
-
-.itemDescription {
-    grid-area: p;
-=======
 .itemH2{
     margin: 10px;
 }
 
 .itemDescription{
     margin: 10px
->>>>>>> f2648a0c08aedccc482c99f074741840a4cc9833
 }
 
 #detailSection {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-<<<<<<< HEAD
-    background-color: rgb(51, 51, 51);
-    width: 100%;
-    border-radius: 15px;
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
-    grid-template-areas: "";
-=======
     grid-template-areas: 
     "Img h2"
     "Img l"
@@ -85,7 +44,6 @@ body {
 
 #detailIMG{
     grid-area: Img;
->>>>>>> f2648a0c08aedccc482c99f074741840a4cc9833
 }
 
 #detailH2 {
