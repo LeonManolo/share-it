@@ -11,6 +11,24 @@ img {
     width: 25%;
 }
 
+#formSection button {
+    size: 30px;
+    width: 150px;
+    height: 30px;
+    align-self: center;
+    margin: 20px;
+    text-decoration: none;
+    background-color: transparent;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: black;
+}
+
+input[type=file] {
+    padding: 20px;
+}
+
 header {
     grid-area: h;
     padding-bottom: 0;
