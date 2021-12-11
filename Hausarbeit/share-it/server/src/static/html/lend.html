@@ -41,16 +41,17 @@
           enctype="multipart/form-data"
           id="form"
         >
-          <label for="title">Artikelname:</label><br />
+          <label for="title">Artikelname (max. 40 Zeichen):</label><br />
           <input
             required
             type="text"
             name="title"
             id="title"
+            maxlength="40"
             pattern=".{1,}"
             title="mindestens ein Buchstabe"
           /><br />
-          <label for="description">Artikelbeschreibung:</label><br />
+          <label for="description">Artikelbeschreibung (max. 240 Zeichen):</label><br />
           <textarea
             required
             type="text"

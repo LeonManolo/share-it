@@ -1,6 +1,6 @@
 
 /**
- * Funktion zum zurueckgeben eines Items
+ * Funktion zum zurückgeben eines Items
  * @param {*} id 
  */
 async function returnItem(id) {
@@ -11,7 +11,7 @@ async function returnItem(id) {
   await loadItems();
 }
 /**
- * loeschen der Elemente der ItemSection
+ * Löschen der Elemente der ItemSection
  */
 async function clearItems() {
   items = document.getElementById("itemsSection")
@@ -20,7 +20,7 @@ async function clearItems() {
   }
 }
 /**
- * Maxborrowduration berechnungshelfer
+ * Maxborrowduration Berechnungshelfer
  * @param {number} days 
  * @returns {Date}
  */
@@ -53,7 +53,7 @@ async function loadItems() {
 }
 
 /**
- * Funktion zum erstellen der HTML-Elemente eines Items
+ * Funktion zum Erstellen der HTML-Elemente eines Items
  * @param {*} element 
  */
 function buildItemTile(element) {
@@ -69,43 +69,43 @@ function buildItemTile(element) {
   if (today > returnBy) {
     div.style.backgroundColor = "red";
   }
-  //erstellen des img-tags
+  //Erstellen des img-tags
   var img = document.createElement('img');
   img.className = "itemIMG"
   img.src = `${element.imageUrl}`;
   img.alt = "OOps";
   div.appendChild(img);
 
-  //erstellen des h2-tags
+  //Erstellen des h2-tags
   var h2 = document.createElement('h2');
   h2.className = "itemH2"
   var h2Text = document.createTextNode(`${element.title}`)
   h2.appendChild(h2Text);
   div.appendChild(h2);
 
-  //erstellen des p-tags
+  //Erstellen des p-tags
   var owner = document.createElement('p');
   owner.className = "itemOwner"
-  var ownerText = document.createTextNode(`ausgeliehen von: ${element.owner}`);
+  var ownerText = document.createTextNode(`Ausgeliehen von: ${element.owner}`);
   owner.appendChild(ownerText);
   div.appendChild(owner)
 
   var rentalTime = document.createElement('p');
   rentalTime.className = "time"
-  var rentaltimeText = document.createTextNode(`ausgeliehen am: ${element.borrowedAt}`)
+  var rentaltimeText = document.createTextNode(`Ausgeliehen am: ${element.borrowedAt}`)
   rentalTime.appendChild(rentaltimeText);
   div.appendChild(rentalTime);
 
   var remainingTime = document.createElement('p');
   remainingTime.className = "time";
-  var remainingTimeText = document.createTextNode(`Uebrige Tage: ${remainingDays}`)
+  var remainingTimeText = document.createTextNode(`Übrige Tage: ${remainingDays}`)
   remainingTime.appendChild(remainingTimeText);
   div.appendChild(remainingTime);
 
   var button = document.createElement('button');
   button.className = "itemButton"
   button.onclick = function () { returnItem(element.id) };
-  button.innerHTML = "Artikel zurueckgeben"
+  button.innerHTML = "Artikel zurückgeben"
   div.appendChild(button);
 
   section.appendChild(div);
