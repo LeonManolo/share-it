@@ -3,28 +3,6 @@ body {
 }
 
 #itemsSection {
-<<<<<<< HEAD
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    grid-template-rows: auto;
-    grid-template-areas: "";
-}
-
-.itemTile {
-    border: solid;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    margin: 10px;
-    padding: 30px;
-    width: 350px;
-    height: 400px;
-}
-
-.itemIMG {
-    max-width: 300px;
-    max-height: 300px;
-=======
     display:flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -32,6 +10,7 @@ body {
 
 .itemTile{
     border: solid rgba(170, 170, 170, 0.596);
+    border-radius: 10px;
     margin: 10px;
     width: 340px;
     height: 400px;
@@ -40,70 +19,77 @@ body {
 .itemIMG{
     max-width: 310px;
     max-height: 250px;
->>>>>>> f2648a0c08aedccc482c99f074741840a4cc9833
-    grid-area: Img;
     margin: 10px;
 }
 
-<<<<<<< HEAD
-.itemH2 {
-    grid-area: h2;
-}
-
-.itemDescription {
-    grid-area: p;
-=======
 .itemH2{
     margin: 10px;
 }
 
 .itemDescription{
     margin: 10px
->>>>>>> f2648a0c08aedccc482c99f074741840a4cc9833
 }
 
 #detailSection {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-<<<<<<< HEAD
-    background-color: rgb(51, 51, 51);
-    width: 100%;
-    border-radius: 15px;
-    border-color: black;
-    border-width: 2px;
-    border-style: solid;
-    grid-template-areas: "";
-=======
+    grid-template-columns: 1fr 1fr 2fr 1fr;
+    grid-template-rows: 50px 100px 200px 200px 80px;
     grid-template-areas: 
-    "Img h2"
-    "Img l"
-    ". d"
-    "a c";
-    width: 100%;
+    ". Img h2 ."
+    ". Img l ."
+    ". . d ."
+    ". . . ."
+    ". c a .";
 }
 
 #detailIMG{
     grid-area: Img;
->>>>>>> f2648a0c08aedccc482c99f074741840a4cc9833
+    max-width: 400px;
+    max-height: 300px;
+    margin: 10px;
 }
 
 #detailH2 {
     grid-area: h2;
+    margin: 10px;
 }
 
 #detailLender {
     grid-area: l;
+    margin: 10px;
 }
 
 #detailDescription {
     grid-area: d;
+    margin: 10px;
 }
 
 #detailButtonAusleihen {
     grid-area: a;
+    background:transparent;
+    padding:0.5rem 0.5rem;
+    margin:0 0.5rem;
+    font-size:1rem;
+
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius:15px 255px;
 }
 
 #detailButtonCancel {
     grid-area: c;
+    background:transparent;
+    padding:0.5rem 0.5rem;
+    margin:0 0.5rem;
+    font-size:1rem;
+
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius:15px 255px;
+}
+
+button:hover {
+    box-shadow:4px 16px 8px -12px hsla(0,0%,0%,.3);
 }

@@ -1,11 +1,14 @@
-let selectedItem;
 /**
  * Detailbereich eines Artikels öffenen, wo dieses ausgeliehen werden kann.
  * @param {*} element 
  */
-function openDetail(element){
-  selectedItem = element;
+function openDetail(element) {
   hideItems();
+  fillDetail(element);
+  showDetail();
+}
+// ausfuellen der Inhalte der detailSection mit den Informationen des angeklickten Artikels
+function fillDetail(element) {
   var img = document.getElementById('detailIMG');
   img.src = `${element.imageUrl}`;
 
@@ -16,7 +19,7 @@ function openDetail(element){
 
   var lender = document.getElementById('detailLender');
   lender.removeChild(lender.firstChild);
-  var lenderText = document.createTextNode(`${element.owner}`);
+  var lenderText = document.createTextNode(`Verleiher: ${element.owner}`);
   lender.appendChild(lenderText);
 
   var description = document.getElementById('detailDescription');
@@ -25,55 +28,55 @@ function openDetail(element){
   description.appendChild(descriptionText);
 
   var borrowButton = document.getElementById('detailButtonAusleihen');
-  borrowButton.onclick = function(){borrowItem(element.id)};
+  borrowButton.onclick = function () { borrowItem(element.id) };
   var cancelButton = document.getElementById('detailButtonCancel');
-  cancelButton.onclick = function(){cancelFunc()};
-
-  showDetail();
+  cancelButton.onclick = function () { cancelFunc() };
 }
 /**
  * Funktion zum Ausleihen eines Artikels
  * @param {*} id 
  */
-async function borrowItem(id){
-  console.log(id);
+async function borrowItem(id) {
   const url = `http://localhost:8080/borrow/${id}`;
-  const config = {method: "POST"};
+  const config = { method: "POST" };
   let response = await fetch(url, config);
   clearItems();
   loadItems();
   cancelFunc();
 
 }
-async function clearItems(){
+/**
+ * clearen der itemSection
+ */
+async function clearItems() {
   var items = document.getElementById("itemsSection")
   while (items.firstChild) {
-     items.removeChild(items.lastChild);
- }
+    items.removeChild(items.lastChild);
+  }
 }
 /**
  * Um aus der Detailansicht wieder zu der Artikelübersicht zurückzukehren.
  */
-function cancelFunc(){
+function cancelFunc() {
   hideDetail();
   showItems();
 }
 
-function hideItems(){
+function hideItems() {
   const section = document.getElementById("itemsSection");
   section.style.display = "none";
 }
 
-function showItems(){
+function showItems() {
   const section = document.getElementById('itemsSection');
-  section.style.display = "grid";
+  section.style.display = "flex";
 }
-function hideDetail(){
+function hideDetail() {
   const section = document.getElementById("detailSection");
   section.style.display = "none";
 }
 
-function showDetail(){
+function showDetail() {
   const section = document.getElementById("detailSection");
   section.style.display = "grid";
 }
@@ -81,7 +84,7 @@ function showDetail(){
 /**
  * Funktion zum Laden der Artikel die der Nutzer ausleihen kann
  */
-async function loadItems(){
+async function loadItems() {
 
   // Url an die die Anfrage gemacht wird
   const url = "http://localhost:8080/items";
@@ -103,12 +106,12 @@ async function loadItems(){
  * Erstellen der Tile für einen Artikel
  * @param {*} element 
  */
-function buildItemTile(element){
+function buildItemTile(element) {
 
   const section = document.getElementById("itemsSection");
   var div = document.createElement('div');
   div.className = "itemTile"
-  div.onclick = function(){openDetail(element)};
+  div.onclick = function () { openDetail(element) };
 
   var img = document.createElement('img');
   img.className = "itemIMG"
@@ -124,7 +127,7 @@ function buildItemTile(element){
 
   var owner = document.createElement('p');
   owner.className = "itemDescription"
-  var ownerText = document.createTextNode(`Verliehen von: ${element.owner}`);
+  var ownerText = document.createTextNode(`Verleiher: ${element.owner}`);
   owner.appendChild(ownerText);
   div.appendChild(owner)
 
