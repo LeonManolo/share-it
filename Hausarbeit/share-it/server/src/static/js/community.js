@@ -3,6 +3,10 @@ buildFriendRequestSection();
 buildFriendSection();
 buildUserSection();
 
+
+/**
+ * Erstellt die Sektion fuer die Freundschaftsanfragen
+ */
 async function buildFriendRequestSection() {
   const friendRequestSection = document.getElementById("friend-requests");
   const h2 = document.createElement("h2");
@@ -28,7 +32,10 @@ async function buildFriendRequestSection() {
   }
 }
 
-async function buildFriendSection(){
+/**
+ * Erstellt die Sektion fuer die Freundesliste des Nutzers
+ */
+async function buildFriendSection() {
   const friendSection = document.getElementById("friends");
   const h2 = document.createElement("h2");
   h2.textContent = "Freunde";
@@ -53,12 +60,15 @@ async function buildFriendSection(){
   }
 }
 
-async function buildUserSection(){
+/**
+ * Erstellt die Sektion fuer die Freundesliste des Nutzers
+ */
+async function buildUserSection() {
   const userSection = document.getElementById("otherUsers");
   const h2 = document.createElement("h2");
   h2.textContent = "andere Nutzer";
   userSection.appendChild(h2);
-  
+
 
   // Url an die die Anfrage gemacht wird
   // mit phrase
@@ -81,7 +91,7 @@ async function buildUserSection(){
     console.log(`Netzwerk Fehler ${e}`);
   }
 }
-function buildUserTile(user){
+function buildUserTile(user) {
   const div = document.createElement("div");
   div.className = "userTile"
 
@@ -92,7 +102,7 @@ function buildUserTile(user){
 
   var requestButton = document.createElement('button');
   requestButton.innerHTML = "Freund hinzufuegen";
-  requestButton.onclick = function(){sendFriendRequest(user.username)};
+  requestButton.onclick = function () { sendFriendRequest(user.username) };
   div.appendChild(requestButton);
 
   return div;
@@ -115,7 +125,7 @@ function buildFriendTile(friend) {
   return div;
 }
 
-function buildFriendRequestTile(user){
+function buildFriendRequestTile(user) {
   console.log(user);
   const div = document.createElement("div");
   div.className = "friendRequest"
@@ -132,30 +142,30 @@ function buildFriendRequestTile(user){
 
   var acceptButton = document.createElement('button');
   acceptButton.innerHTML = "Akzeptieren";
-  acceptButton.onclick = function(){acceptFriendRequest(user.friendshipId)};
+  acceptButton.onclick = function () { acceptFriendRequest(user.friendshipId) };
   div.appendChild(acceptButton);
 
   var declineButton = document.createElement('button');
   declineButton.innerHTML = "Ablehnen";
-  declineButton.onclick = function(){declineFriendRequest(user.friendshipId)};
+  declineButton.onclick = function () { declineFriendRequest(user.friendshipId) };
   div.appendChild(declineButton);
 
   return div;
 }
-async function sendFriendRequest(usernameToAdd){
+async function sendFriendRequest(usernameToAdd) {
   console.log(usernameToAdd);
   const url = `http://localhost:8080/add-friend?toUser=${usernameToAdd}`;
-  const config = {method: "POST"};
-  let response = await fetch(url,config);
+  const config = { method: "POST" };
+  let response = await fetch(url, config);
   clearUsers();
   buildUserSection();
 }
 
-async function acceptFriendRequest(friendship_id){
+async function acceptFriendRequest(friendship_id) {
   console.log(friendship_id);
   const url = `http://localhost:8080/accept-friend/${friendship_id}`;
-  const config = {method: "POST"};
-  let response = await fetch(url,config);
+  const config = { method: "POST" };
+  let response = await fetch(url, config);
   console.log(response.status);
   clearFriends();
   buildFriendSection();
@@ -165,11 +175,11 @@ async function acceptFriendRequest(friendship_id){
   buildUserSection();
 }
 
-async function declineFriendRequest(friendship_id){
+async function declineFriendRequest(friendship_id) {
   console.log(friendship_id);
   const url = `http://localhost:8080/decline-friend/${friendship_id}`;
-  const config = {method: "POST"};
-  let response = await fetch(url,config);
+  const config = { method: "POST" };
+  let response = await fetch(url, config);
   console.log(response.status);
   clearFriends()
   buildFriendSection()
@@ -177,22 +187,22 @@ async function declineFriendRequest(friendship_id){
   buildFriendRequestSection()
 }
 
-async function clearRequests(){
+async function clearRequests() {
   var friendRequestSection = document.getElementById("friend-requests");
-  while (friendRequestSection.firstChild){
+  while (friendRequestSection.firstChild) {
     friendRequestSection.removeChild(friendRequestSection.lastChild);
   }
-} 
-async function clearFriends(){
+}
+async function clearFriends() {
   var friendSection = document.getElementById("friends");
-  while (friendSection.firstChild){
+  while (friendSection.firstChild) {
     friendSection.removeChild(friendSection.lastChild);
   }
 
 }
-async function clearUsers(){
+async function clearUsers() {
   var userSection = document.getElementById("otherUsers");
-  while (userSection.firstChild){
+  while (userSection.firstChild) {
     userSection.removeChild(userSection.lastChild);
   }
 }
