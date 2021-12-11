@@ -25,7 +25,7 @@ router.post("/return/:id", cookieChecker, itemsController.returnItem);
 /**
  * Endpoint für die HTML-Seite in der Gegenstände zum Verleihen eingestellt werden können
  */
-router.get("/lend", (req, res, next) => {
+router.get("/lend", cookieChecker, (req, res, next) => {
   res.sendFile(pathToStaticFolder("/html/lend.html"));
 });
 
@@ -33,7 +33,7 @@ router.get("/lend", (req, res, next) => {
  * Endpoint für die HTML-Seite in der alle Gegenstände angezeigt werden,
  * die der jeweilige User gerade ausgeliehen hat
  */
-router.get("/borrowed", (req, res, next) => {
+router.get("/borrowed", cookieChecker, (req, res, next) => {
   res.sendFile(pathToStaticFolder("/html/borrowed.html"));
 });
 
@@ -45,7 +45,7 @@ router.post("/items",cookieChecker, itemsController.addItem);
 /**
  * Enpoint um einen bestimmten Gegenstand zu erhalten
  */
-router.get("/items/:id", itemsController.getItem);
+router.get("/items/:id", cookieChecker, itemsController.getItem);
 
 /**
  * Enpoint um alle Gegenständige für den jeweiligen User zu erhalten

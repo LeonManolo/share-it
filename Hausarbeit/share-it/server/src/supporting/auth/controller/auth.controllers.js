@@ -61,7 +61,6 @@ const login = async (req, res, next) => {
 const logout = (req, res) => {
   res.clearCookie(cookieName);
   res.redirect("/");
-  res.sendStatus(200);
 };
 
 // Funktionen werden exportiert

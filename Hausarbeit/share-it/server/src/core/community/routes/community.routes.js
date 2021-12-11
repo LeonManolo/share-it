@@ -13,12 +13,12 @@ router.post("/add-friend", authCookieChecker, communityControllers.addFriend);
 /**
  * Route um eine Freundschaftsanfrage anzunehmen
  */
-router.post("/accept-friend/:id", communityControllers.acceptFriendRequest);
+router.post("/accept-friend/:id", authCookieChecker, communityControllers.acceptFriendRequest);
 
 /**
  * Route um eine Freundschaftsanfrage abzulehnen
  */
-router.post("/decline-friend/:id", communityControllers.declineFriendRequest);
+router.post("/decline-friend/:id", authCookieChecker, communityControllers.declineFriendRequest);
 
 /**
  * Route um alle Freunde des eingeloggten Users zu bekommen

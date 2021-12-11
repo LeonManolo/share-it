@@ -13,7 +13,7 @@ router.get("/my-profile", cookieChecker, profileControllers.getProfile);
 /**
  * Endpoint der die HTML-Seite liefert um Änderungen am Profil vorzunehmen
  */
-router.get("/profile", (req, res) => {
+router.get("/profile", cookieChecker, (req, res) => {
   res.sendFile(pathToStaticFolder("/html/profile.html"));
 });
 
