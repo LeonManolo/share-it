@@ -44,6 +44,8 @@ body {
 
 #detailIMG{
     grid-area: Img;
+    max-width: 310px;
+    max-height: 250px;
 }
 
 #detailH2 {
