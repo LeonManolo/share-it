@@ -15,8 +15,16 @@ body {
     padding: 20px;
 }
 
+#friends {
+    display: flex;
+}
+
 #friends div {
     width: 25%;
+}
+
+.friendTile {
+    grid-area: friendTile;
 }
 
 .friendRequest p {
@@ -38,6 +46,24 @@ body {
     border-color: black;
 }
 
+#otherUsers button {
+    size: 30px;
+    width: 150px;
+    height: 30px;
+    align-self: center;
+    margin: 20px;
+    text-decoration: none;
+    background-color: transparent;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: black;
+}
+
+.userTile {
+    border-bottom: solid;
+}
+
 img {
     width: 25%;
     height: 25%;
@@ -54,7 +80,22 @@ header {
     padding-top: 5vh;
 }
 
+#friend-request {
+    grid-area: friend-request;
+}
+
+#friends {
+    grid-area: friends;
+}
+
+#otherUsers {
+    grid-area: otherUsers;
+}
+
 main {
+    display: grid;
+    grid-template-areas: "friend-request" "friends" "otherUsers";
+    grid-template-rows: auto;
     padding: 0;
     margin-top: 0;
     grid-area: m;
