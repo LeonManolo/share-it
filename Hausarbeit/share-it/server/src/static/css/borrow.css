@@ -38,7 +38,7 @@ body {
     ". Img h2 ."
     ". Img l ."
     ". . d ."
-    ". . . ."
+    ". . m ."
     ". c a .";
 }
 
@@ -47,6 +47,12 @@ body {
     max-width: 400px;
     max-height: 300px;
     margin: 10px;
+}
+
+#detailMessage{
+    grid-area: m;
+    margin: 10px;
+    font-size: 15px;
 }
 
 #detailH2 {
@@ -67,9 +73,8 @@ body {
 #detailButtonAusleihen {
     grid-area: a;
     background:transparent;
-    padding:0.5rem 0.5rem;
-    margin:0 0.5rem;
-    font-size:1rem;
+    margin: 10px;
+    font-size: 20px;
 
     border-top-left-radius: 255px 15px;
     border-top-right-radius: 15px 225px;
@@ -80,9 +85,8 @@ body {
 #detailButtonCancel {
     grid-area: c;
     background:transparent;
-    padding:0.5rem 0.5rem;
-    margin:0 0.5rem;
-    font-size:1rem;
+    margin: 10px;
+    font-size: 20px;
 
     border-top-left-radius: 255px 15px;
     border-top-right-radius: 15px 225px;
