@@ -16,7 +16,7 @@ function openDetail(element){
 
   var lender = document.getElementById('detailLender');
   lender.removeChild(lender.firstChild);
-  var lenderText = document.createTextNode(`${element.owner}`);
+  var lenderText = document.createTextNode(`Verleiher: ${element.owner}`);
   lender.appendChild(lenderText);
 
   var description = document.getElementById('detailDescription');
@@ -66,7 +66,7 @@ function hideItems(){
 
 function showItems(){
   const section = document.getElementById('itemsSection');
-  section.style.display = "grid";
+  section.style.display = "flex";
 }
 function hideDetail(){
   const section = document.getElementById("detailSection");
@@ -124,7 +124,7 @@ function buildItemTile(element){
 
   var owner = document.createElement('p');
   owner.className = "itemDescription"
-  var ownerText = document.createTextNode(`Verliehen von: ${element.owner}`);
+  var ownerText = document.createTextNode(`Verleiher: ${element.owner}`);
   owner.appendChild(ownerText);
   div.appendChild(owner)
 

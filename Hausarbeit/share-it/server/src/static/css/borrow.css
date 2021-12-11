@@ -10,6 +10,7 @@ body {
 
 .itemTile{
     border: solid rgba(170, 170, 170, 0.596);
+    border-radius: 10px;
     margin: 10px;
     width: 340px;
     height: 400px;
@@ -18,7 +19,6 @@ body {
 .itemIMG{
     max-width: 310px;
     max-height: 250px;
-    grid-area: Img;
     margin: 10px;
 }
 
