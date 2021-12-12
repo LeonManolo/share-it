@@ -1,3 +1,4 @@
+// Bearbeitet von Niklas Hargarter und Leon-Manolo Stiller
 const express = require("express");
 const router = express.Router();
 const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
@@ -40,7 +41,7 @@ router.get("/borrowed", cookieChecker, (req, res, next) => {
 /**
  * Enpoint um einen neuen Gegenstand einzustellen
  */
-router.post("/items",cookieChecker, itemsController.addItem);
+router.post("/items", cookieChecker, itemsController.addItem);
 
 /**
  * Enpoint um einen bestimmten Gegenstand zu erhalten
@@ -60,16 +61,20 @@ router.get("/itemsLend", cookieChecker, itemsController.getAllItemsLendByUser);
 /**
  * Endpoint um alle Gegenstände zu erhalten die der User ausgeliehen hat
  */
-router.get("/borrowed-items", cookieChecker, itemsController.getAllItemsBorrowedByUser);
+router.get(
+  "/borrowed-items",
+  cookieChecker,
+  itemsController.getAllItemsBorrowedByUser
+);
 
 /**
  * Enpoint um einen bestimmten Gegenstand zu aktualisieren
  */
-router.put("/items/:id",cookieChecker, itemsController.updateItem);
+router.put("/items/:id", cookieChecker, itemsController.updateItem);
 
 /**
  * Enpoint um einen bestimmten Gegenstand zu löschen
  */
-router.delete("/items/:id",cookieChecker, itemsController.deleteItem);
+router.delete("/items/:id", cookieChecker, itemsController.deleteItem);
 
 module.exports = router;

@@ -1,3 +1,4 @@
+// Bearbeitet von Niklas Hargarter
 
 /**
  * Funktion zum zurückgeben eines Items

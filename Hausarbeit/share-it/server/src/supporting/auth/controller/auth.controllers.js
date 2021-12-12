@@ -1,3 +1,4 @@
+// Bearbeitet von Leon-Manolo Stiller
 const Authentication = require("../services/authentication");
 const usernameValidator = require("../validations/username_validator");
 
@@ -5,7 +6,6 @@ const cookieName = "sessionid";
 
 // Endpoint für "/register"
 const register = async (req, res, next) => {
-  console.log(req.body);
   const username = req.body.username;
   const password = req.body.password;
   // Prüft ob der Username und das Passwort valide sind

@@ -1,4 +1,4 @@
-console.log("login.js");
+// Bearbeitet von Leon-Manolo Stiller und Max Ollech
 
 // Holt sich die Daten aus HTML Form
 const getFormData = () => {

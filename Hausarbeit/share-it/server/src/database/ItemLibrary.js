@@ -1,3 +1,4 @@
+// Bearbeitet von Leon-Manolo Stiller, Niklas Hargarter
 const sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(__dirname + "/database.sqlite");
 
@@ -132,19 +133,23 @@ class ItemLibrary {
 
   /**
    * Liefert alle Gegenstände die der User mit der Nutzer ausgeliehen hat
-   * @param {*} username 
-   * @returns 
+   * @param {*} username
+   * @returns
    */
-  async getAllItemsBorrowedByUser(username){
+  async getAllItemsBorrowedByUser(username) {
     return new Promise((resolve, reject) => {
-      db.all("SELECT * FROM item WHERE borrowedBy = ?", [username], (error, row) => {
-        if (error) {
-          console.log(error);
-          reject(error);
-        } else {
-          resolve(row);
+      db.all(
+        "SELECT * FROM item WHERE borrowedBy = ?",
+        [username],
+        (error, row) => {
+          if (error) {
+            console.log(error);
+            reject(error);
+          } else {
+            resolve(row);
+          }
         }
-      });
+      );
     });
   }
 

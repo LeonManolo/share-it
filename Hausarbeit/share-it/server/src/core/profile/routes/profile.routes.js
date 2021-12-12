@@ -1,3 +1,4 @@
+// Bearbeitet von Jaron Rieger, Max Ollech
 const express = require("express");
 const router = express.Router();
 const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
@@ -7,7 +8,7 @@ const cookieChecker = require("../../../supporting/auth/middleware/auth_cookie_c
 /**
  * Route zum Ändern von Profildaten
  */
-router.post("/profile-edit",cookieChecker, profileControllers.editProfile);
+router.post("/profile-edit", cookieChecker, profileControllers.editProfile);
 
 router.get("/my-profile", cookieChecker, profileControllers.getProfile);
 /**

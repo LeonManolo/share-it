@@ -1,80 +1,85 @@
+/*
+Bearbeitet von Jaron Rieger und Max Ollech
+*/
+
 body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/content/index-background.jpeg");
-    background-attachment: fixed;
-    background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../images/content/index-background.jpeg");
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-input[type=text],
-input[type=password] {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: 2px;
-    border-color: white;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
+input[type="text"],
+input[type="password"] {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 2px;
+  border-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
 }
 
-input[type=submit] {
-    width: 50%;
-    align-self: center;
-    color: white;
-    background-color: hotpink;
-    border-radius: 5px;
+input[type="submit"] {
+  width: 50%;
+  align-self: center;
+  color: white;
+  background-color: hotpink;
+  border-radius: 5px;
 }
 
 a {
-    color: hotpink;
+  color: hotpink;
 }
 
 form {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
 }
 
 .login-form {
-    display: flex;
+  display: flex;
 }
 
 label {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    margin-top: 0;
-    font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .register-text {
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    flex-flow: column;
-    justify-content: center;
-    position: absolute;
-    margin-top: 200px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  flex-flow: column;
+  justify-content: center;
+  position: absolute;
+  margin-top: 200px;
 }
 
 .container {
-    position: relative;
-    display: flex;
-    margin: auto;
-    margin-top: 10%;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
-    width: 30%;
-    height: 350px;
-    padding: 25px;
-    opacity: 0.8;
-    border-radius: 15px;
-    color: white;
+  position: relative;
+  display: flex;
+  margin: auto;
+  margin-top: 10%;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  width: 30%;
+  height: 350px;
+  padding: 25px;
+  opacity: 0.8;
+  border-radius: 15px;
+  color: white;
 }

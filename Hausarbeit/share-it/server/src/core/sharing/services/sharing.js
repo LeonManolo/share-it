@@ -1,3 +1,4 @@
+// Bearbeitet von Niklas Hargarter und Leon-Manolo Stiller
 const ItemLibrary = require("../../../database/ItemLibrary");
 
 let itemLibrary;
@@ -15,13 +16,13 @@ class Sharing {
   /**
    * Speichert einen neuen Gegenstand ab
    * @param {object} item
+   * @returns {boolean} success
    * Aufbau von item Beispiel:
    * {
     "owner": "Dein Vater",
     "title": "Plasma Fernseher",
     "description": "Ein nagelneuer Plasma Fernseher zum Ausleihen",
     "maxBorrowDuration": 10,
-    "borrowedBy": "Deine Mutter",
     "imageUrl": "https://www.tvmovie.de/assets/2019/04/26/70516-plasma-fernseher.jpg"
      }
    */
@@ -72,7 +73,13 @@ class Sharing {
     return await itemLibrary.getAllItemsLendByUser(username);
   }
 
-  async getAllItemsBorrowedByUser(username){
+  /**
+   * Liefert alle Gegenstände für den user mit dem Username.
+   * Also nur Gegenstände von Nutzern mit dem der username befreundet ist.
+   * @param {string} username
+   * @returns {[object]} item
+   */
+  async getAllItemsBorrowedByUser(username) {
     return await itemLibrary.getAllItemsBorrowedByUser(username);
   }
 
@@ -82,6 +89,7 @@ class Sharing {
    * @param {string} borrowedBy TODO: Wenn geprüft werden soll ob
    * derjenige den Gegenstand auch zurückgeben darf bräuchte
    * es noch einen weiteren Parameter.
+   * @returns {boolean}
    */
   async returnItem(id) {
     if (typeof id === "number") {
@@ -106,7 +114,12 @@ class Sharing {
       throw new Error(`id: ${id} is not a number!`);
     }
   }
-
+  /**
+   * Aktualisiert den Gegenstand mit der angegebenen Id.
+   * @param {number} id
+   * @param {object} item
+   * @returns {boolean}
+   */
   async updateItem(id, item) {
     const result = await itemLibrary.updateItemById(id, item);
     return typeof result !== "undefined";
@@ -115,9 +128,10 @@ class Sharing {
   /**
    * Leiht den Gegenstand mit der Id aus für den
    * User mit dem username (forUser)
-   * TODO: Prüfen ob der Gegenstand bereits ausgeliehen wurde
+   * TODO: Evtl. Prüfen ob der Gegenstand bereits ausgeliehen wurde
    * @param {number} id
    * @param {string} username
+   * @returns {boolean} success
    */
   async borrowItem(id, forUser) {
     const result = await itemLibrary.updateItemBorrowStateToUnavailable(

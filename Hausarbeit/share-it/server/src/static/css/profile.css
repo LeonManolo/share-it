@@ -1,42 +1,46 @@
+/*
+Bearbeitet von Jaron Rieger und Max Ollech
+*/
+
 body {
-    font-family: 'Lato', sans-serif;
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: 1fr auto 1fr;
-    grid-template-areas: ". h ." ". m ." ". . .";
+  font-family: "Lato", sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas: ". h ." ". m ." ". . .";
 }
 
 img {
-    display: block;
-    width: 25%;
+  display: block;
+  width: 25%;
 }
 
 #formSection button {
-    size: 30px;
-    width: 150px;
-    height: 30px;
-    align-self: center;
-    margin: 20px;
-    text-decoration: none;
-    background-color: transparent;
-    border-style: solid;
-    border-radius: 5px;
-    border-width: 2px;
-    border-color: black;
+  size: 30px;
+  width: 150px;
+  height: 30px;
+  align-self: center;
+  margin: 20px;
+  text-decoration: none;
+  background-color: transparent;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: black;
 }
 
-input[type=file] {
-    padding: 20px;
+input[type="file"] {
+  padding: 20px;
 }
 
 header {
-    grid-area: h;
-    padding-bottom: 0;
-    padding-top: 5vh;
+  grid-area: h;
+  padding-bottom: 0;
+  padding-top: 5vh;
 }
 
 main {
-    padding: 0;
-    margin-top: 0;
-    grid-area: m;
+  padding: 0;
+  margin-top: 0;
+  grid-area: m;
 }

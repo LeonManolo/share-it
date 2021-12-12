@@ -1,10 +1,16 @@
+// Bearbeitet von Jaron Rieger, Max Ollech
 const Profile = require("../services/profile");
 const formidable = require("formidable");
 const fs = require("fs");
 const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
 
-
 // Endpoint zum Profilbild updaten
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 const editProfile = async (req, res, next) => {
   const form = formidable({});
   let username = req.username;
@@ -16,9 +22,6 @@ const editProfile = async (req, res, next) => {
     const oldpath = `${files.image.filepath}`;
     const path = `/images/profile_images/${files.image.newFilename}.png`;
     var newpath = pathToStaticFolder(path);
-
-    console.log("update in controllers")
-    console.log({ fields, files });
     fs.rename(oldpath, newpath, async function (err) {
       if (err) {
         console.log("Img renaming failed");
@@ -42,7 +45,7 @@ const editProfile = async (req, res, next) => {
   });
 };
 
-// Endpoint für "/login" zum Einloggen eines Users
+// Endpoint für um die Profil Daten des Nutzers geliefert zu bekommen
 const getProfile = async (req, res, next) => {
   const username = req.username;
   try {

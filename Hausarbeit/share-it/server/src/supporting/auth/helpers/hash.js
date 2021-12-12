@@ -1,3 +1,4 @@
+// Bearbeitet von Leon-Manolo Stiller
 const bcrypt = require("bcrypt");
 
 /**

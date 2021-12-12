@@ -1,3 +1,4 @@
+// Bearbeitet von Leon-Manolo Stiller
 const sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(__dirname + "/database.sqlite");
 
@@ -181,6 +182,12 @@ class UserLibrary {
     });
   }
 
+  /**
+   * Aktualisiert das Profilbild des angegebenen Nutzers durch den username
+   * @param {string} imageUrl
+   * @param {string} username
+   * @returns
+   */
   async updateUserImg(imageUrl, username) {
     console.log("in der Datenbank");
     return new Promise((resolve, reject) => {

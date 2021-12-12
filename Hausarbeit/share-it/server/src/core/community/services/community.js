@@ -1,3 +1,4 @@
+// Bearbeitet von Niklas Hargarter, Leon-Manolo Stiller, Jaron Rieger, Max Ollech
 const CommunityLibrary = require("../../../database/CommunityLibrary");
 const UserLibrary = require("../../../database/UserLibrary");
 

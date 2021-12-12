@@ -1,4 +1,4 @@
-
+// Bearbeitet von Jaron Rieger und Max Ollech
 
 async function submitForm() {
     event.preventDefault();

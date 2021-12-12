@@ -1,3 +1,4 @@
+// Bearbeitet von Niklas Hargarter
 let selectedButton = null;
 
 // Funktion wird aufgerufen anstatt dem Standard von einer HTML Form

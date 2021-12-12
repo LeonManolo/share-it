@@ -1,3 +1,4 @@
+// Bearbeitet von Niklas Hargarter, Leon-Manolo Stiller, Jaron Rieger, Max Ollech
 const express = require("express");
 const router = express.Router();
 const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
@@ -13,12 +14,20 @@ router.post("/add-friend", authCookieChecker, communityControllers.addFriend);
 /**
  * Route um eine Freundschaftsanfrage anzunehmen
  */
-router.post("/accept-friend/:id", authCookieChecker, communityControllers.acceptFriendRequest);
+router.post(
+  "/accept-friend/:id",
+  authCookieChecker,
+  communityControllers.acceptFriendRequest
+);
 
 /**
  * Route um eine Freundschaftsanfrage abzulehnen
  */
-router.post("/decline-friend/:id", authCookieChecker, communityControllers.declineFriendRequest);
+router.post(
+  "/decline-friend/:id",
+  authCookieChecker,
+  communityControllers.declineFriendRequest
+);
 
 /**
  * Route um alle Freunde des eingeloggten Users zu bekommen
@@ -32,7 +41,7 @@ router.get(
 /**
  * Route die die HTML-Seite mit der Community liefert
  */
-router.get("/community",authCookieChecker , (req, res) => {
+router.get("/community", authCookieChecker, (req, res) => {
   res.sendFile(pathToStaticFolder("/html/community.html"));
 });
 

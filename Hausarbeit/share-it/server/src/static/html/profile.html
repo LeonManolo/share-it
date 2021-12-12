@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../css/navbar.css" />
     <link rel="stylesheet" type="text/css" href="../css/profile.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
     <script defer src="./js/profile.js"></script>
     <title>Profile</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar">
-        <a href="/borrow">Ausleihen</a>
-        <a href="/lend">Verleihen</a>
-        <a href="/borrowed">Ausgeliehen</a>
-        <a href="/community">Community</a>
-        <a href="/profile">Eigenes Profil</a>
-        <form action="/logout" method="post">
-            <button type="submit" name="logout" value="logout" class="btn-link">Abmelden</button>
-        </form>
+      <a href="/borrow">Ausleihen</a>
+      <a href="/lend">Verleihen</a>
+      <a href="/borrowed">Ausgeliehen</a>
+      <a href="/community">Community</a>
+      <a href="/profile">Eigenes Profil</a>
+      <form action="/logout" method="post">
+        <button type="submit" name="logout" value="logout" class="btn-link">
+          Abmelden
+        </button>
+      </form>
     </nav>
     <header>
-        <h1>Dein Profil</h1>
+      <h1>Dein Profil</h1>
     </header>
     <main>
-        <section id="profileSection">
-
-        </section>
-        <section id="formSection">
-            <h2>Profilbild ändern</h2>
-            <form
-                onsubmit="submitForm(); return false;"
-                method="post"
-                enctype="multipart/form-data"
-                id="form"
-            >
-                <label for="image">Bild:</label><br>
-                <input required type="file" name="image" value="Datei auswählen" /><br>
-                <button onclick="submitForm()">speichern</button>
-            </form>
-        </section>
+      <section id="profileSection"></section>
+      <section id="formSection">
+        <h2>Profilbild ändern</h2>
+        <form
+          onsubmit="submitForm(); return false;"
+          method="post"
+          enctype="multipart/form-data"
+          id="form"
+        >
+          <label for="image">Bild:</label><br />
+          <input
+            required
+            type="file"
+            name="image"
+            value="Datei auswählen"
+          /><br />
+          <button onclick="submitForm()">speichern</button>
+        </form>
+      </section>
     </main>
-    
-</body>
+  </body>
 </html>

@@ -1,3 +1,4 @@
+// Bearbeitet von Leon-Manolo Stiller
 const express = require("express");
 const router = express.Router();
 const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
@@ -5,7 +6,7 @@ const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder")
 const authControllers = require("../controller/auth.controllers");
 
 /**
- * Route zum Erstellen eines Users
+ * Route zum Erstellen eines Users bzw. zum registrieren
  */
 router.post("/register", authControllers.register);
 
@@ -21,6 +22,9 @@ router.get("/register", (req, res) => {
  */
 router.post("/login", authControllers.login);
 
+/**
+ * Liefert die HTML-Seite für das Login
+ */
 router.get("/login", (req, res) => {
   res.sendFile(pathToStaticFolder("/html/login.html"));
 });

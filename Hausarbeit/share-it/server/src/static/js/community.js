@@ -1,4 +1,4 @@
-
+// Bearbeitet von Niklas Hargarter
 buildFriendRequestSection();
 buildFriendSection();
 buildUserSection();

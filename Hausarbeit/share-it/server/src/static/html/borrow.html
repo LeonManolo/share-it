@@ -1,47 +1,51 @@
+<!-- Bearbeitet von von allen -->
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../css/navbar.css" />
     <script defer src="./js/borrow.js"></script>
-    <link rel="stylesheet" href="../css/borrow.css">
+    <link rel="stylesheet" href="../css/borrow.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
     <title>Ausleihen</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav class="navbar">
-        <a href="/borrow">Ausleihen</a>
-        <a href="/lend">Verleihen</a>
-        <a href="/borrowed">Ausgeliehen</a>
-        <a href="/community">Community</a>
-        <a href="/profile">Eigenes Profil</a>
-        <form action="/logout" method="post">
-            <button type="submit" name="logout" value="logout" class="btn-link">Abmelden</button>
-        </form>
+      <a href="/borrow">Ausleihen</a>
+      <a href="/lend">Verleihen</a>
+      <a href="/borrowed">Ausgeliehen</a>
+      <a href="/community">Community</a>
+      <a href="/profile">Eigenes Profil</a>
+      <form action="/logout" method="post">
+        <button type="submit" name="logout" value="logout" class="btn-link">
+          Abmelden
+        </button>
+      </form>
     </nav>
     <header>
-        <h1>Ausleihen</h1>
+      <h1>Ausleihen</h1>
     </header>
     <main>
-        <section id="itemsSection">
-
-        </section>
-        <section id="detailSection">
-            <img id="detailIMG" alt="Platzhalter">
-            <h2 id="detailH2">Platzhalter</h2>
-            <P id="detailLender">Hier sind details</P>
-            <p id="detailDescription">Hier ist eine Beschreibung</p>
-            <textarea id="detailMessage" type="text" cols="40" rows="5">Schreiben Sie hier eine Nachricht an den Verleiher.</textarea>
-            <button id="detailButtonAusleihen">Ausleihen</button>
-            <button id="detailButtonCancel">Cancel</button>
-        </section>
+      <section id="itemsSection"></section>
+      <section id="detailSection">
+        <img id="detailIMG" alt="Platzhalter" />
+        <h2 id="detailH2">Platzhalter</h2>
+        <p id="detailLender">Hier sind details</p>
+        <p id="detailDescription">Hier ist eine Beschreibung</p>
+        <textarea id="detailMessage" type="text" cols="40" rows="5">
+Schreiben Sie hier eine Nachricht an den Verleiher.</textarea
+        >
+        <button id="detailButtonAusleihen">Ausleihen</button>
+        <button id="detailButtonCancel">Cancel</button>
+      </section>
     </main>
-</body>
-
+  </body>
 </html>

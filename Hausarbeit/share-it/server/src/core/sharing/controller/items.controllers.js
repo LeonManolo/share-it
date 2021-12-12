@@ -1,11 +1,22 @@
+// Bearbeitet von Niklas Hargarter und Leon-Manolo Stiller
+
 const Sharing = require("../services/sharing");
 const pathToStaticFolder = require("../../../global/helpers/pathToStaticFolder");
 const formidable = require("formidable");
 const fs = require("fs");
 
-// TODO username aus den Cookies lesen
 /**
- * Endpoint um einen neuen Gegenstand einzustellen
+ * Endpoint um einen neuen Gegenstand einzustellen.
+ * Um ein Gegenstand einzustellen muss der title,description und ein
+ * Bild hochgeladen werden.
+ * Aufbau von item/Gegenstand Beispiel:
+    {
+    "owner": "Dein Vater",  // Aus den Cookies
+    "title": "Plasma Fernseher",
+    "description": "Ein nagelneuer Plasma Fernseher zum Ausleihen",
+    "maxBorrowDuration": 10,
+    "imageUrl": "https://www.tvmovie.de/assets/2019/04/26/70516-plasma-fernseher.jpg" //Automatisch
+     }
  */
 const addItem = async (req, res, next) => {
   const form = formidable({});
@@ -42,14 +53,14 @@ const addItem = async (req, res, next) => {
 };
 
 /**
- * Endpoint um einen bestimmten Gegenstand geliefert zu bekommen
+ * Endpoint um einen bestimmten Gegenstand geliefert zu bekommen.
+ * Anhand der Id des Items wird der jeweilige Gegenstand geliefert
  */
 const getItem = async (req, res, next) => {
   const id = parseInt(req.params.id);
   try {
     const sharing = new Sharing();
     const item = await sharing.getItem(id);
-    // TODO: item vorher prüfen
     res.json(item);
   } catch (e) {
     res.sendStatus(500);
@@ -58,16 +69,13 @@ const getItem = async (req, res, next) => {
 
 /**
  * Endpoint um alle Gegenstände für einen User zu bekommen die er ausleihen darf.
- *
+ * So werden hier nur Gegenstände geliefert von Inhabern mit denen der Nutzer befreundet ist.
  */
 const getItems = async (req, res, next) => {
   try {
     const sharing = new Sharing();
     const username = req.username;
     const result = await sharing.getItemsForUsername(username);
-    console.log("items.controllers getItems: ");
-    console.log(result);
-    // TODO: item vorher prüfen
     res.json(result);
   } catch (e) {
     res.sendStatus(500);
@@ -77,52 +85,57 @@ const getItems = async (req, res, next) => {
 /**
  * Verleihen
  * Endpoint um alle vom Nutzer reigestellten Artikel zu bekommen.
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
  */
 const getAllItemsLendByUser = async (req, res, next) => {
   const username = req.username;
   const sharing = new Sharing();
   const result = await sharing.getAllItemsLendByUser(username);
-  console.log("items.controllers getLendItems:");
-  console.log(result);
   res.json(result);
 };
 
 /**
- * Ausleihen
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ * Liefert alle Gegenstände die der Nutzer ausgeliehen hat.
+ * Der Nutzer ist hierbei der eingeloggte Nutzer über die cookies.
+ * Bei Erfolg wir hier eine Liste von Items geliefert.
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
  */
 const getAllItemsBorrowedByUser = async (req, res, next) => {
   const username = req.username;
-  try{
+  try {
     const sharing = new Sharing();
     const result = await sharing.getAllItemsBorrowedByUser(username);
-    console.log("items.controllers getBorrowedItems:");
-    console.log(result);
     res.json(result);
-  } catch (e){
+  } catch (e) {
     res.sendStatus(500);
   }
-}
+};
 
 /**
- * Endpoint um ein Gegenstand auszuleihen
+ * Endpoint um ein Gegenstand auszuleihen. Hierbei muss
+ * die Id des Gegenstandes angegeben werden um diesen auszuleihen.
+ * Liefert den
  */
 const borrowItem = async (req, res) => {
   const id = parseInt(req.params.id);
   const username = req.username;
   const sharing = new Sharing();
   const result = await sharing.borrowItem(id, username);
-  console.log(result);
-  res.sendStatus(200);
+  if (result) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
 };
 
 /**
- * Endpoint um einen Gegenstand wieder zurückzugeben
+ * Endpoint um einen Gegenstand wieder zurückzugeben.
+ * Hierbei muss die Id des Gegenstandes angegeben werden um diesen zurück zugeben.
+ * Liefert den Reponse-Code 404 wenn kein Gegenstand mit der angegeben Id gefunden wurde.
  */
 const returnItem = async (req, res) => {
   const id = parseInt(req.params.id);
@@ -140,19 +153,15 @@ const returnItem = async (req, res) => {
   }
 };
 
-// TODO: auf undefined prüfen etc
-// TODO: checken ob update vom Owner kommt.
-const updateItemAlt = async (req, res, next) => {
-  const id = parseInt(req.params.id);
-  const item = req.body;
-  const sharing = new Sharing();
-  const success = await sharing.updateItem(id, item);
-  if (success) {
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(404);
-  }
-};
+/**
+ * Um einen Gegenstand zu bearbeiten wird diese Funktion aufgerufen.
+ * Die Id des zu bearbeitenen Gegenstand muss angegeben werden.
+ * Liefert den Response Code 500 wenn es Probleme beim umbennen oder
+ * sonstige Probleme gab.
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ */
 const updateItem = async (req, res, next) => {
   const id = parseInt(req.params.id);
   const form = formidable({});
@@ -162,15 +171,12 @@ const updateItem = async (req, res, next) => {
       return;
     }
     const item = fields;
-    item.owner = req.username
+    item.owner = req.username;
     const oldpath = `${files.image.filepath}`;
     const path = `/images/item_images/${files.image.newFilename}.png`;
     var newpath = pathToStaticFolder(path);
-    console.log("update in controllers")
-    console.log({ fields, files });
     fs.rename(oldpath, newpath, async function (err) {
       if (err) {
-        console.log("renaming failed");
         res.sendStatus(500);
         return;
       }
@@ -184,11 +190,14 @@ const updateItem = async (req, res, next) => {
         res.send(`Adding failed: ${e}`);
       }
     });
-  })
+  });
 };
 
 /**
  * Endpoint um einen Gegenstand zu löschen
+ * Zum löschen wird die Id des gegenstandes benötigt.
+ * Liefert den Response-Code 404 wenn kein Gegenstand
+ * mit dir angegebenen Id zum löschen gefunden wurde.
  */
 const deleteItem = async (req, res, next) => {
   const id = parseInt(req.params.id);
@@ -197,7 +206,7 @@ const deleteItem = async (req, res, next) => {
   if (success) {
     res.sendStatus(200);
   } else {
-    res.sendStatus(403);
+    res.sendStatus(404);
   }
 };
 

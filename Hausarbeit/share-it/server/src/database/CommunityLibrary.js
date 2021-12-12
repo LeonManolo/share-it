@@ -1,3 +1,4 @@
+// Bearbeitet von Leon-Manolo Stiller, Niklas Hargarter
 const sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(__dirname + "/database.sqlite");
 
@@ -81,6 +82,11 @@ class CommunityLibrary {
     });
   }
 
+  /**
+   * Liefert alle User die mit dem angegebenen username befreundet sind.
+   * @param {string} username
+   * @returns {[object]} user
+   */
   async getAllFriendsOfUser(username) {
     return new Promise((resolve, reject) => {
       db.all(

@@ -1,3 +1,4 @@
+// Bearbeitet von Leon-Manolo Stiller
 const createSessionId = require("../helpers/createSessionId");
 const hash = require("../helpers/hash");
 const UserLibrary = require("../../../database/UserLibrary");
@@ -79,6 +80,10 @@ class Authentication {
     }
   }
 
+  /**
+   * 
+   * @param {string} username 
+   */
   async logout(username) {
     //TODO: sessionid löschen
   }

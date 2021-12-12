@@ -1,3 +1,4 @@
+// Bearbeitet von Niklas Hargarter, Leon-Manolo Stiller, Jaron Rieger, Max Ollech
 const Community = require("../services/community");
 
 /**
@@ -29,7 +30,8 @@ const addFriend = async (req, res, next) => {
 };
 
 /**
- * Liefert alle unbeantworteten Freundesanfragen für den jeweiligen User (username)
+ * Liefert alle unbeantworteten Freundesanfragen für den jeweiligen User (username).
+ * Der username wird aus den cookies gelesen
  * @param {*} req
  * @param {*} res
  * @param {*} next
@@ -91,8 +93,8 @@ const declineFriendRequest = async (req, res, next) => {
 
 /**
  * Endpoint der alle Freunde des eingeloggten Users liefert
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 const getAllFriendsOfUser = async (req, res) => {
   try {

@@ -1,5 +1,9 @@
-console.log("Hey");
+// Bearbeitet von Leon-Manolo Stiller und Max Ollech
 
+/**
+ * Hilfsfunktion um die Form daten einer Form zu bekommen
+ * @returns
+ */
 const getFormData = () => {
   const form = document.getElementById("form");
   const data = {
@@ -9,6 +13,10 @@ const getFormData = () => {
   return data;
 };
 
+/**
+ * Funktion die beim submit der Form aufgerufen wird und eine
+ * Post Request an den Register endpoint zum einloggen ein Nutzer macht
+ */
 async function submitForm() {
   event.preventDefault();
 
@@ -41,6 +49,7 @@ async function submitForm() {
   }
 }
 
+// Navigiert zur Ausleig Seite
 async function navigateToDashboard() {
   window.location = "/borrow";
 }

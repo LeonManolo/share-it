@@ -1,3 +1,4 @@
+<!-- Bearbeitet von von allen -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,8 +24,10 @@
       <a href="/community">Community</a>
       <a href="/profile">Eigenes Profil</a>
       <form action="/logout" method="post">
-        <button type="submit" name="logout" value="logout" class="btn-link">Abmelden</button>
-    </form>
+        <button type="submit" name="logout" value="logout" class="btn-link">
+          Abmelden
+        </button>
+      </form>
     </nav>
     <header>
       <h1>Dinge, die ich verleihe</h1>
@@ -51,7 +54,9 @@
             pattern=".{1,}"
             title="mindestens ein Buchstabe"
           /><br />
-          <label for="description">Artikelbeschreibung (max. 240 Zeichen):</label><br />
+          <label for="description"
+            >Artikelbeschreibung (max. 240 Zeichen):</label
+          ><br />
           <textarea
             required
             type="text"
@@ -65,9 +70,25 @@
           ></textarea
           ><br />
           <label for="image">Bild:</label><br />
-          <input required type="file" accept="image/png, image/jpeg" name="image" value="Datei auswählen" /><br>
-          <label for="maxBorrowDuration">Ausleihdauer in Tagen (zwischen 1 und 20):</label>
-          <input required type="number" id="maxBorrowDuration" name="maxBorrowDuration" min="1" max="20" value="10"><br> 
+          <input
+            required
+            type="file"
+            accept="image/png, image/jpeg"
+            name="image"
+            value="Datei auswählen"
+          /><br />
+          <label for="maxBorrowDuration"
+            >Ausleihdauer in Tagen (zwischen 1 und 20):</label
+          >
+          <input
+            required
+            type="number"
+            id="maxBorrowDuration"
+            name="maxBorrowDuration"
+            min="1"
+            max="20"
+            value="10"
+          /><br />
           <input type="submit" name="Anmelden" value="Speichern" />
           <button onclick="cancelSubmit()">Abbrechen</button>
         </form>
